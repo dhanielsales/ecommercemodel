@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Produto | {{ block.super }}
+    {{ product }} | {{ block.super }}
 {% endblock %}
 
 {% block container %}
 <div class="page-header">
-  <h1>Página do Produto</h1>
+  <h1> {{ product }} </h1>
 </div>
 <div class="row">
   <div class="col-sm-4">
@@ -16,16 +16,7 @@
   </div>
   <div class="col-sm-8">
       <dl>
-        <dt>Lorem ipsum:</dt>
-        <dd>Lorem ipsum dolor sit amet</dd>
-        <dt>Lorem ipsum:</dt>
-        <dd>Lorem ipsum dolor sit amet</dd>
-        <dt>Lorem ipsum:</dt>
-        <dd>Lorem ipsum dolor sit amet</dd>
-        <dt>Lorem ipsum:</dt>
-        <dd>Lorem ipsum dolor sit amet</dd>
-        <dt>Lorem ipsum:</dt>
-        <dd>Lorem ipsum dolor sit amet</dd>
+          {{ product.description|linebreaks }} 
       </dl>
   </div>
 </div>
