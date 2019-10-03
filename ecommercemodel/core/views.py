@@ -2,12 +2,15 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.views.generic import View, TemplateView
 
 from .forms import ContactForm
 
-def index(request, template_name = "index.html"):
-    return render(request, template_name)
+class IndexView(TemplateView): 
+    
+    template_name = "index.html"
+
+index = IndexView.as_view()
 
 def contact(request, template_name = "contact.html"):
     success = False
