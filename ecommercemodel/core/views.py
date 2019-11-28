@@ -6,8 +6,9 @@ from django.views.generic import View, TemplateView
 
 from .forms import ContactForm
 
+
 class IndexView(TemplateView): 
-    
+
     template_name = "index.html"
 
 index = IndexView.as_view()
@@ -21,7 +22,6 @@ def contact(request, template_name = "contact.html"):
         form = ContactForm()
     context = {
         'form': form,
-        'success' : success,
+        'sucesso' : success,
     }
     return render(request, template_name, context)
- 
