@@ -21,7 +21,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2i%#5(a$dugf9owtglt0a%d$9h2+#uwmbk^lz7-uc!_@452d-v'
+# SECRET_KEY = '2i%#5(a$dugf9owtglt0a%d$9h2+#uwmbk^lz7-uc!_@452d-v'
+SECRET_KEY = os.getenv('SECRET_KEY', '123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     #My Apps
     'core',
     'catalog',
+    'accounts',
+
 ]
 
 MIDDLEWARE = [
@@ -112,6 +115,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# User & Authententication
+
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailBackend',
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -134,6 +145,11 @@ EMAIL_HOST_PASSWORD = 'qvdsimxvjbjuiuoc'
 DEFAULT_FROM_EMAIL = 'dhanielr94@gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True 
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+
 
 
 # Static files (CSS, JavaScript, Images)

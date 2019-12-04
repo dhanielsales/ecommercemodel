@@ -2,12 +2,17 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
 
 from .forms import ContactForm
 
+User = get_user_model()
 
-class IndexView(TemplateView): 
+
+class IndexView(TemplateView):  
 
     template_name = "index.html"
 
@@ -25,3 +30,4 @@ def contact(request, template_name = "contact.html"):
         'sucesso' : success,
     }
     return render(request, template_name, context)
+
