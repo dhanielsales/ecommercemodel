@@ -20,7 +20,7 @@ from django.urls import path, include
 from core.views import *
 from catalog.views import *
 from accounts.views import *
-
+from checkout.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('contato/', contact, name="contact"),
     path('produtos/', include('catalog.urls', namespace="catalog")),
     path('conta/', include('accounts.urls', namespace="accounts")),
+    path('compras/', include('checkout.urls', namespace="checkout")),
 
 ]
  
