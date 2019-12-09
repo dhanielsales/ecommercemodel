@@ -1,6 +1,5 @@
 <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-        <a href="{{ product.get_absolute_url }}">
+        <a class='thumbnail' href="{{ product.get_absolute_url }}">
             <img src="http://placehold.it/350x250" alt="" />
         </a>
         <div class="caption">
@@ -8,5 +7,4 @@
             {{ product.description|linebreaks }}
             <p><a href="{{ product.get_absolute_url }}" class="btn btn-success" role="button">Detalhes</a> <a href="{% url 'checkout:create_cart_item' product.slug %}" class="btn btn-default" role="button">Adicionar ao Carrinho</a></p>
         </div>
-    </div>
 </div>
