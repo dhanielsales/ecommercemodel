@@ -32,14 +32,31 @@ class CartItemView(TemplateView):
 
     template_name = 'checkout/cart.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(CartItemView, self).get_context_data(**kwargs)
+    def get_formset(self, clear=False):
         CartItemFormSet = modelformset_factory(CartItem, fields=('quantity',), can_delete=True, extra=0)
         session_key = self.request.session.session_key
         if session_key:
-            context['formset'] = CartItemFormSet(queryset=CartItem.objects.filter(cart_key=session_key))
+            if clear:
+                formset = CartItemFormSet(queryset=CartItem.objects.filter(cart_key=session_key))
+            else:
+                formset = CartItemFormSet(queryset=CartItem.objects.filter(cart_key=session_key), data=self.request.POST or None)
         else:
-            context['formset'] = CartItemFormSet(queryset=CartItem.objects.filter(cart_key=CartItem.objects.none()))
+            formset = CartItemFormSet(queryset=CartItem.objects.none())
+        
+        return formset
+
+    def get_context_data(self, **kwargs):
+        context = super(CartItemView, self).get_context_data(**kwargs)
+        context['formset'] = self.get_formset()
         return context
+
+    def post(self, request, *args, **kwargs):
+        formset = self.get_formset()
+        context = self.get_context_data(**kwargs)
+        if formset.is_valid():
+            formset.save()
+            messages.success(request, 'Carrinho atualizado com sucesso.')
+            context['formset'] = self.get_formset(clear=True)
+        return self.render_to_response(context)
 
 cart_item = CartItemView.as_view()
