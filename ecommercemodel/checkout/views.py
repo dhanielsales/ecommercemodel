@@ -22,11 +22,12 @@ class CreateCartItemView(RedirectView):
             self.request.session.save()
         cart_item, created = CartItem.objects.add_item(self.request.session.session_key, product)
         if created:
-            messages.success(self.request, 'Produto adicionado ao carrinho de compras!')
+            messages.success(self.request, f'Produto "{product}" adicionado ao carrinho de compras!')
         else:
-            messages.success(self.request, 'Produto atualizado no carrinho de compras!')
+            messages.success(self.request, f'Produto "{product}" atualizado no carrinho de compras!')
+
         sleep(0.5)        
-        return product.get_absolute_url()
+        return reverse('checkout:cart_item')
 
 
 class CartItemView(TemplateView):
@@ -58,6 +59,7 @@ class CartItemView(TemplateView):
             formset.save()
             messages.success(request, 'Carrinho atualizado com sucesso.')
             context['formset'] = self.get_formset(clear=True)
+
         return self.render_to_response(context)
 
 class CheckoutView(LoginRequiredMixin, TemplateView):

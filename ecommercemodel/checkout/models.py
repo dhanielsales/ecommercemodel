@@ -7,6 +7,7 @@ from django.conf import settings
 class CartItemManager(models.Manager):
 
     def add_item(self, cart_key, product):
+
         if self.filter(cart_key=cart_key, product=product).exists():
             created = False
             cart_item = self.get(cart_key=cart_key, product=product)
@@ -25,6 +26,7 @@ class CartItem(models.Model):
     product = models.ForeignKey('catalog.Product', verbose_name='Produto', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField('Quantidade', default=1)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Usuário', on_delete=models.CASCADE, null=True)
 
     objects = CartItemManager()
 
@@ -34,7 +36,7 @@ class CartItem(models.Model):
         unique_together = (('cart_key', 'product'),)
 
     def __str__(self):
-        return f'{self.product} [{self.quantity}]'
+        return f'{self.product} - {self.quantity}Un.'
 
 class OrderManager(models.Manager):
 
