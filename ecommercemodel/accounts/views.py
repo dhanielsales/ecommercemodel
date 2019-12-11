@@ -8,23 +8,20 @@ from django.contrib.auth.forms import PasswordChangeForm
 from .models import User
 from .forms import UserAdminCreationForm
 
-
 class AccountView(LoginRequiredMixin, TemplateView):
 
     template_name = 'accounts/account.html'
 
 account = AccountView.as_view()
 
-
 class RegisterView(CreateView):
 
     model = User
-    template_name = 'register.html'
+    template_name = 'accounts/register.html'
     form_class = UserAdminCreationForm
     success_url = reverse_lazy('index')
 
 register = RegisterView.as_view()
-
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
 
@@ -37,7 +34,6 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
 update_user = UpdateUserView.as_view()
-
 
 class UpdatePasswordView(LoginRequiredMixin, FormView):
 
