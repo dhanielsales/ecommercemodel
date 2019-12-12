@@ -1,7 +1,11 @@
 # coding=utf-8
 
+from pagseguro import PagSeguro
+
 from django.db import models
 from django.conf import settings
+
+from catalog.models import Product
 
 
 class CartItemManager(models.Manager):
@@ -36,7 +40,7 @@ class CartItem(models.Model):
         unique_together = (('cart_key', 'product'),)
 
     def __str__(self):
-        return f'{self.product} - {self.quantity}Un.'
+        return f'{self.product}'
 
 class OrderManager(models.Manager):
 
@@ -53,20 +57,20 @@ class Order(models.Model):
     STATUS_CHOICES = (
         (0, 'Aguardando Pagamento'),
         (1, 'Pagamento Autorizado'),
-        (2, 'Cuncluído'),
+        (2, 'Concluído'),
         (3, 'Cancelado'),
     )
 
     PAYMENT_OPTION_CHOICES = (
-        ("deposito", 'Depósito em Conta'),
         ("boletobancario", 'Boleto Bancário'),
         ("pagseguro", 'PagSeguro'),
         ("paypal", 'PayPal'),
     )
 
+    id = models.AutoField('ID do Pedido', primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Usuário', on_delete=models.CASCADE,)
     status = models.IntegerField('Situação', choices=STATUS_CHOICES, default=0, blank=True)
-    payment_option = models.CharField('Modo de Pagamento', choices=PAYMENT_OPTION_CHOICES, max_length=30, default='deposito')
+    payment_option = models.CharField('Modo de Pagamento', choices=PAYMENT_OPTION_CHOICES, max_length=30, default=None, blank=True, null=True)
     created = models.DateTimeField('Data de Criação', auto_now_add=True)
     modified = models.DateTimeField('Data de Modificação', auto_now=True)
     
@@ -76,12 +80,31 @@ class Order(models.Model):
         verbose_name = 'Pedido'
         verbose_name_plural = 'Pedidos'
 
+    def products(self):
+        products_ids = self.items.values_list('product')
+        return Product.objects.filter(pk__in=products_ids)
+    
+    def total_price(self):
+        aggregate_queryset = self.items.aggregate(total=models.Sum(models.F('price')
+         * models.F('quantity'), output_field=models.DecimalField()))
+        return aggregate_queryset['total']
+
+    def pagseguro(self):
+        pg = PagSeguro(email=settings.PAGSEGURO_EMAIL, 
+                       token=settings.PAGSEGURO_TOKEN, 
+                       config={'sandbox': settings.PAGSEGURO_SANDBOX}
+        )
+        
+
+
+
+
     def __str__(self):
-        return f'Pedido #{self.pk:0>6}'
+        return f'#{self.id:0>6}'
 
 class OrderItem(models.Model):
 
-    order = models.ForeignKey(Order, verbose_name="Pedido", related_name='Items', on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, verbose_name="Pedido", related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey('catalog.Product', verbose_name='Produto', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField('Quantidade', default=1)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=8)

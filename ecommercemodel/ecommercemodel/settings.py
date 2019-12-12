@@ -112,8 +112,11 @@ MESSAGE_TAGS = {
    
 }
 
+# PagSeguro
 
-
+PAGSEGURO_TOKEN = ''
+PAGSEGURO_EMAIL = 'dhanielr94@gmail.com'
+PAGSEGURO_SANDBOX = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

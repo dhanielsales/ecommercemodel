@@ -9,7 +9,7 @@ class CartItemAdmin(admin.ModelAdmin):
 
 class OrderAdmin(admin.ModelAdmin):
 
-    list_display = ['user', 'status', 'payment_option', 'created', 'modified',]
+    list_display = ['__str__', 'user', 'status', 'payment_option', 'created', 'modified',]
     search_fields = ['user', 'user', 'payment_option']
 
 class OrderItemAdmin(admin.ModelAdmin):

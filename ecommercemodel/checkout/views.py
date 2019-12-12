@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from django.shortcuts import get_object_or_404
-from django.views.generic import RedirectView, TemplateView
+from django.views.generic import RedirectView, TemplateView, ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin # View Baseada em Classe
 from django.forms import modelformset_factory
 from django.contrib import messages
@@ -74,9 +74,39 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
         else:
             messages.info(request, 'Não há itens no carrinho de compras')
             return redirect('checkout:cart_item')
-        return super(CheckoutView, self).get(request, *args, **kwargs)
+        response = super(CheckoutView, self).get(request, *args, **kwargs)
+        response.context_data['order'] = order
+        return response
 
+class OrderListView(LoginRequiredMixin, ListView):
+
+    template_name = 'checkout/order_list.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+
+class OrderDetailView(LoginRequiredMixin, DetailView):
+
+    template_name = 'checkout/order_detail.html'
+    
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+
+class PagSeguroView(LoginRequiredMixin, RedirectView):
+
+    def get_redirect_url(self, *args, **kwargs):
+        order_pk = self.kwargs.get('pk')
+        order = get_object_or_404(Order.objects.filter(user=self.request.user), pk=order_pk)
+        pg = order.pagseguro()
+        pg.redirect_url = self.request.build_absolute_uri(reverse('accounts:order_datail', args=[order.pk]))
+
+        response = pg.checkout()
+        return response.payment_url
 
 create_cart_item = CreateCartItemView.as_view()
 cart_item = CartItemView.as_view()
 checkout_order = CheckoutView.as_view()
+order_list = OrderListView.as_view()
+order_detail = OrderDetailView.as_view()
+pagseguro_view = PagSeguroView.as_view()

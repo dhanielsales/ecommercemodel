@@ -1,0 +1,60 @@
+{% extends "accounts/account.html" %}
+
+{% load pagination %}
+
+{% load widget_tweaks %}
+
+{% block title %}Meus Pedidos{% endblock %}
+
+{% block accounts_container %}
+    <h2>Meus Pedidos</h2>
+    <table class="table table-bordered">
+            <thead>
+                <th class="text-center">
+                    Número do Pedido
+                </th>
+                <th class="text-center">
+                    Data
+                </th>
+                <th class="text-center">
+                    Pagamento
+                </th>
+                <th class="text-center">
+                    Situação
+                </th>
+                <th class="text-center">
+                    Produtos
+                </th>
+                <th class="text-center">
+                    Valor Total
+                </th>
+            </thead>
+            <tbody>
+              {% for order in object_list %}
+                <tr>
+                  <td class="text-center">
+                    <a href="{% url 'accounts:order_detail' order.id %}">{{ order }}</a> 
+                  </td>
+                  <td class="text-center">
+                    {{ order.created|date:'d/m/Y' }}
+                  </td>
+                  <td class="text-center">
+                    {{ order.get_payment_option_display }}
+                  </td>
+                  <td class="text-center">
+                    {{ order.get_status_display }}
+                  </td>
+                  <td >
+                    {% for product in order.products %}
+                    {{ product.name }}{% if not forloop.last %};<br/>{% else %}.{% endif %}
+                    {% endfor %}
+                  </td>
+                  <td class="text-center">
+                     R$ {{ order.total_price | floatformat:'2' }}
+                    </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+{% pagination request paginator page_obj %}
+{% endblock %}
