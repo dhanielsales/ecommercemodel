@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 
 from pagseguro.api import PagSeguroItem, PagSeguroApi
+from pagseguro.signals import notificacao_recebida
 
 from catalog.models import Product
 
@@ -123,9 +124,23 @@ class OrderItem(models.Model):
     def __str__(self):
         return f'Pedido #{self.pk:0>6} - Produto {self.product}'
 
+#### Signals
 
+## Excluir item ao zerar
 def post_save_cart_item(instance, **kwargs):
     if instance.quantity < 1:
         instance.delete()
 
 models.signals.post_save.connect(post_save_cart_item, sender=CartItem, dispatch_uid='post_save_cart_item')
+
+## PagSeguro
+
+def load_signal(sender, data, **kwargs):
+    print(data['success'])
+
+checkout_realizado.connect(load_signal, sender=Order)
+
+def load_signal(sender, data, **kwargs):
+    print(data['success'])
+
+checkout_realizado.connect(load_signal, sender=Order)
