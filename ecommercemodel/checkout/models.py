@@ -1,9 +1,8 @@
 # coding=utf-8
-
-from pagseguro import PagSeguro
-
 from django.db import models
 from django.conf import settings
+
+from pagseguro.api import PagSeguroItem, PagSeguroApi
 
 from catalog.models import Product
 
@@ -90,14 +89,22 @@ class Order(models.Model):
         return aggregate_queryset['total']
 
     def pagseguro(self):
-        pg = PagSeguro(email=settings.PAGSEGURO_EMAIL, 
-                       token=settings.PAGSEGURO_TOKEN, 
-                       config={'sandbox': settings.PAGSEGURO_SANDBOX}
-        )
-        
-
-
-
+        self.payment_option = 'pagseguro'
+        self.save()
+        pg = PagSeguroApi(reference=self.id, 
+                          token=settings.PAGSEGURO_TOKEN, 
+                          email=settings.PAGSEGURO_EMAIL,
+                          senderEmail=self.user.email, 
+                          senderName=self.user.name)
+        for item in self.items.all():
+            pagseg_item = PagSeguroItem(id=item.product.pk, 
+                                        description=item.product.name,
+                                        amount=f'{item.price:.2f}',
+                                        quantity=item.quantity,
+                                        shipping_cost=None, 
+                                        weight=None)
+            pg.add_item(pagseg_item)
+        return pg
 
     def __str__(self):
         return f'#{self.id:0>6}'

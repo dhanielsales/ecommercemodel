@@ -23,7 +23,7 @@ Finalização da Compra
         <a href='' class='btn btn-success'>Boleto Bancário</a>
     </div>
     <div class="col-md-2">
-        <a href='' class='btn btn-success'>PagSeguro</a>
+        <a href='{% url "checkout:pagseguro_view" order.id %}' class='btn btn-success'>PagSeguro</a>
     </div>
     <div class="col-md-2">
         <a href='' class='btn btn-success'>PayPal</a>

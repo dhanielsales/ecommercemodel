@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #Extra Libs
     'widget_tweaks',
+    'pagseguro',
 
     #My Apps
     'core',
@@ -114,9 +115,10 @@ MESSAGE_TAGS = {
 
 # PagSeguro
 
-PAGSEGURO_TOKEN = ''
+PAGSEGURO_TOKEN = 'BEF8EC6377E14A8795503CB9D080CA86'
 PAGSEGURO_EMAIL = 'dhanielr94@gmail.com'
 PAGSEGURO_SANDBOX = True
+PAGSEGURO_LOG_IN_MODEL = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
