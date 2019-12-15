@@ -1,9 +1,10 @@
 # coding=utf-8
+
 from django.db import models
 from django.conf import settings
 
 from pagseguro.api import PagSeguroItem, PagSeguroApi
-from pagseguro.signals import notificacao_recebida
+from pagseguro.signals import  notificacao_recebida
 
 from catalog.models import Product
 
@@ -52,13 +53,29 @@ class OrderManager(models.Manager):
         
         return order
 
+    def update_order_status(self, transaction):
+
+        STATUS_MAP = {
+        '1': 'Aguardando Pagamento',
+        '2': 'Pagamento em Análise',
+        '3': 'Pagamento Autorizado',
+        '7': 'Cancelado',
+        }
+
+        order = self.filter(id=transaction['reference']).first()
+        if not order:
+            return
+        if transaction['status'] not in ('1', '2', '3', '7'):
+            return order
+        order.status = STATUS_MAP[transaction['status']]
+
 class Order(models.Model):
     
     STATUS_CHOICES = (
-        (0, 'Aguardando Pagamento'),
-        (1, 'Pagamento Autorizado'),
-        (2, 'Concluído'),
-        (3, 'Cancelado'),
+        ('1', 'Aguardando Pagamento'),
+        ('2', 'Pagamento em Análise'),
+        ('3', 'Pagamento Autorizado'),
+        ('7', 'Cancelado'),
     )
 
     PAYMENT_OPTION_CHOICES = (
@@ -107,6 +124,7 @@ class Order(models.Model):
             pg.add_item(pagseg_item)
         return pg
 
+
     def __str__(self):
         return f'#{self.id:0>6}'
 
@@ -135,12 +153,8 @@ models.signals.post_save.connect(post_save_cart_item, sender=CartItem, dispatch_
 
 ## PagSeguro
 
-def load_signal(sender, data, **kwargs):
-    print(data['success'])
+def order_pagseguro_status(sender, transaction,**kwargs):
+    print(transaction['status'])
+    Order.objects.update_order_status(transaction)
 
-checkout_realizado.connect(load_signal, sender=Order)
-
-def load_signal(sender, data, **kwargs):
-    print(data['success'])
-
-checkout_realizado.connect(load_signal, sender=Order)
+notificacao_recebida.connect(order_pagseguro_status, sender=Order)

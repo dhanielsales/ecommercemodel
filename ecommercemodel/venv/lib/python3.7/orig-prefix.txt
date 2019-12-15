@@ -1,1 +1,1 @@
-/home/dhaniel/anaconda3
+/home/sarlac/anaconda3

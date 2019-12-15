@@ -1,1 +1,1 @@
-/home/dhaniel/anaconda3/lib/python3.7/struct.py
+/home/sarlac/anaconda3/lib/python3.7/struct.py

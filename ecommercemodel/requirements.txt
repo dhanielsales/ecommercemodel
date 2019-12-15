@@ -9,5 +9,4 @@ six==1.12.0
 sqlparse==0.3.0
 whitenoise==4.1.3
 django-widget-tweaks==1.4.5
-Pillow==6.2.1
 django-pagseguro2==2.0.4

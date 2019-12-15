@@ -1,4 +1,4 @@
-#!/home/dhaniel/GitHub/e-commerce-model/ecommercemodel/venv/bin/python
+#!/home/sarlac/Github/e-commerce-model/ecommercemodel/venv/bin/python
 
 import sys
 import getopt

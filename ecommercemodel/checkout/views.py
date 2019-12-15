@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.urls import reverse
 from time import sleep
 from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_exempt
 
 from catalog.models import Product
 
@@ -104,9 +105,11 @@ class PagSeguroView(LoginRequiredMixin, RedirectView):
         if data['success']:
             return data['redirect_url']
 
-        # pg.notification_url = self.request.build_absolute_uri(
-        #     reverse('checkout:pagseguro_notification')
-        # )
+@csrf_exempt
+def pagseguro_notification_view(request):
+    notification_code = request.POST.get('notificationCode', None)
+    if notification_code:
+        return HttpResponse('Ok')
 
 
 create_cart_item = CreateCartItemView.as_view()
