@@ -1,4 +1,4 @@
-#!/home/sarlac/Github/e-commerce-model/ecommercemodel/venv/bin/python
+#!/home/dhaniel/GitHub/e-commerce-model/ecommercemodel/venv/bin/python3.7
 from django.core import management
 
 if __name__ == "__main__":

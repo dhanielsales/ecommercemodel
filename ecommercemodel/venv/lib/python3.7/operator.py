@@ -1,1 +1,1 @@
-/home/sarlac/anaconda3/lib/python3.7/operator.py
+/home/dhaniel/anaconda3/lib/python3.7/operator.py
