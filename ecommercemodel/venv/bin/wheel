@@ -1,4 +1,4 @@
-#!/home/dhaniel/GitHub/e-commerce-model/ecommercemodel/venv/bin/python3.7
+#!/home/dhaniel/GitHub/ecommercemodel/ecommercemodel/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

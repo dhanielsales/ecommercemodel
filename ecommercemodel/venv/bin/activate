@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/dhaniel/GitHub/e-commerce-model/ecommercemodel/venv"
+VIRTUAL_ENV="/home/dhaniel/GitHub/ecommercemodel/ecommercemodel/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

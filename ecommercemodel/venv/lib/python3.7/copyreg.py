@@ -1,1 +1,1 @@
-/home/dhaniel/anaconda3/lib/python3.7/copyreg.py
+/usr/lib64/python3.7/copyreg.py
