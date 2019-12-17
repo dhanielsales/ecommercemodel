@@ -25,7 +25,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = os.getenv('SECRET_KEY', '123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -118,7 +119,7 @@ MESSAGE_TAGS = {
 PAGSEGURO_TOKEN = 'BEF8EC6377E14A8795503CB9D080CA86'
 PAGSEGURO_EMAIL = 'dhanielr94@gmail.com'
 PAGSEGURO_SANDBOX = True
-PAGSEGURO_LOG_IN_MODEL = True
+# PAGSEGURO_LOG_IN_MODEL = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

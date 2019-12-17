@@ -3,11 +3,11 @@
 from django.db import models
 from django.conf import settings
 
-from pagseguro.api import PagSeguroItem, PagSeguroApi
+# from pagseguro.api import PagSeguroItem, PagSeguroApi
 from pagseguro.signals import  notificacao_recebida
+import pagseguro 
 
 from catalog.models import Product
-
 
 class CartItemManager(models.Manager):
 
@@ -53,22 +53,6 @@ class OrderManager(models.Manager):
         
         return order
 
-    def update_order_status(self, transaction):
-
-        STATUS_MAP = {
-        '1': 'Aguardando Pagamento',
-        '2': 'Pagamento em Análise',
-        '3': 'Pagamento Autorizado',
-        '7': 'Cancelado',
-        }
-
-        order = self.filter(id=transaction['reference']).first()
-        if not order:
-            return
-        if transaction['status'] not in ('1', '2', '3', '7'):
-            return order
-        order.status = STATUS_MAP[transaction['status']]
-
 class Order(models.Model):
     
     STATUS_CHOICES = (
@@ -86,7 +70,7 @@ class Order(models.Model):
 
     id = models.AutoField('ID do Pedido', primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Usuário', on_delete=models.CASCADE,)
-    status = models.IntegerField('Situação', choices=STATUS_CHOICES, default=0, blank=True)
+    status = models.CharField('Situação', choices=STATUS_CHOICES, max_length=30, default=None, blank=True, null=True)
     payment_option = models.CharField('Modo de Pagamento', choices=PAYMENT_OPTION_CHOICES, max_length=30, default=None, blank=True, null=True)
     created = models.DateTimeField('Data de Criação', auto_now_add=True)
     modified = models.DateTimeField('Data de Modificação', auto_now=True)
@@ -106,24 +90,67 @@ class Order(models.Model):
          * models.F('quantity'), output_field=models.DecimalField()))
         return aggregate_queryset['total']
 
+
+#### pagseguro.api Django
+
+    # def pagseguro(self): 
+    #     self.payment_option = 'pagseguro'
+    #     self.save()
+    #     pg = PagSeguroApi(reference=self.id, 
+    #                       token=settings.PAGSEGURO_TOKEN, 
+    #                       email=settings.PAGSEGURO_EMAIL,
+    #                       senderEmail=self.user.email, 
+    #                       senderName=self.user.name)
+    #     for item in self.items.all():
+    #         pagseg_item = PagSeguroItem(id=item.product.pk, 
+    #                                     description=item.product.name,
+    #                                     amount=f'{item.price:.2f}',
+    #                                     quantity=item.quantity,
+    #                                     shipping_cost=None, 
+    #                                     weight=None)
+    #         pg.add_item(pagseg_item)
+    #     return pg
+
+#### Módulo Python pagseguro
+
     def pagseguro(self):
         self.payment_option = 'pagseguro'
         self.save()
-        pg = PagSeguroApi(reference=self.id, 
-                          token=settings.PAGSEGURO_TOKEN, 
-                          email=settings.PAGSEGURO_EMAIL,
-                          senderEmail=self.user.email, 
-                          senderName=self.user.name)
+        pg = pagseguro.PagSeguro(token=settings.PAGSEGURO_TOKEN, 
+                       email=settings.PAGSEGURO_EMAIL,
+                       config={'sandbox': settings.PAGSEGURO_SANDBOX})
+        pg.sender = {"name": self.user.name,
+                     "area_code": None,
+                     "phone": None,
+                     "email": self.user.email,}
+        pg.reference_prefix = ''
+        pg.shipping = None
+        pg.reference = self.id
+
         for item in self.items.all():
-            pagseg_item = PagSeguroItem(id=item.product.pk, 
-                                        description=item.product.name,
-                                        amount=f'{item.price:.2f}',
-                                        quantity=item.quantity,
-                                        shipping_cost=None, 
-                                        weight=None)
-            pg.add_item(pagseg_item)
+            pg.items.append({'id': item.product.pk, 
+                             'description': item.product.name,
+                             'amount': f'{item.price:.2f}',
+                             'quantity': item.quantity,
+                             'shipping_cost': None, 
+                             'weight': None
+                            })
         return pg
 
+    def update_pagseguro_status(self, status):
+
+        STATUS_MAP = {
+        '1': 'Aguardando Pagamento',
+        '2': 'Pagamento em Análise',
+        '3': 'Pagamento Autorizado',
+        '7': 'Cancelado',
+        }
+
+        if status in STATUS_MAP:
+            self.status = status
+        else:
+            self.status = '2'
+        self.save()
 
     def __str__(self):
         return f'#{self.id:0>6}'
@@ -150,11 +177,3 @@ def post_save_cart_item(instance, **kwargs):
         instance.delete()
 
 models.signals.post_save.connect(post_save_cart_item, sender=CartItem, dispatch_uid='post_save_cart_item')
-
-## PagSeguro
-
-def order_pagseguro_status(sender, transaction,**kwargs):
-    print(transaction['status'])
-    Order.objects.update_order_status(transaction)
-
-notificacao_recebida.connect(order_pagseguro_status, sender=Order)

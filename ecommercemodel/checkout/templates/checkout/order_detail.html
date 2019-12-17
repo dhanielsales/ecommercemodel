@@ -14,13 +14,13 @@
   <dt>Forma de Pagamento:</dt>
   <dd>{{ object.get_payment_option_display }}</dd>
   <dt>Situação:</dt>
-  {% if object.status == 0 %} 
+  {% if object.status == '1' %} 
     <dd style="font-weight: bold; color:#e7c501">{{ object.get_status_display }}</dd> 
-  {% elif object.status == 1 %}
-    <dd style="font-weight: bold; color:#32CD32">{{ object.get_status_display }}</dd> 
-  {% elif object.status == 2 %}
+  {% elif object.status == '2' %}
     <dd style="font-weight: bold; color:#1E90FF">{{ object.get_status_display }}</dd> 
-  {% elif object.status == 3 %}
+  {% elif object.status == '3' %}
+    <dd style="font-weight: bold; color:#32CD32">{{ object.get_status_display }}</dd> 
+  {% elif object.status == '7' %}
     <dd style="font-weight: bold; color:#EE0000">{{ object.get_status_display }}</dd> 
   {% endif %}
   <dt>Total do Pedido:</dt>

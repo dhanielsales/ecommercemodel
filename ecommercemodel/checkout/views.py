@@ -9,8 +9,12 @@ from django.urls import reverse
 from time import sleep
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.http import HttpResponse
 
 from catalog.models import Product
+
+import pagseguro
 
 from .models import CartItem, Order, OrderItem
 
@@ -93,22 +97,58 @@ class OrderDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
 
+# class PagSeguroView(LoginRequiredMixin, RedirectView):
+
+#     def get_redirect_url(self, *args, **kwargs):
+#         order_id = self.kwargs.get('pk')
+#         order = get_object_or_404(
+#             Order.objects.filter(user=self.request.user), id=order_id
+#         )
+#         pg = order.pagseguro()
+#         data = pg.checkout()
+#         if data['success']:
+#             return data['redirect_url']
+
 class PagSeguroView(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
-        order_id = self.kwargs.get('pk')
+        order_pk = self.kwargs.get('pk')
         order = get_object_or_404(
-            Order.objects.filter(user=self.request.user), id=order_id
+            Order.objects.filter(user=self.request.user), pk=order_pk
         )
         pg = order.pagseguro()
-        data = pg.checkout()
-        if data['success']:
-            return data['redirect_url']
+        pg.redirect_url = self.request.build_absolute_uri(
+            reverse('accounts:order_detail', args=[order.pk])
+        )
+        pg.notification_url = self.request.build_absolute_uri(
+            reverse('checkout:pagseguro_notification_view')
+        )
+        response = pg.checkout()
+        return response.payment_url
+
 
 @csrf_exempt
 def pagseguro_notification_view(request):
     notification_code = request.POST.get('notificationCode', None)
     if notification_code:
+        pg = pagseguro.PagSeguro(token=settings.PAGSEGURO_TOKEN, 
+                       email=settings.PAGSEGURO_EMAIL,
+                       config={'sandbox': settings.PAGSEGURO_SANDBOX})
+        print(f'notification_code --> {notification_code}')
+        notification_data = pg.check_notification(notification_code)
+        print(f'notification_data --> {notification_data}')
+
+        status = notification_data.status
+        print(f'status --> {status}')
+        reference = notification_data.reference
+        print(f'reference --> {reference}')
+
+        try:
+            order = Order.objects.get(id=reference)
+        except Order.DoesNotExist:
+            pass
+        else:
+            order.update_pagseguro_status(status)
         return HttpResponse('Ok')
 
 
