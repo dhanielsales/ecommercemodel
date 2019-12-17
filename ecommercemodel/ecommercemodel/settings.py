@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #Extra Libs
     'widget_tweaks',
     'pagseguro',
+    'paypal.standard.ipn',
 
     #My Apps
     'core',
@@ -119,6 +120,12 @@ MESSAGE_TAGS = {
 PAGSEGURO_TOKEN = 'BEF8EC6377E14A8795503CB9D080CA86'
 PAGSEGURO_EMAIL = 'dhanielr94@gmail.com'
 PAGSEGURO_SANDBOX = True
+# PAGSEGURO_LOG_IN_MODEL = True
+
+# PayPal
+
+PAYPAL_EMAIL = 'dhanielr94@gmail.com'
+PAYPAL_TEST = True
 # PAGSEGURO_LOG_IN_MODEL = True
 
 # Password validation

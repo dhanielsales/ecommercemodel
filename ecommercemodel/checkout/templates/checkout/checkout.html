@@ -27,7 +27,7 @@ Finalização da Compra
         <!-- <a href='{% url "checkout:pagseguro_view" order.id %}' class='btn btn-success'>PagSeguro</a> -->
     </div>
     <div class="col-md-2">
-        <a href='' class='btn btn-success'>PayPal</a>
+        <button onclick=pagseguro_popup("{% url 'checkout:paypal_view' order.id %}") class='btn btn-success'>PayPal</button>
     </div>
 
 </div>

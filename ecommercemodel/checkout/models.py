@@ -155,6 +155,26 @@ class Order(models.Model):
     def __str__(self):
         return f'#{self.id:0>6}'
 
+#### Módulo Python/Django PayPal
+
+    def paypal(self):
+        self.payment_option = 'paypal'
+        self.status = '1'
+        self.save()
+        paypal_dict = {'upload': '1',
+                       'business': settings.PAYPAL_EMAIL,
+                       'invoice': self.pk,
+                       'cmd': '_cart',
+                       'currency_code': 'BRL',
+                       'charset': 'utf-8',}
+        index = 1
+        for item in self.items.all():
+            paypal_dict[f'amount_{index}'] = f'{item.price:.2f}'
+            paypal_dict[f'item_name_{index}'] = item.product.name
+            paypal_dict[f'quantity_{index}'] = item.quantity
+            index += 1
+        return paypal_dict
+
 class OrderItem(models.Model):
 
     order = models.ForeignKey(Order, verbose_name="Pedido", related_name='items', on_delete=models.CASCADE)

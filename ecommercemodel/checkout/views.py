@@ -16,8 +16,11 @@ from catalog.models import Product
 
 import pagseguro
 
-from .models import CartItem, Order, OrderItem
+from paypal.standard.forms import PayPalPaymentsForm
+from paypal.standard.models import ST_PP_COMPLETED, ST_PP_FAILED, ST_PP_DENIED
+from paypal.standard.ipn.signals import valid_ipn_received
 
+from .models import CartItem, Order, OrderItem
 
 class CreateCartItemView(RedirectView):
 
@@ -134,14 +137,13 @@ def pagseguro_notification_view(request):
         pg = pagseguro.PagSeguro(token=settings.PAGSEGURO_TOKEN, 
                        email=settings.PAGSEGURO_EMAIL,
                        config={'sandbox': settings.PAGSEGURO_SANDBOX})
-        print(f'notification_code --> {notification_code}')
+        # print(f'notification_code --> {notification_code}')
         notification_data = pg.check_notification(notification_code)
-        print(f'notification_data --> {notification_data}')
-
+        # print(f'notification_data --> {notification_data}')
         status = notification_data.status
-        print(f'status --> {status}')
+        # print(f'status --> {status}')
         reference = notification_data.reference
-        print(f'reference --> {reference}')
+        # print(f'reference --> {reference}')
 
         try:
             order = Order.objects.get(id=reference)
@@ -151,10 +153,56 @@ def pagseguro_notification_view(request):
             order.update_pagseguro_status(status)
         return HttpResponse('Ok')
 
+class PaypalView(LoginRequiredMixin, TemplateView):
 
+    template_name = 'checkout/paypal.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PaypalView, self).get_context_data(**kwargs)
+        order_pk = self.kwargs.get('pk')
+        order = get_object_or_404(Order.objects.filter(user=self.request.user), pk=order_pk)
+        paypal_dict = order.paypal()
+        paypal_dict['return_url'] = self.request.build_absolute_uri(reverse('accounts:order_detail', args=[order.pk]))
+        paypal_dict['cancel_return'] = self.request.build_absolute_uri(reverse('checkout:cart_item'))
+        paypal_dict['notify_url'] = self.request.build_absolute_uri(reverse('paypal-ipn'))
+        context['form'] = PayPalPaymentsForm(initial=paypal_dict)
+        return context
+
+
+# @csrf_exempt
+def paypal_notification(sender, **kwargs):
+    ipn_obj = sender
+    if ipn_obj.payment_status == ST_PP_COMPLETED and ipn_obj.receiver_email == settings.PAYPAL_EMAIL:
+        try:
+            order = Order.objects.get(pk=ipn_obj.invoice)
+            order.status = '3'
+            order.save()
+        except Order.DoesNotExist:
+            pass
+    elif ipn_obj.payment_status == ST_PP_FAILED or ipn_obj.payment_status == ST_PP_DENIED and ipn_obj.receiver_email == settings.PAYPAL_EMAIL:
+        try:
+            order = Order.objects.get(pk=ipn_obj.invoice)
+            order.status = '7'
+            order.save()
+        except Order.DoesNotExist:
+            pass
+    else:
+        try:
+            order = Order.objects.get(pk=ipn_obj.invoice)
+            order.status = '2'
+            order.save()
+        except Order.DoesNotExist:
+            pass
+
+### Signal PayPal
+valid_ipn_received.connect(paypal_notification)
+
+
+### Calls
 create_cart_item = CreateCartItemView.as_view()
 cart_item = CartItemView.as_view()
 checkout_order = CheckoutView.as_view()
 order_list = OrderListView.as_view()
 order_detail = OrderDetailView.as_view()
 pagseguro_view = PagSeguroView.as_view()
+paypal_view = PaypalView.as_view()
