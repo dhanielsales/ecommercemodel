@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'pagseguro',
     'paypal.standard.ipn',
+    'easy_thumbnails',
 
     #My Apps
     'core',
@@ -181,19 +182,30 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 
+# Thumbnails
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'product_image': {'size': (325, 250), 'crop': True},
+        'avatar': {'size': (50, 50), 'crop': True},
+    },
+}
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+#db_from_env = dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(db_from_env)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles')
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+MEDIA_URL = '/media/'
 
 try: 
     from .local_settings import *
