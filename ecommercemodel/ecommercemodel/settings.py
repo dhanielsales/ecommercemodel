@@ -182,7 +182,7 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 
-# Thumbnails
+#### Thumbnails
 
 THUMBNAIL_ALIASES = {
     '': {
@@ -190,7 +190,6 @@ THUMBNAIL_ALIASES = {
         'avatar': {'size': (50, 50), 'crop': True},
     },
 }
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
