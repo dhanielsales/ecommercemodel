@@ -182,7 +182,7 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 
-#### Thumbnails
+### Thumbnails
 
 THUMBNAIL_ALIASES = {
     '': {
