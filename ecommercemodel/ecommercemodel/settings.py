@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'pagseguro',
     'paypal.standard.ipn',
     'easy_thumbnails',
+    'watson', 
 
     #My Apps
     'core',
@@ -155,6 +156,29 @@ AUTHENTICATION_BACKENDS = (
     'accounts.backends.EmailBackend',
 )
 
+### Admins
+
+ADMINS = (
+    ('Dhaniel', 'dhanielr94@gmail.com'),
+)
+
+### Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers':False,
+    'filters':{
+        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse'},
+        'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue'},
+    },
+    'formatters':{
+        'verbose': {'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'},
+        'simple': {'format': '%(levelname)s %(message)s'},
+    },
+    'handlers':{},
+    'loggers':{},
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -190,6 +214,30 @@ THUMBNAIL_ALIASES = {
         'avatar': {'size': (50, 50), 'crop': True},
     },
 }
+
+### AWS
+
+# STATICFILES_LOCATION = 'static'
+# MEDIAFILES_LOCATION = 'media'
+
+# AWS_S3_SECURE_URLS = True
+# AWS_QUERYSTRING_AUTH = False
+# AWS_PRELOAD_METADATA = True
+# AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', '')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '')
+# AWS_STORAGE_BUCKET_NAME = 'ecommercemodel'
+# AWS_S3_CUSTOM_DOMAIN = f's3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}'
+
+# STATICFILES_STORAGE = 'ecommercemodel.s3util.StaticStorage'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+
+# DEFAULT_FILE_STORAGE = 'ecommercemodel.s3util.MediaStorage'
+# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
+# AWS_HEADERS = {
+#         'x-amz-acl': 'public-read',
+#         'Cache-Control': 'public, max-age=31556926'
+# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

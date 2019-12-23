@@ -12,7 +12,7 @@
   <div class="col-sm-4">
       <a href="#" class="thumbnail">
             {% if product.image %}
-            <img src="{{ product.image|thumbnail_url:'product_image' }}" alt="" />
+            <img src="{{ product.image.url }}" alt="" />
             {% else %}
             <img src="http://placehold.it/350x250" alt="" />
             {% endif %}
