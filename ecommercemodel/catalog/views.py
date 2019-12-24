@@ -19,8 +19,10 @@ class ProductListView(generic.ListView):
         queryset = Product.objects.all()
         q = self.request.GET.get('q', '')
         if q:
-            #queryset = queryset.filter(models.Q(name__icontains=q) | models.Q(description__icontains=q) | models.Q(category__name__icontains=q))
-            queryset = watson.filter(queryset, q)
+            if queryset.filter(models.Q(pk__iexact=q)):
+                return queryset.filter(models.Q(pk__iexact=q))
+            else:
+                return watson.filter(queryset, q)
         return queryset
 
 

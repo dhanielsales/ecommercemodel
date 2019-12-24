@@ -23,6 +23,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     
+    id = models.AutoField('Código', primary_key=True)
     name = models.CharField("Nome", max_length=100)
     slug = models.SlugField('Identificador', max_length=100)
     category = models.ForeignKey('catalog.Category', related_name='Categoria', verbose_name="Categoria", on_delete=models.CASCADE, null=True, blank=False)
@@ -36,6 +37,9 @@ class Product(models.Model):
         verbose_name = 'Produto'
         verbose_name_plural = "Produtos"
         ordering = ['name']
+
+    # def formatted_id(self):
+    #     return f'#{self.id:0>6}'
 
     def __str__(self):
         return self.name
