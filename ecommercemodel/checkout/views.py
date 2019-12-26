@@ -1,7 +1,10 @@
 # coding=utf-8
 
-from django.shortcuts import get_object_or_404
-from django.views.generic import RedirectView, TemplateView, ListView, DetailView
+import logging
+import json
+
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import RedirectView, TemplateView, ListView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin # View Baseada em Classe
 from django.forms import modelformset_factory
 from django.contrib import messages
@@ -22,20 +25,27 @@ from paypal.standard.ipn.signals import valid_ipn_received
 
 from .models import CartItem, Order, OrderItem
 
-class CreateCartItemView(RedirectView):
+logger = logging.getLogger('checkout.views')
 
-    def get_redirect_url(self, *args, **kwargs):
+class CreateCartItemView(View):
+
+    def get(self, request, *args, **kwargs):
         product = get_object_or_404(Product, slug=self.kwargs['slug'])
+        # logger.debug(f'Produto {product} adicionado ao carrinho.')
         if self.request.session.session_key is None:
             self.request.session.save()
         cart_item, created = CartItem.objects.add_item(self.request.session.session_key, product)
         if created:
-            messages.success(self.request, f'Produto "{product}" adicionado ao carrinho de compras!')
+            message = f'Produto "{product}" adicionado ao carrinho de compras!'
         else:
-            messages.success(self.request, f'Produto "{product}" atualizado no carrinho de compras!')
+            message = f'Produto "{product}" atualizado no carrinho de compras!'
+        if request.is_ajax():
+            return HttpResponse(
+                json.dumps({'message': message}), content_type='application/javascript'
+                )
+        messages.success(self.request, message)
+        return redirect('checkout:cart_item')
 
-        sleep(0.5)        
-        return reverse('checkout:cart_item')
 
 class CartItemView(TemplateView):
 
@@ -68,6 +78,26 @@ class CartItemView(TemplateView):
             context['formset'] = self.get_formset(clear=True)
 
         return self.render_to_response(context)
+
+
+class ClearCartItemsView(View):
+
+    def get(self, request, *args, **kwargs):
+        session_key = request.session.session_key
+        if session_key and CartItem.objects.filter(cart_key=session_key).exists():
+            cart_items = CartItem.objects.filter(cart_key=session_key)
+            order = Order.objects.create_order(user=request.user, cart_items=cart_items)
+            cart_items.delete()
+            messages.success(self.request, f'O carrinho de compras foi limpo.')
+            return redirect('checkout:cart_item')
+        messages.info(self.request, f'O carrinho de compras está vazio.')
+        return redirect('checkout:cart_item')
+        
+        #     return HttpResponse(f'O carrinho de compras foi limpo.')
+        # return HttpResponse(f'O carrinho de compras foi limpo.')
+
+
+
 
 class CheckoutView(LoginRequiredMixin, TemplateView):
 
@@ -195,3 +225,4 @@ order_list = OrderListView.as_view()
 order_detail = OrderDetailView.as_view()
 pagseguro_view = PagSeguroView.as_view()
 paypal_view = PaypalView.as_view()
+clear_cart_items = ClearCartItemsView.as_view()

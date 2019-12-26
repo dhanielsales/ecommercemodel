@@ -162,22 +162,33 @@ ADMINS = (
     ('Dhaniel', 'dhanielr94@gmail.com'),
 )
 
-### Logging
+## Logging
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers':False,
-#     'filters':{
-#         'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse'},
-#         'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue'},
-#     },
-#     'formatters':{
-#         'verbose': {'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'},
-#         'simple': {'format': '%(levelname)s %(message)s'},
-#     },
-#     'handlers':{''},
-#     'loggers':{},
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers':False,
+    'filters':{
+        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse'},
+        'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue'},
+    },
+    'formatters':{
+        'verbose': {'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'},
+        'simple': {'format': '%(levelname)s %(message)s'},
+    },
+    'handlers':{'checkout.views': {
+        'class': 'logging.StreamHandler',
+        # 'class': 'logging.FileHandler',
+        # 'filename': os.path.join(BASE_DIR, 'checkout.views.log'),
+        'level': 'DEBUG',
+        'filters': ['require_debug_true'],}
+    },
+    'loggers':{
+        'checkout.views': {
+            'handlers': ['checkout.views'],
+            'level': 'DEBUG',
+        }
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

@@ -11,6 +11,9 @@
         <div class="caption">
             <h3>{{ product }}</h3>
             {{ product.description|linebreaks }}
-            <p><a href="{{ product.get_absolute_url }}" class="btn btn-success" role="button">Detalhes</a> <a href="{% url 'checkout:create_cart_item' product.slug %}" class="btn btn-default" role="button">Adicionar ao Carrinho</a></p>
+            <p>
+                <a href="{{ product.get_absolute_url }}" class="btn btn-success" role="button">Detalhes</a> 
+                <a href="{% url 'checkout:create_cart_item' product.slug %}" class="btn btn-default cart-item-add" role="button">Adicionar ao Carrinho</a>
+            </p>
         </div>
 </div>
