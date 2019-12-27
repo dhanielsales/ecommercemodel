@@ -3,6 +3,8 @@ from .models import CartItem
 def cart_item_middleware(get_response):
 
     def middleware(request):
+
+        print('teste')
         # Before Middleware
         session_key = request.session.session_key
 

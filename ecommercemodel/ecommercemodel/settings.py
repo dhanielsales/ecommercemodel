@@ -67,6 +67,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'checkout.middleware.cart_item_middleware',
+    'catalog.middleware.expirer_product_middleware',
+
 ]
 
 

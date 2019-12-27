@@ -26,7 +26,6 @@ class ProductListView(generic.ListView):
                 return watson.filter(queryset, q)
         return queryset
 
-
 product_list = ProductListView.as_view()
 
 class CategoryListView(generic.ListView):
