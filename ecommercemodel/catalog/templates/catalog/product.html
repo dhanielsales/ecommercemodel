@@ -11,8 +11,12 @@
 <div class="row">
   <div class="col-sm-4">
       <a href="#" class="thumbnail">
-            {% if product.image %}
-            <img src="{{ product.image.url }}" alt="" />
+            {% if product.images %}
+            {% for image in product.images.all %}
+            {% if image.thumbnail %}
+            <img src="{{ image.image.url }}" alt="" />
+            {% endif %}
+            {% endfor %}
             {% else %}
             <img src="http://placehold.it/350x250" alt="" />
             {% endif %}

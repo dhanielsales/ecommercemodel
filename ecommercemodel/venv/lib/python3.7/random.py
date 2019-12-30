@@ -1,1 +1,1 @@
-/usr/lib64/python3.7/random.py
+/home/dhaniel/anaconda3/lib/python3.7/random.py

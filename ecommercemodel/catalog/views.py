@@ -26,7 +26,6 @@ class ProductListView(generic.ListView):
                 return watson.filter(queryset, q)
         return queryset
 
-product_list = ProductListView.as_view()
 
 class CategoryListView(generic.ListView):
     
@@ -42,8 +41,6 @@ class CategoryListView(generic.ListView):
         context['current_category'] = get_object_or_404(Category, slug=self.kwargs['slug'])
         return context
 
-category = CategoryListView.as_view()
-
 # @cache_page(60 * 1)
 def product(request, slug, template_name = "catalog/product.html"):
     product = Product.objects.filter(is_active=True).get(slug=slug)
@@ -51,3 +48,6 @@ def product(request, slug, template_name = "catalog/product.html"):
         "product" : product,
     }
     return render(request, template_name, context)
+
+product_list = ProductListView.as_view()
+category = CategoryListView.as_view()

@@ -1,1 +1,1 @@
-/usr
+/home/dhaniel/anaconda3
