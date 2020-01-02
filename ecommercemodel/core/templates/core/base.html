@@ -21,13 +21,12 @@
   <!-- meta character set -->
   <meta charset="UTF-8" />
   <!-- Site Title -->
-  <title>Eclipse Education</title>
+	<title>{% block title %}Helena E-Commerce Model - Your Store{% endblock %}</title>
 
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
-  <!--
-      CSS
-      =============================================
-    -->
+
+  <!-- CSS ============================================= -->
+  
   <link rel="stylesheet" href='{% static "new/css/linearicons.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/font-awesome.min.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/bootstrap.css" %}'/>
@@ -46,7 +45,7 @@
     <nav class="navbar navbar-expand-lg  navbar-light">
       <div class="container">
         <a class="navbar-brand" href="">
-          <a class='corp-name' href=""><img src='{% static "new/img/logo3.png" %}' alt="" /> Helena</a>
+          <a class='corp-name' href="{% url 'index' %}"><img src='{% static "new/img/logo3.png" %}' alt="" /> Helena</a>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,11 +71,13 @@
             {% if user.is_authenticated %}
             <li><a href="{% url 'accounts:account' %}">Minha Conta</a></li>
             <li><a href="{% url 'logout' %}">Sair</a></li>
+            <li><a href="{% url 'checkout:cart_item' %}"><i class='ti-heart'></i></a></li>
             <li><a href="{% url 'checkout:cart_item' %}"><i class='ti-shopping-cart'></i></a></li>
             {% else %}
-            <li><a href="{% url 'checkout:cart_item' %}">Carrinho</a></li>
             <li><a href="{% url 'accounts:register' %}">Regitrar</a></li>
             <li><a href="{% url 'login' %}">Entrar</a></li>
+            <li><a href="{% url 'checkout:cart_item' %}"><i class='ti-heart'></i></a></li>
+            <li><a href="{% url 'checkout:cart_item' %}"><i class='ti-shopping-cart'></i></a></li>
             {% endif %}
 
             <li>
@@ -90,6 +91,14 @@
     </nav>
     <div class="search-input" id="search-input-box">
       <div class="container">
+        {% block messages %}
+        {% for message in messages %}
+          <div class='alert alert-{{ message.tags }}'>
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endblock %}
+      {% block container %}{% endblock %}
         <form class="d-flex justify-content-between" role='search' action='{% url "catalog:product_list" %}'>
           <input name='q' type="text" class="form-control" id="search-input" placeholder="Pesquisar Produtos..." />
           <button type="submit" class="btn"></button>
