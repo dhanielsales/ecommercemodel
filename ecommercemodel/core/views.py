@@ -15,11 +15,11 @@ User = get_user_model()
 
 class IndexView(TemplateView):  
 
-    template_name = "index.html"
+    template_name = "core/index.html"
 
 index = IndexView.as_view()
 
-def contact(request, template_name = "contact.html"):
+def contact(request, template_name = "core/contact.html"):
     success = False
     form = ContactForm(request.POST or None)
     if form.is_valid():

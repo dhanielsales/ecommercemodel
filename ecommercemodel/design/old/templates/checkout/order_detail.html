@@ -1,0 +1,42 @@
+{% extends "accounts/account.html" %}
+
+{% load pagination %}
+
+{% load widget_tweaks %}
+
+{% block title %}Pedido {{ order }}{% endblock %}
+
+{% block accounts_container %}
+<h2>Pedido {{ order }}</h2>
+<dl class='dl-horizontal'>
+  <dt>Data:</dt>
+  <dd>{{ object.created|date:'d/m/Y \à\s H:i' }}</dd>
+  <dt>Forma de Pagamento:</dt>
+  <dd>{{ object.get_payment_option_display }}</dd>
+  <dt>Situação:</dt>
+  {% if object.status == '1' %} 
+    <dd style="font-weight: bold; color:#e7c501">{{ object.get_status_display }}</dd> 
+  {% elif object.status == '2' %}
+    <dd style="font-weight: bold; color:#1E90FF">{{ object.get_status_display }}</dd> 
+  {% elif object.status == '3' %}
+    <dd style="font-weight: bold; color:#32CD32">{{ object.get_status_display }}</dd> 
+  {% elif object.status == '7' %}
+    <dd style="font-weight: bold; color:#EE0000">{{ object.get_status_display }}</dd> 
+  {% endif %}
+  <dt>Total do Pedido:</dt>
+  <dd style="font-weight: bold">R$ {{ object.total_price | floatformat:'2' }}</dd>
+</dl>
+<h3>Itens do Pedido</h3>
+{% for item in object.items.all %}
+<dl class='dl-horizontal'>
+    <dt>Produto:</dt>
+    <dd>{{ item.product }}</dd>
+    <dt>Quantidade:</dt>
+    <dd>{{ item.quantity }}</dd>
+    <dt>Preço:</dt>
+    <dd>R$ {{ item.price | floatformat:'2' }}</dd>
+</dl>
+{% endfor %}
+{% pagination request paginator page_obj %}
+{% endblock %}
+

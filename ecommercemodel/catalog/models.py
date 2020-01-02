@@ -85,7 +85,7 @@ class ProductImages(models.Model):
     class Meta:
         verbose_name = 'Imagem'
         verbose_name_plural = 'Imagens'
-        unique_together = (('product', 'thumbnail'),)
+        # unique_together = (('product', 'thumbnail'),)
 
 
     def __str__(self):

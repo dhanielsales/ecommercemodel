@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', index, name="index"),
-    path('entrar/', LoginView.as_view(template_name='login.html'), name="login"),
+    path('entrar/', LoginView.as_view(template_name='core/login.html'), name="login"),
     path('sair/', LogoutView.as_view(next_page='index'), name="logout"),
     path('contato/', contact, name="contact"),
     path('produtos/', include('catalog.urls', namespace="catalog")),

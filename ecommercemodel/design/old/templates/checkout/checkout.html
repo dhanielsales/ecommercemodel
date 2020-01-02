@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+Finalização da Compra
+{% endblock %}
+
+{% block container %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'index' %}">Início</a></li>
+  <li><a href="{% url 'checkout:cart_item' %}">Carrinho de Compras</a></li>
+  <li class="active">Finalização da Compra</li>
+</ol>
+<div class="page-header">
+    <h1>Forma de pagamento</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            Pedido {{ order }}
+        </p>
+    </div>
+    <div class="col-md-2 col-md-offset-2">
+        <a href='' class='btn btn-success'>Boleto Bancário</a>
+    </div>
+    <div class="col-md-2">
+        <button onclick=pagseguro_popup("{% url 'checkout:pagseguro_view' order.id %}") class='btn btn-success'>PagSeguro</button>
+        <!-- <a href='{% url "checkout:pagseguro_view" order.id %}' class='btn btn-success'>PagSeguro</a> -->
+    </div>
+    <div class="col-md-2">
+        <button onclick=pagseguro_popup("{% url 'checkout:paypal_view' order.id %}") class='btn btn-success'>PayPal</button>
+    </div>
+
+</div>
+{% endblock %}
