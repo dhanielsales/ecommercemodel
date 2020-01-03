@@ -30,6 +30,8 @@
   <!-- JS ============================================== -->
 <body>
 
+    <!-------Navbar------->
+
     <nav class='navbar navbar-expand-lg navbar-light bg-light'>
 
         <div class="container">
@@ -71,6 +73,8 @@
         </div>
         </div>
     </nav>
+
+    <!-------Carousel------->
 
     <div class='carousel slide' data-ride='carousel' id='carouselSite'>
 
@@ -119,6 +123,8 @@
       </a>
     </div>
 
+    <!-------ScrollSpy------->
+
     <div class="container"> 
         
         <div class="row">
@@ -130,7 +136,7 @@
 
         <div class="row mb-5">
 
-          <div class="col-3"> 
+          <div class="col-sm-6 col-md-4 mb-3"> 
             <nav class="navbar navbar-light bg-light" id="navbarVertical">
               <nav class="nav nav-pills flex-column">
                 <a class="nav-link mt-2" href="#item1">Incididunt ut</a>
@@ -147,7 +153,7 @@
               </nav>
             </nav>
           </div>
-          <div class="col-9">
+          <div class="col-md-8">
             <div class="scrollspySite bg-light" data-spy='scroll' data-target='#navbarVertical' data-offset=0> 
                 <H2 id='item1'>Incididunt ut</H2>
                 <p >Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
@@ -171,11 +177,132 @@
                 <p >Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
             </div>
           </div>
+        </div>
 
+    <!-------Cards------->
+
+        <div class="row mb-5">
+            <div class=" col-sm-4">
+              <div class="card">
+                <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                <img class="card-img-top" src='http://placehold.it/325x250'>
+                <div class="card-body">
+                  <h4 class="card-title"> Ut enim ad </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                  <p class='card-text'>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Auis </li>
+                    <li class="list-group-item">Jostrud </li>
+                    <li class="list-group-item">Exercitatio</li>
+                </ul>
+                <div class="card-body">
+                  <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                  <button class="btn btn-primary card-link"> Detalhes</button>
+                </div>
+                <div class="card-footer text-muted">Ut enim ad minim veniam</div>
+              </div>
+            </div>
+
+            <div class=" col-sm-4">
+              <div class="card">
+                <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                <img class="card-img-top" src='http://placehold.it/325x250'>
+                <div class="card-body">
+                  <h4 class="card-title"> Ut enim ad </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                  <p class='card-text'>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Auis </li>
+                    <li class="list-group-item">Jostrud </li>
+                    <li class="list-group-item">Exercitatio</li>
+                </ul>
+                <div class="card-body">
+                  <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                  <button class="btn btn-primary card-link"> Detalhes</button>
+                </div>
+                <div class="card-footer text-muted">Ut enim ad minim veniam</div>
+              </div>
+          </div>
+
+          <div class=" col-sm-4">
+            <div class="card">
+              <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+              <img class="card-img-top" src='http://placehold.it/325x250'>
+              <div class="card-body">
+                <h4 class="card-title"> Ut enim ad </h4>
+                <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                <p class='card-text'>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Auis </li>
+                  <li class="list-group-item">Jostrud </li>
+                  <li class="list-group-item">Exercitatio</li>
+              </ul>
+              <div class="card-body">
+                <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                <button class="btn btn-primary card-link"> Detalhes</button>
+              </div>
+              <div class="card-footer text-muted">Ut enim ad minim veniam</div>
+            </div>
+        </div>
         </div>
 
     </div>
 
+    <!-------Modal------->
+
+    <div class="modal fade" id="siteModal" tabindex='-1' role='dialog'>
+        <div class="modal-dialog modal-lg" role='document'>
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Lorem ipsum</h5>
+                    <button class="close" type='button' data-dismiss='modal'>
+                        <span>&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="container-fluid">
+
+                        <div class="row">
+
+                            <div class="col-6">
+                              <h5>Lorem ipsum</h5>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                              </p>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                              </p>
+                            </div>
+
+                            <div class="col-6">
+                              <h5>Lorem ipsum</h5>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                              </p>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                              </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Dismiss</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
   <script src='{% static "new/js/vendor/jquery-2.2.4.min.js" %}'></script>
