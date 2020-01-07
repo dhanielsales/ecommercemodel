@@ -9,8 +9,8 @@
 
 /* ==============My Style============= */
 .corp-name {
-  font-family: 'Playfair Display', serif;
-  /* font-family: 'Roboto', serif; */
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Roboto', serif;
   color: #fff;
   font-size: 28px;
   /* font-variant: small-caps; */
@@ -19,13 +19,32 @@
 .corp-name:active  {color: #ffffff33;}
 .corp-name img {width: 50px;}
 
+
+.no-font {
+  font-family: sans-serif;
+}
+
+.font-default {
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Roboto', serif;
+}
+
+.popular-course-area .container-fluid-right {
+  padding-left: 0;
+  padding-right: 21%;
+}
+
 .back-to-top {
+  z-index: 1;
   position: fixed;
   bottom: 25px;
   right: 25px;
   display: none;
   background-color: #edeff1;
   border-color: #edeff1;
+}
+img.back-to-top {
+  width: 50px
 }
 
 
