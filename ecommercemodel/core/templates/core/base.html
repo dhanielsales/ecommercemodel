@@ -24,6 +24,7 @@
 	<title>{% block title %} Fábrica de Sonhos - Despertando seus Sonhos {% endblock %}</title>
 
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
   <!-- CSS ============================================= -->
   
@@ -36,13 +37,18 @@
   <link rel="stylesheet" href='{% static "new/css/bootstrap.css" %}'/>
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.carousel.css" %}' />
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.theme.default.css" %}' />
-  <link rel="stylesheet" href='{% static "new/css/main.css" %}' />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
+  <link rel="stylesheet" href='{% static "new/css/main.css" %}' />
   
 <style>
-  .back-to-top:hover img {
+  .back-to-top:hover img, .back-to-top:focus img {
     content: url('{% static "new/img/up-down.gif" %}' );
   }
+  .bg-gif img.bg-gif {
+    width: 20px;
+    height: 20px;
+  }
+  
 
 </style>
 
@@ -118,7 +124,6 @@
   {% block container %}{% endblock %} -->
   <!-- ================ start banner Area ================= -->
 
-
   <section class="home-banner-area">
     <div class="container">
       <div class="row justify-content-center fullscreen align-items-center">
@@ -189,16 +194,15 @@
                      <div class="item ml-2 bg-light">
                       <div class="card mb-5">
                           <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                          <img class="card-img-top" src='http://placehold.it/325x250'>
+                          <a href=""><img class="card-img-top" src='http://placehold.it/325x250'></a>
                           <div class="card-body">
-                              <h4 class="card-title"> Ut enim ad </h4>
-                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                              <p class='card-text'> R$ 100,00</p>
-                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                              <a href=""><h4 class="card-title"> Calça Branca </h4></a>
+                              <a href=""><h6 class="card-subtitle mb-2 text-muted"> Calças</h6></a>
+                              <button class="btn btn-transparent card-link ml-0 float-right bg-gif p-1"> <img class="bg-gif wishlist"src='{% static "new/img/heart.svg" %}'> </button>
+                              <a class="text-dark" href=""><p class='card-text pt-1'><s class="text-muted">R$180,00</s> <span class="font-weight-bold">R$100,00</span></p></a>
                           </div>
                           <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
@@ -220,29 +224,7 @@
                               <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                           </div>
                           <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <p class="ml-20 mb-0">25 Reviews</p>
-                          </div>
-                      </div>
-
-                     </div>                     
-                     <div class="item ml-2 bg-light">
-                      <div class="card mb-5">
-                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                          <img class="card-img-top" src='http://placehold.it/325x250'>
-                          <div class="card-body">
-                              <h4 class="card-title"> Ut enim ad </h4>
-                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                              <p class='card-text'> R$ 100,00</p>
-                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                          </div>
-                          <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
@@ -264,29 +246,7 @@
                               <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                           </div>
                           <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <p class="ml-20 mb-0">25 Reviews</p>
-                          </div>
-                      </div>
-
-                     </div>                     
-                     <div class="item ml-2 bg-light">
-                      <div class="card mb-5">
-                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                          <img class="card-img-top" src='http://placehold.it/325x250'>
-                          <div class="card-body">
-                              <h4 class="card-title"> Ut enim ad </h4>
-                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                              <p class='card-text'> R$ 100,00</p>
-                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                          </div>
-                          <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
@@ -308,29 +268,7 @@
                               <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                           </div>
                           <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <p class="ml-20 mb-0">25 Reviews</p>
-                          </div>
-                      </div>
-
-                     </div>                     
-                     <div class="item ml-2 bg-light">
-                      <div class="card mb-5">
-                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                          <img class="card-img-top" src='http://placehold.it/325x250'>
-                          <div class="card-body">
-                              <h4 class="card-title"> Ut enim ad </h4>
-                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                              <p class='card-text'> R$ 100,00</p>
-                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                          </div>
-                          <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
@@ -352,29 +290,7 @@
                               <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                           </div>
                           <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <a href="#"><i class="fa fa-star"></i></a>
-                              <p class="ml-20 mb-0">25 Reviews</p>
-                          </div>
-                      </div>
-
-                     </div>                     
-                     <div class="item ml-2 bg-light">
-                      <div class="card mb-5">
-                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                          <img class="card-img-top" src='http://placehold.it/325x250'>
-                          <div class="card-body">
-                              <h4 class="card-title"> Ut enim ad </h4>
-                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                              <p class='card-text'> R$ 100,00</p>
-                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                          </div>
-                          <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
@@ -396,7 +312,95 @@
                               <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                           </div>
                           <div class="card-footer text-muted bottom d-flex">
-                              <a href="#"><i class="fa fa-star "></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <p class="ml-20 mb-0">25 Reviews</p>
+                          </div>
+                      </div>
+
+                     </div>                     
+                     <div class="item ml-2 bg-light">
+                      <div class="card mb-5">
+                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                          <img class="card-img-top" src='http://placehold.it/325x250'>
+                          <div class="card-body">
+                              <h4 class="card-title"> Ut enim ad </h4>
+                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                              <p class='card-text'> R$ 100,00</p>
+                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                          </div>
+                          <div class="card-footer text-muted bottom d-flex">
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <p class="ml-20 mb-0">25 Reviews</p>
+                          </div>
+                      </div>
+
+                     </div>                     
+                     <div class="item ml-2 bg-light">
+                      <div class="card mb-5">
+                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                          <img class="card-img-top" src='http://placehold.it/325x250'>
+                          <div class="card-body">
+                              <h4 class="card-title"> Ut enim ad </h4>
+                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                              <p class='card-text'> R$ 100,00</p>
+                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                          </div>
+                          <div class="card-footer text-muted bottom d-flex">
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <p class="ml-20 mb-0">25 Reviews</p>
+                          </div>
+                      </div>
+
+                     </div>                     
+                     <div class="item ml-2 bg-light">
+                      <div class="card mb-5">
+                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                          <img class="card-img-top" src='http://placehold.it/325x250'>
+                          <div class="card-body">
+                              <h4 class="card-title"> Ut enim ad </h4>
+                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                              <p class='card-text'> R$ 100,00</p>
+                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                          </div>
+                          <div class="card-footer text-muted bottom d-flex">
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <a href="#"><i class="fa fa-star"></i></a>
+                              <p class="ml-20 mb-0">25 Reviews</p>
+                          </div>
+                      </div>
+
+                     </div>                     
+                     <div class="item ml-2 bg-light">
+                      <div class="card mb-5">
+                          <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                          <img class="card-img-top" src='http://placehold.it/325x250'>
+                          <div class="card-body">
+                              <h4 class="card-title"> Ut enim ad </h4>
+                              <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                              <p class='card-text'> R$ 100,00</p>
+                              <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                              <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                          </div>
+                          <div class="card-footer text-muted bottom d-flex">
+                              <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
                               <a href="#"><i class="fa fa-star"></i></a>
@@ -415,7 +419,7 @@
 
           <div class="col-12">
 
-            <div class="owl-carousel owl-theme mt-5">
+                <div class="owl-carousel owl-theme mt-5">
               <div class="item ml-2 bg-light">
                <div class="card mb-5">
                    <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
@@ -428,7 +432,7 @@
                        <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                    </div>
                    <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
@@ -450,29 +454,7 @@
                        <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                    </div>
                    <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <p class="ml-20 mb-0">25 Reviews</p>
-                   </div>
-               </div>
-
-              </div>                     
-              <div class="item ml-2 bg-light">
-               <div class="card mb-5">
-                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                   <img class="card-img-top" src='http://placehold.it/325x250'>
-                   <div class="card-body">
-                       <h4 class="card-title"> Ut enim ad </h4>
-                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                       <p class='card-text'> R$ 100,00</p>
-                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                   </div>
-                   <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
@@ -494,29 +476,7 @@
                        <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                    </div>
                    <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <p class="ml-20 mb-0">25 Reviews</p>
-                   </div>
-               </div>
-
-              </div>                     
-              <div class="item ml-2 bg-light">
-               <div class="card mb-5">
-                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                   <img class="card-img-top" src='http://placehold.it/325x250'>
-                   <div class="card-body">
-                       <h4 class="card-title"> Ut enim ad </h4>
-                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                       <p class='card-text'> R$ 100,00</p>
-                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                   </div>
-                   <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
@@ -538,29 +498,7 @@
                        <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                    </div>
                    <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <p class="ml-20 mb-0">25 Reviews</p>
-                   </div>
-               </div>
-
-              </div>                     
-              <div class="item ml-2 bg-light">
-               <div class="card mb-5">
-                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                   <img class="card-img-top" src='http://placehold.it/325x250'>
-                   <div class="card-body">
-                       <h4 class="card-title"> Ut enim ad </h4>
-                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                       <p class='card-text'> R$ 100,00</p>
-                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                   </div>
-                   <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
@@ -582,29 +520,7 @@
                        <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                    </div>
                    <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <a href="#"><i class="fa fa-star"></i></a>
-                       <p class="ml-20 mb-0">25 Reviews</p>
-                   </div>
-               </div>
-
-              </div>                     
-              <div class="item ml-2 bg-light">
-               <div class="card mb-5">
-                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                   <img class="card-img-top" src='http://placehold.it/325x250'>
-                   <div class="card-body">
-                       <h4 class="card-title"> Ut enim ad </h4>
-                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                       <p class='card-text'> R$ 100,00</p>
-                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-                   </div>
-                   <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
@@ -626,7 +542,95 @@
                        <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                    </div>
                    <div class="card-footer text-muted bottom d-flex">
-                       <a href="#"><i class="fa fa-star "></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <p class="ml-20 mb-0">25 Reviews</p>
+                   </div>
+               </div>
+
+              </div>                     
+              <div class="item ml-2 bg-light">
+               <div class="card mb-5">
+                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                   <img class="card-img-top" src='http://placehold.it/325x250'>
+                   <div class="card-body">
+                       <h4 class="card-title"> Ut enim ad </h4>
+                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                       <p class='card-text'> R$ 100,00</p>
+                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                   </div>
+                   <div class="card-footer text-muted bottom d-flex">
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <p class="ml-20 mb-0">25 Reviews</p>
+                   </div>
+               </div>
+
+              </div>                     
+              <div class="item ml-2 bg-light">
+               <div class="card mb-5">
+                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                   <img class="card-img-top" src='http://placehold.it/325x250'>
+                   <div class="card-body">
+                       <h4 class="card-title"> Ut enim ad </h4>
+                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                       <p class='card-text'> R$ 100,00</p>
+                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                   </div>
+                   <div class="card-footer text-muted bottom d-flex">
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <p class="ml-20 mb-0">25 Reviews</p>
+                   </div>
+               </div>
+
+              </div>                     
+              <div class="item ml-2 bg-light">
+               <div class="card mb-5">
+                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                   <img class="card-img-top" src='http://placehold.it/325x250'>
+                   <div class="card-body">
+                       <h4 class="card-title"> Ut enim ad </h4>
+                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                       <p class='card-text'> R$ 100,00</p>
+                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                   </div>
+                   <div class="card-footer text-muted bottom d-flex">
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <a href="#"><i class="fa fa-star"></i></a>
+                       <p class="ml-20 mb-0">25 Reviews</p>
+                   </div>
+               </div>
+
+              </div>                     
+              <div class="item ml-2 bg-light">
+               <div class="card mb-5">
+                   <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+                   <img class="card-img-top" src='http://placehold.it/325x250'>
+                   <div class="card-body">
+                       <h4 class="card-title"> Ut enim ad </h4>
+                       <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                       <p class='card-text'> R$ 100,00</p>
+                       <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                       <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+                   </div>
+                   <div class="card-footer text-muted bottom d-flex">
+                       <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
                        <a href="#"><i class="fa fa-star"></i></a>
@@ -636,7 +640,7 @@
                </div>
 
               </div>
-         </div>
+                </div>
 
           </div>
 
@@ -645,7 +649,7 @@
 
       <div class="col-12">
 
-        <div class="owl-carousel owl-theme mt-5">
+                <div class="owl-carousel owl-theme mt-5">
           <div class="item ml-2 bg-light">
            <div class="card mb-5">
                <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
@@ -658,7 +662,7 @@
                    <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                </div>
                <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
@@ -680,29 +684,7 @@
                    <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                </div>
                <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <p class="ml-20 mb-0">25 Reviews</p>
-               </div>
-           </div>
-
-          </div>                     
-          <div class="item ml-2 bg-light">
-           <div class="card mb-5">
-               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-               <img class="card-img-top" src='http://placehold.it/325x250'>
-               <div class="card-body">
-                   <h4 class="card-title"> Ut enim ad </h4>
-                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                   <p class='card-text'> R$ 100,00</p>
-                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-               </div>
-               <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
@@ -724,29 +706,7 @@
                    <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                </div>
                <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <p class="ml-20 mb-0">25 Reviews</p>
-               </div>
-           </div>
-
-          </div>                     
-          <div class="item ml-2 bg-light">
-           <div class="card mb-5">
-               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-               <img class="card-img-top" src='http://placehold.it/325x250'>
-               <div class="card-body">
-                   <h4 class="card-title"> Ut enim ad </h4>
-                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                   <p class='card-text'> R$ 100,00</p>
-                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-               </div>
-               <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
@@ -768,29 +728,7 @@
                    <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                </div>
                <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <p class="ml-20 mb-0">25 Reviews</p>
-               </div>
-           </div>
-
-          </div>                     
-          <div class="item ml-2 bg-light">
-           <div class="card mb-5">
-               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-               <img class="card-img-top" src='http://placehold.it/325x250'>
-               <div class="card-body">
-                   <h4 class="card-title"> Ut enim ad </h4>
-                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                   <p class='card-text'> R$ 100,00</p>
-                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-               </div>
-               <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
@@ -812,29 +750,7 @@
                    <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                </div>
                <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <a href="#"><i class="fa fa-star"></i></a>
-                   <p class="ml-20 mb-0">25 Reviews</p>
-               </div>
-           </div>
-
-          </div>                     
-          <div class="item ml-2 bg-light">
-           <div class="card mb-5">
-               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-               <img class="card-img-top" src='http://placehold.it/325x250'>
-               <div class="card-body">
-                   <h4 class="card-title"> Ut enim ad </h4>
-                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
-                   <p class='card-text'> R$ 100,00</p>
-                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
-                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
-               </div>
-               <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
@@ -856,7 +772,95 @@
                    <button class="btn btn-primary card-link ml-0"> Detalhes</button>
                </div>
                <div class="card-footer text-muted bottom d-flex">
-                   <a href="#"><i class="fa fa-star "></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <p class="ml-20 mb-0">25 Reviews</p>
+               </div>
+           </div>
+
+          </div>                     
+          <div class="item ml-2 bg-light">
+           <div class="card mb-5">
+               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+               <img class="card-img-top" src='http://placehold.it/325x250'>
+               <div class="card-body">
+                   <h4 class="card-title"> Ut enim ad </h4>
+                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                   <p class='card-text'> R$ 100,00</p>
+                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+               </div>
+               <div class="card-footer text-muted bottom d-flex">
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <p class="ml-20 mb-0">25 Reviews</p>
+               </div>
+           </div>
+
+          </div>                     
+          <div class="item ml-2 bg-light">
+           <div class="card mb-5">
+               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+               <img class="card-img-top" src='http://placehold.it/325x250'>
+               <div class="card-body">
+                   <h4 class="card-title"> Ut enim ad </h4>
+                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                   <p class='card-text'> R$ 100,00</p>
+                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+               </div>
+               <div class="card-footer text-muted bottom d-flex">
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <p class="ml-20 mb-0">25 Reviews</p>
+               </div>
+           </div>
+
+          </div>                     
+          <div class="item ml-2 bg-light">
+           <div class="card mb-5">
+               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+               <img class="card-img-top" src='http://placehold.it/325x250'>
+               <div class="card-body">
+                   <h4 class="card-title"> Ut enim ad </h4>
+                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                   <p class='card-text'> R$ 100,00</p>
+                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+               </div>
+               <div class="card-footer text-muted bottom d-flex">
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <a href="#"><i class="fa fa-star"></i></a>
+                   <p class="ml-20 mb-0">25 Reviews</p>
+               </div>
+           </div>
+
+          </div>                     
+          <div class="item ml-2 bg-light">
+           <div class="card mb-5">
+               <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
+               <img class="card-img-top" src='http://placehold.it/325x250'>
+               <div class="card-body">
+                   <h4 class="card-title"> Ut enim ad </h4>
+                   <h6 class="card-subtitle mb-2 text-muted"> Ut enim ad minim veniam</h6>
+                   <p class='card-text'> R$ 100,00</p>
+                   <button data-toggle="modal" data-target="#siteModal" class="btn btn-primary card-link"> Adicionar ao carrinho</button>
+                   <button class="btn btn-primary card-link ml-0"> Detalhes</button>
+               </div>
+               <div class="card-footer text-muted bottom d-flex">
+                   <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
                    <a href="#"><i class="fa fa-star"></i></a>
@@ -866,7 +870,7 @@
            </div>
 
           </div>
-     </div>
+                </div>
 
       </div>
 
@@ -874,10 +878,7 @@
 
   </div>
 
-
   <!-- ================ End Owl Carousel Area ================= -->
-
-
 
   <!-- ================ Start Registration Area ================= -->
   <section class="registration-area">
@@ -977,7 +978,7 @@
 					<div class="form-wrap" id="mc_embed_signup">
 						<form target="_blank" action=""
 						 method="get" class="form-inline">
-							<input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
+							<input class="form-control" name="EMAIL" placeholder="Your Email Address"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
 							 required="" type="email">
 							<button class="click-btn btn btn-default text-uppercase">subscribe</button>
 							<div style="position: absolute; left: -5000px;">
@@ -1021,7 +1022,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
   <script src='{% static "new/js/vendor/bootstrap.min.js" %}'></script>
   <script src='{% static "new/OwlCarousel2-2.3.4/dist/js/owl.carousel.js" %}'></script>
   <script src='{% static "new/js/main.js" %}'></script>
+  <!-- <script src='{% static "new/js/bg-gif.js" %}'></script> -->
 
+
+  
 </body>
 
 <script>
@@ -1031,7 +1035,7 @@ $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
     //nav:true,
-    autoplay:true,
+    autoplay:false, //TEMP better True
     autoplayTimeout:5000, // = 5s
     autoplayHoverPause:true,
 		navText: [ '<img src={% static "new/img/prev.png" %} >', '<img src={% static "new/img/next.png" %}>' ],
