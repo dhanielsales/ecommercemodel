@@ -13,27 +13,45 @@ class Controller {
     };
 
     initEvents() {
-        let objects = document.querySelectorAll(".bg-gif");
+        let objects = document.querySelectorAll(".btn-gif");
 
         objects.forEach(btn=>{
 
             this.addEventListenerAll(btn, e=>{
-                let gifIn = btn.dataset.in;
-                let gifOut = btn.dataset.out;
-                let src = btn.src;
-                console.log(src)
-                console.log(gifIn)
-                
-                if (btn.classList.contains('active')) {
-                    btn.setAttribute('src', gifOut);
-                    btn.removeAttribute('class', 'active');
+                let tag = btn.tagName
+                if (tag == 'IMG') {
+                    let gifIn = btn.dataset.in;
+                    let gifOut = btn.dataset.out;
+                    let src = btn.src;
+                    
+                    if (btn.classList.contains('gif-active')) {
+                        btn.setAttribute('src', gifOut);
+                        btn.classList.remove('gif-active');
+                    }
+                    else {
+                        btn.setAttribute('src', gifIn);
+                        btn.classList.add('gif-active');
+                    }
                 }
                 else {
-                    btn.setAttribute('src', gifIn);
-                    btn.setAttribute('class', 'active');
+                    let inside = btn.childNodes[1];
+                    if (inside.tagName == "IMG") {
+                        let gifIn = inside.dataset.in;
+                        let gifOut = inside.dataset.out;
+                        let src = inside.src;
+                        
+                        if (inside.classList.contains('gif-active')) {
+                            inside.setAttribute('src', gifOut);
+                            inside.classList.remove('gif-active');
+                        }
+                        else {
+                            inside.setAttribute('src', gifIn);
+                            inside.classList.add('gif-active');
+                        }
+                    } else { throw new Error("InvalidInternalTag: The inner tag is not a tag <img>."); }
                 }
-
-            }, 'drag', 'click');
+                
+            }, 'click');
         });
     };
 }

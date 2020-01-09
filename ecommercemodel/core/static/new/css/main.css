@@ -10,16 +10,15 @@
 /* ==============My Style============= */
 .corp-name {
   /* font-family: 'Playfair Display', serif; */
-  font-family: 'Roboto', serif;
+  /* font-family: 'Roboto', serif; */
+  font-family: 'Lato', sans-serif;
   color: #fff;
-  font-size: 28px;
+  font-size: 18px;
   /* font-variant: small-caps; */
 }
 .corp-name:hover {color: #fff;}
 .corp-name:active  {color: #ffffff33;}
-.corp-name img {width: 50px;}
-
-
+.corp-name img {width: 40px;}
 .no-font {
   font-family: sans-serif;
 }
@@ -47,7 +46,6 @@
 img.back-to-top {
   width: 50px
 }
-
 /* =================================== */
 
 ::-moz-selection {

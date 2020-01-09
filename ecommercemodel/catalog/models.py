@@ -11,6 +11,8 @@ class Category(models.Model):
     slug = models.SlugField('Identificador', max_length=100)
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
+    home_spotlight = models.BooleanField("Destaque na págnina inicial", default=False, help_text="Determina se essa Categoria deve ser inclusa nos Destaques da Página Inicial. Geralmente Categoria em destaque possuem promoções.")
+    
 
     class Meta: 
         verbose_name = 'Categoria'
@@ -22,7 +24,6 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('catalog:category', kwargs={'slug': self.slug})
-
 
 class Subcategory(models.Model):
 
