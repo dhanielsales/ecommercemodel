@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 {% load static %}
+{% load company %}
 
 <html lang="pt-br" class="no-js">
 
@@ -21,7 +22,7 @@
   <!-- meta character set -->
   <meta charset="UTF-8" /> 
   <!-- Site Title -->
-	<title>{% block title %} Fábrica de Sonhos - Despertando seus Sonhos {% endblock %}</title>
+	<title>{% block title %} {% company 'name' %} - {% company 'slogan' %} {% endblock %}</title>
 
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
@@ -52,6 +53,11 @@
   h1, h2, h3, h4, h5, h6 {font-family: 'Lato', sans-serif;}
  .h1, .h2, .h3, .h4, .h5, .h6 {font-family: 'Lato', sans-serif;}
   
+ /*.home-banner-area {
+  background: url("{% static 'new/img/home-banner-bg2.png' %}") no-repeat;
+  background: none;
+}*/
+
 
 </style>
 
@@ -63,7 +69,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
         <a class="navbar-brand" href="">
-          <a class='corp-name mb-0 p-0' href="{% url 'index' %}"><img class='p-0 logo-img' src='{% static "new/img/logo2.png" %}' alt="" /> FÁBRICA DE SONHOS </a>
+          <a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,8 +137,8 @@
     <div class="container">
       <div class="row justify-content-center fullscreen align-items-center">
         <div class="col-lg-5 col-md-8 home-banner-left">
-          <h1 class="text-white font-default">Fábrica de Sonhos</h1>
-          <h2 class="text-white font-default"> Despertando seus Sonhos<h3>
+          <h2 class="text-white font-default text-uppercase">{% company 'name' %}</h1>
+          <h5 class="text-white font-default"> {% company 'slogan' %}<h3>
           <p class="mx-auto text-white mt-20 mb-40 font-default"> A Melhor em artigos de Ballet, Dança e FitStyle.</p>
         </div>
         <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
@@ -238,8 +244,6 @@
 
   <!-- ================ Start Back To Top Area ================= -->
 
-  <!-- <a class="btn btn-light btn-lg back-to-top" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='top' data-trigger='hover' data-content="Voltar para o topo" id="back-to-top"><i class="ti-arrow-up"></i></a> -->
-
   <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='top' data-trigger='hover' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
 
   <!-- ================= End Back To Top Area ================== -->
@@ -285,14 +289,14 @@
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Newsletter</h4>
-					<p>You can trust us. we only send promo offers,</p>
+					<h4>Novidades</h4>
+					<p>Cadastre seu e-mail para receber todas as nossas novidades e promoções!</p>
 					<div class="form-wrap" id="mc_embed_signup">
 						<form target="_blank" action=""
 						 method="get" class="form-inline">
-							<input class="form-control" name="EMAIL" placeholder="Your Email Address"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
+							<input class="form-control" name="EMAIL" placeholder="Seu E-mail"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu E-mail '"
 							 required="" type="email">
-							<button class="click-btn btn btn-default text-uppercase">subscribe</button>
+							<button class="click-btn btn btn-default text-uppercase">Cadastrar</button>
 							<div style="position: absolute; left: -5000px;">
 								<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 							</div>
@@ -304,7 +308,7 @@
 			</div>
 			<div class="footer-bottom row align-items-center">
 				<p class="footer-text m-0 col-lg-8 col-md-12">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos os direitos reservados | <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href=''>DhaN :) </a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="{% url 'index' %}"> {% company 'name' %}. </a> Todos os direitos reservados | Desenvolvido por <a href=''> Dhaniel Sales :) </a>
 </p>
 				<div class="col-lg-4 col-md-12 footer-social">
 					<a href="#"><i class="fa fa-facebook"></i></a>
@@ -317,9 +321,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
 	</footer>
   <!-- ================ End footer Area ================= -->
 
-  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-    crossorigin="anonymous"></script> -->
   <script src='{% static "new/js/vendor/jquery-2.2.4.min.js" %}'></script>
   <script src='{% static "new/js/popper.min.js" %}'></script>
   <script src='{% static "new/js/jquery.magnific-popup.min.js" %}'></script>
@@ -335,8 +336,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
   <script src='{% static "new/OwlCarousel2-2.3.4/dist/js/owl.carousel.js" %}'></script>
   <script src='{% static "new/js/main.js" %}'></script>
   <script src='{% static "new/js/bg-gif.js" %}'></script>
-
-
   
 </body>
 

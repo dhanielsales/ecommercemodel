@@ -1,127 +1,47 @@
 {% extends "core/base.html" %}
 
 {% load static %}
+{% load products_spotlights %}
+{% load thumbnail %}
 
 {% block index_carousel %}
 
 <div class="container mt-4">
+  
+  {% for category in home_spotlight %}
 
     <div class="row">
 
         <div class="col-12">
+          
+          <p class="h3 text-center font-weight-light"> <span class="font-weight-bold text-uppercase"> {{ category.name }} </span> COM OS MELHORES DESCONTOS:</p>
 
-
-
-            <p>{% calcas_category calcas_category %}</p>
-            
-           <p class="h3 text-center font-weight-light"> <span class="font-weight-bold"> CALÇAS </span> COM OS MELHORES DESCONTOS:</p>
+            {% for product in category|products_spotlights %}
 
             <div class="owl-carousel owl-theme mt-5">
 
                 <div class="item ml-2 bg-light">
 
                   <div class="card mb-5 border-0 bg-light">
-                      <a href="">
-                        <img class="card-img-top" src='http://placehold.it/325x250'>
-                      </a>
-                      <div class="card-body">
-                          <a href="">
-                            <p class="card-title h6 mb-2"> Calça Branca </p>
-                          </a>
-                          <a href="">
-                            <p class="card-subtitle mb-0 text-muted"> Calças</p>
-                          </a>
-                          <!-- <a class="shadow-none btn btn-transparent card-link ml-0 float-right btn-gif p-1"> <img class="bg-gif" data-in='{% static "new/img/heart-in.gif" %}' data-out='{% static "new/img/heart-out.gif" %}' src='{% static "new/img/heart.svg" %}'> </a> -->
-                          <a class="text-dark" href="">
-                            <p class='card-text pt-1'><s class="text-muted"> R$180,00 </s><span class="font-weight-bold ml-1"> R$100,00 </span></p>
-                          </a>
-                      </div>
-                      <div class="card-footer py-0 text-muted bottom d-flex">
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <p class="ml-20 mb-0">25 Reviews</p>
-                      </div>
-                  </div>
-
-                </div>
-
-            </div>
-
-          </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-12">
-
-        <p class="h3 text-center font-weight-light"> <span class="font-weight-bold"> CALÇAS </span> COM OS MELHORES DESCONTOS:</p>
-
-          <div class="owl-carousel owl-theme mt-5">
-
-              <div class="item ml-2 bg-light">
-
-                <div class="card mb-5 border-0 bg-light">
-                    <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                    <a href="">
-                      <img class="card-img-top" src='http://placehold.it/325x250'>
+                      <a href="{{ product.get_absolute_url }}">
+                        {% for image in product.images.all %}
+                        {% if image.thumbnail %}
+                        <img class="card-img-top" src="{{ image.image|thumbnail_url:'product_image' }}" alt="" />
+                        {% endif %}
+                        {% empty %}
+                        <img src="http://placehold.it/350x250" alt="" />
+                        {% endfor %}
                     </a>
-                    <div class="card-body">
-                        <a href="">
-                          <p class="card-title h6 mb-2"> Calça Branca </p>
-                        </a>
-                        <a href="">
-                          <p class="card-subtitle mb-0 text-muted"> Calças</p>
-                        </a>
-                        <!-- <a class="shadow-none btn btn-transparent card-link ml-0 float-right btn-gif p-1"> <img class="bg-gif" data-in='{% static "new/img/heart-in.gif" %}' data-out='{% static "new/img/heart-out.gif" %}' src='{% static "new/img/heart.svg" %}'> </a> -->
-                        <a class="text-dark" href="">
-                          <p class='card-text pt-1'><s class="text-muted"> R$180,00 </s><span class="font-weight-bold ml-1"> R$100,00 </span></p>
-                        </a>
-                    </div>
-                    <div class="card-footer py-0 text-muted bottom d-flex">
-                        <a href="#"><i class="fa fa-star"></i></a>
-                        <a href="#"><i class="fa fa-star"></i></a>
-                        <a href="#"><i class="fa fa-star"></i></a>
-                        <a href="#"><i class="fa fa-star"></i></a>
-                        <a href="#"><i class="fa fa-star"></i></a>
-                        <p class="ml-20 mb-0">25 Reviews</p>
-                    </div>
-                </div>
-
-              </div>
-
-          </div>
-
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col-12">
-
-          <p class="h3 text-center font-weight-light"> <span class="font-weight-bold"> CALÇAS </span> COM OS MELHORES DESCONTOS:</p>
-
-            <div class="owl-carousel owl-theme mt-5">
-
-                <div class="item ml-2 bg-light">
-
-                  <div class="card mb-5 border-0 bg-light">
-                      <!-- <div class="card-header">Ut enim ad minim veniam</div> -->
-                      <a href="">
-                        <img class="card-img-top" src='http://placehold.it/325x250'>
-                      </a>
                       <div class="card-body">
-                          <a href="">
-                            <p class="card-title h6 mb-2"> Calça Branca </p>
+                          <a href="{{ product.get_absolute_url }}">
+                            <p class="card-title h6 mb-2"> {{ product.name }} </p>
                           </a>
-                          <a href="">
-                            <p class="card-subtitle mb-0 text-muted"> Calças</p>
+                          <a href="{{ category.get_absolute_url }}">
+                            <p class="card-subtitle mb-0 text-muted"> {{ category.name }} </p>
                           </a>
                           <!-- <a class="shadow-none btn btn-transparent card-link ml-0 float-right btn-gif p-1"> <img class="bg-gif" data-in='{% static "new/img/heart-in.gif" %}' data-out='{% static "new/img/heart-out.gif" %}' src='{% static "new/img/heart.svg" %}'> </a> -->
-                          <a class="text-dark" href="">
-                            <p class='card-text pt-1'><s class="text-muted"> R$180,00 </s><span class="font-weight-bold ml-1"> R$100,00 </span></p>
+                          <a class="text-dark" href="{{ product.get_absolute_url }}">
+                            <p class='card-text pt-1'><s class="text-muted"> R$180,00 </s><span class="font-weight-bold ml-1"> R$ {{ product.price }} </span></p>
                           </a>
                       </div>
                       <div class="card-footer py-0 text-muted bottom d-flex">
@@ -137,9 +57,12 @@
                 </div>
 
             </div>
+            {% endfor %}
 
           </div>
     </div>
+   
+  {% endfor %}
 
 </div>
 

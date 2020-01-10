@@ -228,6 +228,11 @@ THUMBNAIL_ALIASES = {
     },
 }
 
+### Company Name
+
+COMPANY_NAME = 'Oficina de Sonhos'
+SLOGAN = 'Despertando seus Sonhos'
+
 ### AWS
 
 # STATICFILES_LOCATION = 'static'

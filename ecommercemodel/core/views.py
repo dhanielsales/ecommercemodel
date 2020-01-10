@@ -16,15 +16,12 @@ User = get_user_model()
 class IndexView(TemplateView):  
 
     template_name = "core/index.html"
-    context_object_name = 'context'
     model = Product
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         home_spotlights = Category.objects.filter(home_spotlight=True)
-        if home_spotlights:
-            for current_category in home_spotlights:
-                context[f'{current_category.slug}_category'] = Product.objects.filter(is_active=True, spotlight=True, category=current_category)
+        context['home_spotlight'] = home_spotlights
         return context
 
 index = IndexView.as_view()
