@@ -41,60 +41,58 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
   <link rel="stylesheet" href='{% static "new/css/main.css" %}' />
   
-<style>
-  /* .back-to-top:hover img, .back-to-top:focus img {
-    content: url('{% static "new/img/up-down.gif" %}' );
-  } */
-  .btn-gif img.bg-gif {
-    width: 20px;
-    height: 20px;
-  }
-  body {font-family: 'Lato', sans-serif;}
-  h1, h2, h3, h4, h5, h6 {font-family: 'Lato', sans-serif;}
- .h1, .h2, .h3, .h4, .h5, .h6 {font-family: 'Lato', sans-serif;}
-  
- /*.home-banner-area {
-  background: url("{% static 'new/img/home-banner-bg2.png' %}") no-repeat;
-  background: none;
-}*/
+{% block style  %}
+  <style>
+    /* .back-to-top:hover img, .back-to-top:focus img {
+      content: url('{% static "new/img/up-down.gif" %}' );
+    } */
+    .btn-gif img.bg-gif {
+      width: 20px;
+      height: 20px;
+    }
+    body {font-family: 'Lato', sans-serif;}
+    h1, h2, h3, h4, h5, h6 {font-family: 'Lato', sans-serif;}
+   .h1, .h2, .h3, .h4, .h5, .h6 {font-family: 'Lato', sans-serif;}
 
+   /*.home-banner-area {
+    background: url("{% static 'new/img/home-banner-bg2.png' %}") no-repeat;
+    background: none;
+   }*/
+  </style>
+{% endblock %}
 
-</style>
 
 </head>
 
 <body>
   <!-- ================ Start Header Area ================= -->
+{% block header_area  %}
+  
   <header class="default-header">
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light p-2">
       <div class="container">
-        <a class="navbar-brand" href="">
-          <a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a>
-        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="lnr lnr-menu"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
           <ul class="navbar-nav">
-            <li><a href='{% url "catalog:product_list" %}'>Produtos</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="">Nossas Lojas</a></li>
+            <li><a href="">Atendimento</a></li>
             <li><a href="{% url 'contact' %}">Contato</a></li>
-            <!-- Dropdown -->
-              <li class="dropdown">
-                <a class="dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
-                  Categorias
-                </a>
-                <div class="dropdown-menu">
-                  {% for category in categories %}
-                      <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category }}</a>
-                  {% endfor %}
-                </div>
-            </li>
 
             {% if user.is_authenticated %}
-            <li><a href="{% url 'accounts:account' %}">Minha Conta</a></li>
-            <li><a href="{% url 'logout' %}">Sair</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
+                  {{user}}
+                </a>
+                <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'accounts:account' %}">Minha Conta</a>
+                      <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+              </li>
             <li><a href="{% url 'checkout:cart_item' %}"><i class='ti-heart'></i></a></li>
             <li><a href="{% url 'checkout:cart_item' %}"><span class="lnr lnr-cart"></span></a></li>
             {% else %}
@@ -113,6 +111,38 @@
         </div>
       </div>
     </nav>
+    <nav class="navbar navbar-expand-lg navbar-light p-2">
+      <div class="container">
+        <a class="navbar-brand" href="">
+          <a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a>
+        </a>
+        <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+
+            <!-- Dropdown -->
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
+                  Categorias
+                </a>
+                <div class="dropdown-menu">
+                  {% for category in categories %}
+                      <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category }}</a>
+                  {% endfor %}
+                </div>
+            </li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+
+            <li><a href='{% url "catalog:product_list" %}'>Produtos</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="search-input" id="search-input-box">
       <div class="container">
         <form class="d-flex justify-content-between" role='search' action='{% url "catalog:product_list" %}'>
@@ -123,72 +153,21 @@
       </div>
     </div>
   </header>
+  
+{% endblock %}
   <!-- ================ End Header Area ================= -->
 
-  <!-- {% block messages %}
-  {% for message in messages %}
-  <div class='alert alert-{{ message.tags }}'> {{ message }} </div>
-  {% endfor %}
-  {% endblock %}
-  {% block container %}{% endblock %} -->
   <!-- ================ start banner Area ================= -->
 
-  <section class="home-banner-area">
-    <div class="container">
-      <div class="row justify-content-center fullscreen align-items-center">
-        <div class="col-lg-5 col-md-8 home-banner-left">
-          <h2 class="text-white font-default text-uppercase">{% company 'name' %}</h1>
-          <h5 class="text-white font-default"> {% company 'slogan' %}<h3>
-          <p class="mx-auto text-white mt-20 mb-40 font-default"> A Melhor em artigos de Ballet, Dança e FitStyle.</p>
-        </div>
-        <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
-          <img class="img-fluid" src='{% static "new/img/header-img.png" %}' alt="" />
-        </div>
-      </div>
-    </div>
-  </section>
+  {% block banner_area %}
+  {% endblock %}
+
   <!-- ================ End banner Area ================= -->
 
   <!-- ================ Start Feature Area ================= -->
-  <section class="feature-area">
-    <div class="container-fluid">
-      <div class="feature-inner row">
-        <div class="col-lg-2 col-md-4">
-          <div class="feature-item d-flex">
-            <i class="ti-book"></i>
-            <div class="ml-20">
-              <h4>Lorem ipsum</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-4">
-          <div class="feature-item d-flex">
-            <i class="ti-cup"></i>
-            <div class="ml-20">
-              <h4>Lorem ipsum</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-4">
-          <div class="feature-item d-flex border-right-0">
-            <i class="ti-desktop"></i>
-            <div class="ml-20">
-              <h4>Lorem ipsum</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% block feature_area %}
+  {% endblock %}
+
   <!-- ================ End Feature Area ================= -->
 
   <!-- ================ Start Owl Carousel Area ================= -->
@@ -199,52 +178,16 @@
   <!-- ================ End Owl Carousel Area ================= -->
 
   <!-- ================ Start Registration Area ================= -->
-  <section class="registration-area">
-    <div class="container">
-      <div class="row align-items-end">
-        <div class="col-lg-5">
-          <div class="section-title text-left text-white">
-            <h2 class="text-white">
-              Lorem ipsum dolor <br>
-              sit amet
-            </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
-            </p>
-          </div>
-        </div>
-        <div class="offset-lg-3 col-lg-4 col-md-6">
-          <div class="course-form-section">
-            <h3 class="text-white">Products for Free</h3>
-            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <form class="course-form-area contact-page-form course-form text-right" id="myForm" action="mail.html" method="post">
-              <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name" onfocus="this.placeholder = ''"
-                 onblur="this.placeholder = 'Name'">
-              </div>
-              <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="Phone Number" onfocus="this.placeholder = ''"
-                 onblur="this.placeholder = 'Phone Number'">
-              </div>
-              <div class="form-group col-md-12">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
-                 onblur="this.placeholder = 'Email Address'">
-              </div>
-              <div class="col-lg-12 text-center">
-                <button class="btn text-uppercase">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
+  {% block registration_area %}
+  {% endblock %}
+
   <!-- ================ End Registration Area ================= -->
 
 
   <!-- ================ Start Back To Top Area ================= -->
 
-  <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='top' data-trigger='hover' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
+  <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='left' data-trigger='hover' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
 
   <!-- ================= End Back To Top Area ================== -->
 
@@ -326,7 +269,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
   <script src='{% static "new/js/jquery.magnific-popup.min.js" %}'></script>
   <script src='{% static "new/js/jquery.ajaxchimp.min.js" %}'></script>
   <script src='{% static "new/js/parallax.min.js" %}'></script>
-  <!-- <script src='{% static "new/js/owl.carousel.min.js" %}'></script> -->
   <script src='{% static "new/js/jquery.sticky.js" %}'></script>
   <script src='{% static "new/js/hexagons.min.js" %}'></script>
   <script src='{% static "new/js/jquery.counterup.min.js" %}'></script>

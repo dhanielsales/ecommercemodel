@@ -3,10 +3,73 @@
 {% load static %}
 {% load products_spotlights %}
 {% load thumbnail %}
+{% load company %}
+
+
+{% block banner_area %}
+    <section class="home-banner-area">
+    <div class="container">
+      <div class="row justify-content-center fullscreen align-items-center">
+        <div class="col-lg-5 col-md-8 home-banner-left">
+          <h2 class="text-white font-default text-uppercase">{% company 'name' %}</h1>
+          <h5 class="text-white font-default"> {% company 'slogan' %}<h3>
+          <p class="mx-auto text-white mt-20 mb-40 font-default"> A Melhor em artigos de Ballet, Dança e FitStyle.</p>
+        </div>
+        <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
+          <img class="img-fluid" src='{% static "new/img/header-img.png" %}' alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+{% block feature_area %}
+  <section class="feature-area">
+    <div class="container-fluid">
+      <div class="feature-inner row">
+        <div class="col-lg-2 col-md-4">
+          <div class="feature-item d-flex">
+            <i class="ti-book"></i>
+            <div class="ml-20">
+              <h4>Lorem ipsum</h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <div class="feature-item d-flex">
+            <i class="ti-cup"></i>
+            <div class="ml-20">
+              <h4>Lorem ipsum</h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <div class="feature-item d-flex border-right-0">
+            <i class="ti-desktop"></i>
+            <div class="ml-20">
+              <h4>Lorem ipsum</h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
 
 {% block index_carousel %}
 
-<div class="container mt-4">
+ <div class="container mt-4">
   
   {% for category in home_spotlight %}
 
@@ -45,11 +108,12 @@
                           </a>
                       </div>
                       <div class="card-footer py-0 text-muted bottom d-flex">
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
-                          <a href="#"><i class="fa fa-star"></i></a>
+                          <a href="#"><i class="text-warning fa fa-star"></i></a>
+                          <a href="#"><i class="text-warning fa fa-star"></i></a>
+                          <a href="#"><i class="text-warning fa fa-star"></i></a>
+                          <a href="#"><i class="text-warning fa fa-star"></i></a>
+                          <a href="#"><i class="text-warning fa fa-star-half-o" aria-hidden="true"></i></a>
+                          {% comment %} <a href="#"><i class="text-warning fa fa-star-half" aria-hidden="true"></i></a> {% endcomment %}
                           <p class="ml-20 mb-0">25 Reviews</p>
                       </div>
                   </div>
@@ -64,6 +128,49 @@
    
   {% endfor %}
 
-</div>
+ </div>
 
+{% endblock %}
+
+{% block registration_area %}
+  <section class="registration-area">
+    <div class="container">
+      <div class="row align-items-end">
+        <div class="col-lg-5">
+          <div class="section-title text-left text-white">
+            <h2 class="text-white">
+              Lorem ipsum dolor <br>
+              sit amet
+            </h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus est.
+            </p>
+          </div>
+        </div>
+        <div class="offset-lg-3 col-lg-4 col-md-6">
+          <div class="course-form-section">
+            <h3 class="text-white">Products for Free</h3>
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <form class="course-form-area contact-page-form course-form text-right" id="myForm" action="mail.html" method="post">
+              <div class="form-group col-md-12">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" onfocus="this.placeholder = ''"
+                 onblur="this.placeholder = 'Name'">
+              </div>
+              <div class="form-group col-md-12">
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Phone Number" onfocus="this.placeholder = ''"
+                 onblur="this.placeholder = 'Phone Number'">
+              </div>
+              <div class="form-group col-md-12">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
+                 onblur="this.placeholder = 'Email Address'">
+              </div>
+              <div class="col-lg-12 text-center">
+                <button class="btn text-uppercase">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

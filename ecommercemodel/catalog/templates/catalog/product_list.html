@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load static %}
 
 {% load pagination %}
 
@@ -6,18 +7,31 @@
     Listagem de Produtos | {{ block.super }}
 {% endblock %}
 
-{% block container %}
-<div class="page-header">
-    <h1>Produtos</h1>
-</div>
-<div class="row">
-    {% for product in product_list %}
-    {% include 'catalog/_product.html' %}
-    {% endfor %}
-</div>
-{% pagination request paginator page_obj %}
+{% block header_area  %}
+ {{ block.super }}
 {% endblock %}
+
+{% block banner_area %}
+ {{ block.super }}
+{% endblock %}
+
+{% block index_carousel %}
+
+    <div class="container"> 
+        <div class="row justify-content-sm-center">
+                {% for product in product_list %}
+                    {% include 'catalog/_product.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% pagination request paginator page_obj %}
+
+{% endblock %}
+
 {% block scripts %}
+
 <script type='text/javascript'>
 $(function(){
     $('.cart-item-add').on('click', function(e){
@@ -31,6 +45,7 @@ $(function(){
         });
     });
 });
+
 </script>
 
 {% endblock %}
