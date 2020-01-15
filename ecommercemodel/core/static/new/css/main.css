@@ -8,6 +8,40 @@
 /* =================================== */
 
 /* ==============My Style============= */
+#search-main {
+    color: #fff;
+    /* width: 100%; */
+    min-width:500px;
+    height: 45px;
+    padding: 10px 20px;
+    background: -webkit-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%);
+    background: -moz-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%);
+    background: -o-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%);
+    background: -ms-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%);
+    background: linear-gradient(270deg, #7c32ff 0%, #c738d8 100%);
+    justify-content: space-between !important;
+    list-style: none;
+    -webkit-box-direction: normal;
+    border: none;
+}
+#search-main::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c083f6;
+  opacity: 1; /* Firefox */
+}
+
+#search-main:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c083f6;
+}
+
+#search-main::-ms-input-placeholder { /* Microsoft Edge */
+  color: #c083f6;
+}
+
+
+.navbar-light .navbar-nav .nav-link {
+  color: white !important;
+}
+
 .corp-name {
   /* font-family: 'Playfair Display', serif; */
   /* font-family: 'Roboto', serif; */

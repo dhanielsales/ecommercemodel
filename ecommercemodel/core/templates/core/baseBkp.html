@@ -72,9 +72,6 @@
     color: #fff;
     border-color: #fff;
    }
-   .navbar-light .navbar-nav .nav-link {
-    color: white !important;
-  }
 
   </style>
 {% endblock %}
@@ -86,64 +83,105 @@
   <!-- ================ Start Header Area ================= -->
 {% block header_area  %}
   
-<header class="default-header">
-  <nav class="navbar navbar-expand-lg navbar-light p-0 navbar-toggleable-md">
-  <div class="container">
-      <button class="navbar-toggler navbar-toggler-right align-self-center p-3 my-2" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-          <i class="fa-lg fas fa-bars"></i>
-      </button>
-      <h1 class="pb-2 ml-lg-0 mx-3 d-block d-sm-block d-mg-block d-mg-block d-lg-none"><a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img mr-1' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></h1>
-      <div class="text-center collapse navbar-collapse flex-column ml-lg-0 ml-3" id="navbarCollapse">
-          <ul class="navbar-nav text-center p-0">
-              <li class="nav-item">
-                <a class="nav-link" id='myPopover' role="button" tabindex="0" data-placement='bottom'>(85) 3198-3669</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link pl-50" href="{% url 'contact' %}">Quem Somos</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Nossas Lojas</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Atendimento</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Eventos</a>
-              </li>
+  <header class="default-header">
+    <nav class="navbar navbar-expand-lg navbar-light p-2">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="lnr lnr-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li><a class="text-white" id='myPopover' role="button" tabindex="0" data-placement='bottom'>(85) 3198-3669</a></li>
+            <li><a href="{% url 'contact' %}">Quem Somos</a></li>
+            <li><a href="">Nossas Lojas</a></li>
+            <li><a href="">Atendimento</a></li>
+
           </ul>
-          <ul class="navbar-nav flex-row p-0">
-            <h1 class="d-md-none d-none d-sm-none d-lg-block"><a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img mr-1' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></h1>
-            
-            <form class="form-inline">
-              <input class="form-control ml-10" type="search" id="search-main" placeholder="Procurar Produtos..." name="q" >
-              <button class="btn text-white" type="submit"><i class="fas fa-lg fa-search" id="search"></i> </button>
-            </form>
-                        
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Entrar / Registrar</a>
-              </li>
-          </ul>
-          <ul class="navbar-nav flex-row p-0">
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Product</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Shop</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Events</a>
-              </li>
-        </ul>
+        </div>
       </div>
-  </div>
-  </nav>
-</header>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light p-2">
+      <div class="container">
+        <a class="navbar-brand" href="">
+          <a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="lnr lnr-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+
+            {% if user.is_authenticated %}
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
+                {{user}}
+              </a>
+              <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'accounts:account' %}">Minha Conta</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+              </div>
+            </li>
+            <li><a href="{% url 'checkout:cart_item' %}"><i class="far fa-lg fa-heart"></i></a></li>
+            <li><a href="{% url 'checkout:cart_item' %}"><i class="fas fa-lg fa-shopping-cart"></i></a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:register' %}">Regitrar</a></li>
+            <li><a href="{% url 'login' %}">Entrar</a></li>
+            <li><a href="{% url 'checkout:cart_item' %}"><i class="far fa-lg fa-heart"></i></a></li>
+            <li><a href="{% url 'checkout:cart_item' %}"><i class="fas fa-lg fa-shopping-cart"></i></a></li>
+            {% endif %}
+
+            <li>
+              <button class="search">
+                <i class="fas fa-lg fa-search" id="search"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light p-2">
+      <div class="container">
+        <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+
+            <!-- Dropdown -->
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
+                  Categorias
+                </a>
+                <div class="dropdown-menu">
+                  {% for category in categories %}
+                      <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category }}</a>
+                  {% endfor %}
+                </div>
+            </li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+            <li><a href="">Exemplo</a></li>
+
+            <li><a href='{% url "catalog:product_list" %}'>Produtos</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="search-input" id="search-input-box">
+      <div class="container">
+        <form class="d-flex justify-content-between" role='search' action='{% url "catalog:product_list" %}'>
+          <input name='q' type="text" class="form-control" id="search-input" placeholder="Pesquisar Produtos..." />
+          <button type="submit" class="btn"></button>
+          <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
+        </form>
+      </div>
+    </div>
+  </header>
   
 {% endblock %}
   <!-- ================ End Header Area ================= -->
