@@ -4,7 +4,7 @@ from .models import Product, Category, ProductImages, Subcategory
 
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'slug', 'created', 'modified']
+    list_display = ['name', 'slug', 'home_spotlight' ,'in_navbar', 'created', 'modified']
     search_fields = ['name', 'slug',]
     list_filter = ['created', 'modified']
     prepopulated_fields = {'slug': ('name',) }
@@ -21,7 +21,6 @@ class ProductImagesAdmin(admin.TabularInline):
     extra = 1
 
 class ProductAdmin(admin.ModelAdmin):
-    
 
     list_display = ['id', '__str__', 'price', 'category', 'subcategory', 'is_active', 'created', 'modified', 'author']
     list_display_links = ('id', '__str__')

@@ -11,7 +11,7 @@
 #search-main {
     color: #fff;
     /* width: 100%; */
-    min-width:500px;
+    min-width:460px;
     height: 45px;
     padding: 10px 20px;
     background: -webkit-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%);
@@ -52,7 +52,7 @@
 }
 .corp-name:hover {color: #fff;}
 .corp-name:active  {color: #ffffff33;}
-.corp-name img {width: 40px;}
+.corp-name img {width: 45px;}
 .no-font {
   font-family: sans-serif;
 }

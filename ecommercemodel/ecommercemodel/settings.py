@@ -224,6 +224,7 @@ LOGIN_REDIRECT_URL = 'index'
 THUMBNAIL_ALIASES = {
     '': {
         'product_image': {'size': (325, 250), 'crop': True},
+        'category': {'size': (335, 500), 'crop': True},
         'avatar': {'size': (50, 50), 'crop': True},
     },
 }

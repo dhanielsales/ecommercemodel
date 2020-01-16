@@ -11,8 +11,10 @@ class Category(models.Model):
     slug = models.SlugField('Identificador', max_length=100)
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
-    home_spotlight = models.BooleanField("Destaque na págnina inicial", default=False, help_text="Determina se essa Categoria deve ser inclusa nos Destaques da Página Inicial. Geralmente Categoria em destaque possuem promoções.")
-    
+    image = models.ImageField('Imagem', upload_to='categories', blank=True, null=True, help_text="Opcional. Envie uma foto para a categoria.")
+    home_spotlight = models.BooleanField("Destaque na página inicial", default=False, help_text="Determina se essa Categoria deve ser inclusa nos Destaques da Página Inicial. Geralmente Categoria em destaque possuem promoções.")
+    in_navbar = models.BooleanField("Incluir na Barra Superior?", default=False, help_text="Determina se essa Categoria deve ser inclusa na barra superior do site.")
+
 
     class Meta: 
         verbose_name = 'Categoria'
@@ -29,7 +31,7 @@ class Subcategory(models.Model):
 
     name = models.CharField("Nome", max_length=100)
     slug = models.SlugField('Identificador', max_length=100)
-    category_father = models.ForeignKey('catalog.Category', verbose_name="Categoria Pai", on_delete=models.CASCADE,null=False, blank=False, help_text="Determine a categoria o essa subcategoria será associada.")
+    category_father = models.ForeignKey('catalog.Category', verbose_name="Categoria", on_delete=models.CASCADE,null=False, blank=False, help_text="Determine a categoria o essa subcategoria será associada.")
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
 
@@ -78,7 +80,7 @@ class Product(models.Model):
 class ProductImages(models.Model):
 
     product = models.ForeignKey(Product, verbose_name="Produto", related_name="images", on_delete=models.CASCADE)
-    image = models.ImageField('Imagem', upload_to='products', blank=False, null=False, help_text="Obrigatório. Envie aqui uma foto do produto.")
+    image = models.ImageField('Imagem', upload_to='products', blank=False, null=False, help_text="Obrigatório. Envie uma foto para o produto.")
     thumbnail = models.BooleanField("Thumbnail", default=False, help_text="Determina se essa imagem deve ser tratada como thumbnail do produto. Thumbnail aparecem primeiro.")
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)

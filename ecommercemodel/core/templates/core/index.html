@@ -4,7 +4,17 @@
 {% load products_spotlights %}
 {% load thumbnail %}
 {% load company %}
+{% load navbar_subcategories %}
 
+
+{% block style %}
+{{ block.super }}
+<style>
+  .mxp-80 {
+  padding: 0px 80px !important;
+  }
+</style>
+{% endblock %}
 
 {% block banner_area %}
     <section class="home-banner-area">
@@ -70,7 +80,7 @@
 {% block index_carousel %}
 
  <div class="container mt-4">
-  
+
   {% for category in home_spotlight %}
 
     <div class="row">
@@ -165,7 +175,7 @@
                  onblur="this.placeholder = 'Email Address'">
               </div>
               <div class="col-lg-12 text-center">
-                <button class="btn text-uppercase">Submit</button>
+                <button class="btn text-uppercase mxp-80">Submit</button>
               </div>
             </form>
           </div>

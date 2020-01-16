@@ -2,6 +2,8 @@
 
 {% load static %}
 {% load company %}
+{% load thumbnail %}
+{% load navbar_subcategories %}
 
 <html lang="pt-br" class="no-js">
 
@@ -34,48 +36,103 @@
   <!-- <link rel="stylesheet" href='{% static "new/css/owl.carousel.css" %}' /> -->
   <link rel="stylesheet" href='{% static "new/css/nice-select.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/hexagons.min.css" %}' />
-  <link rel="stylesheet" href='{% static "new/css/bootstrap.css" %}'/>
+  <link rel="stylesheet" href='{% static "new/css/bootstrap/bootstrap.css" %}'/>
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.carousel.css" %}' />
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.theme.default.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/main.css" %}' />
   
-{% block style  %}
+
+{% block style %}
   <style>
-    /* .back-to-top:hover img, .back-to-top:focus img {
+  .navbar .dropdown-menu.dropdown-lg div[class*="col"] {
+     margin-bottom:1rem;
+  }
+  .navbar .dropdown-menu.dropdown-lg {
+    border:none;
+    border-top:1px solid #555;
+    border-radius: 0;
+    background-color:#222222!important;
+  }
+  
+  /* breakpoint and up - mega dropdown styles */
+@media screen and (min-width: 1000px) {
+    
+  /* makes the dropdown full width  */
+  .navbar .dropdown.dropdown-lg {position:static;}
+
+  .navbar .dropdown-menu.dropdown-lg {
+    width:100%;
+    left:0;
+    right:0;
+    top:132px;/* height of navbar  */
+  }
+  /* shows the dropdown menu on hover */
+  .navbar .dropdown:hover .dropdown-menu.dropdown-lg, .navbar .dropdown .dropdown-menu.dropdown-lg:hover {
+    display:block!important;
+  }
+}
+
+/* .back-to-top:hover img, .back-to-top:focus img {
       content: url('{% static "new/img/up-down.gif" %}' );
-    } */
-    .btn-gif img.bg-gif {
+   } */
+
+    
+  .btn-gif img.bg-gif {
       width: 20px;
       height: 20px;
-    }
-    body {font-family: 'Lato', sans-serif;}
-    h1, h2, h3, h4, h5, h6 {font-family: 'Lato', sans-serif;}
-   .h1, .h2, .h3, .h4, .h5, .h6 {font-family: 'Lato', sans-serif;}
+  }
+  body {font-family: 'Lato', sans-serif;}
+  h1, h2, h3, h4, h5, h6 {font-family: 'Lato', sans-serif;}
+  h1, .h2, .h3, .h4, .h5, .h6 {font-family: 'Lato', sans-serif;}
 
-   /*.home-banner-area {
+  /*.home-banner-area {
     background: url("{% static 'new/img/home-banner-bg2.png' %}") no-repeat;
     background: none;
-   }*/
-
-   .btn-instagram {
+  }*/
+  .btn-instagram {
     background: #833ab4;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #fff;
     border-color: #fff;
-   }
+  }
 
-   .btn-instagram:hover {
+  .btn-instagram:hover {
     background: #833ab4;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #e49f3f, #df1a1a, #6f3199);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #e49f3f, #df1a1a, #6f3199); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #fff;
     border-color: #fff;
-   }
-   .navbar-light .navbar-nav .nav-link {
+  }
+  .navbar-light .navbar-nav .nav-link {
     color: white !important;
   }
-
+  @media screen and (min-width: 990px) {
+   .nav-bot li a {padding: 0px 10px 10px 10px;}
+   .nav-top li a {padding: 10px 10px 2px 10px;}
+  }
+  /* Safari 4.0 - 8.0 */
+  @-webkit-keyframes navbar-anim {
+    from {background-color:transparent;}
+    to {background-color: #222222f2;}
+  }
+  /* Standard syntax */
+  @keyframes navbar-anim {
+    from {background-color:transparent;}
+    to {background-color: #222222f2;}
+  }
+  .navbar-anim:focus, .navbar-anim:hover  {
+    background: #222222f2;
+    -webkit-animation-name: navbar-anim; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+    animation-name: navbar-anim;
+    animation-duration: 0.5s;
+  }
+  @media (min-width: 992px) {
+    .container, .container-sm, .container-md, .container-lg {
+      max-width: 1000px;
+    }
+  }
   </style>
 {% endblock %}
 
@@ -87,58 +144,113 @@
 {% block header_area  %}
   
 <header class="default-header">
-  <nav class="navbar navbar-expand-lg navbar-light p-0 navbar-toggleable-md">
+  <nav class="navbar navbar-expand-lg navbar-light p-0 navbar-toggleable-md navbar-anim">
   <div class="container">
-      <button class="navbar-toggler navbar-toggler-right align-self-center p-3 my-2" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-          <i class="fa-lg fas fa-bars"></i>
+      <button class="navbar-toggler navbar-toggler-right align-self-center p-2 my-2 mb-1 ml-3" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+          <i class="p-1 fa-lg fas fa-bars"></i>
       </button>
-      <h1 class="pb-2 ml-lg-0 mx-3 d-block d-sm-block d-mg-block d-mg-block d-lg-none"><a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img mr-1' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></h1>
+      <h1 class="mt-1 pb-2 ml-lg-0 mx-3 d-block d-sm-block d-mg-block d-mg-block d-lg-none"><a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img mr-1 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></h1>
       <div class="text-center collapse navbar-collapse flex-column ml-lg-0 ml-3" id="navbarCollapse">
-          <ul class="navbar-nav text-center p-0">
+          <ul class="navbar-nav nav-top text-center p-0">
               <li class="nav-item">
-                <a class="nav-link" id='myPopover' role="button" tabindex="0" data-placement='bottom'>(85) 3198-3669</a>
+                <a class="nav-link ml-50" id='myPopover' role="button" tabindex="0" data-placement='bottom'>(85) 3198-3669</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link pl-50" href="{% url 'contact' %}">Quem Somos</a>
+              <li class="nav-item align-middle">
+                <a class="nav-link" href="{% url 'contact' %}">Quem Somos</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item align-middle">
                   <a class="nav-link" href="#">Nossas Lojas</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item align-middle">
                   <a class="nav-link" href="#">Atendimento</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item align-middle">
                   <a class="nav-link" href="#">Eventos</a>
               </li>
           </ul>
           <ul class="navbar-nav flex-row p-0">
-            <h1 class="d-md-none d-none d-sm-none d-lg-block"><a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img mr-1' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></h1>
+            <h1 class="d-md-none d-none d-sm-none d-lg-block"><a class='corp-name p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img mr-1 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></h1>
             
             <form class="form-inline">
               <input class="form-control ml-10" type="search" id="search-main" placeholder="Procurar Produtos..." name="q" >
               <button class="btn text-white" type="submit"><i class="fas fa-lg fa-search" id="search"></i> </button>
             </form>
                         
-              <li class="nav-item">
+              <li class="nav-item align-middle mt-1  mr-1">
+                  <a class="nav-link" href="{% url 'checkout:cart_item' %}"><i class="fas fa-lg fa-shopping-cart"></i></a>
+              </li>
+              <li class="nav-item align-middle mt-1">
+                  <a class="nav-link" href="{% url 'checkout:cart_item' %}"><i class="fas fa-lg fa-heart"></i></a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="dropdown nav-item align-middle mt-1" >
+                <a class="nav-link dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
+                  {{user}}
+                </a>
+                <div class="dropdown-menu m-0">
+                      <a class="dropdown-item" href="{% url 'accounts:account' %}">Minha Conta</a>
+                      <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+              </li>
+              {% else %}
+              <li class="nav-item align-middle mt-1">
                   <a class="nav-link" href="#">Entrar / Registrar</a>
               </li>
+              {% endif %}
           </ul>
-          <ul class="navbar-nav flex-row p-0">
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Product</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Shop</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Events</a>
-              </li>
+          <ul class="navbar-nav flex-row p-0 nav-bot">
+            {% for category in navcategories %}
+            <li class="dropdown dropdown-lg nav-item align-middle" >
+              <a class="nav-link dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
+                {{ category }}
+              </a>
+              <div class="dropdown-menu dropdown-lg m-0">
+                <h4 class="text-uppercase text-white ml-50 mb-2">{{ category }}</h4>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4">
+
+                      <ul class="nav flex-column">
+
+                        {% for subcategory in category|navbar_subcategories %}
+                        {% if forloop.counter == 7 %}
+                              </ul>
+                            </div>
+                            <div class="col-md-4">
+                              <ul class="nav flex-column">
+                        {% else %}
+                        <li class="nav-item" style="min-width: 180px;">
+                            <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    </div>
+                    <!-- /.col-md-4  -->
+                    <div class="col-md-4 float-right">
+                      {% if category.image %}
+                      <a href="">
+                        <img src="{{ category.image|thumbnail_url:'category' }}" alt="" class="position-relative">
+                        <button class="btn btn-secondary position-absolute p-2 px-5">TESTE</button>
+                      </a>
+                      {% else %}
+                      <a href="">
+                        <img src="http://placehold.it/185x250" alt="" class="position-relative">
+                        <button style="right: 50%; bottom: 15%;" class="btn btn-secondary position-absolute p-2 px-5">TESTE</button>
+                      </a>
+                      {% endif %}
+
+                    </div>
+                    <!-- /.col-md-4  -->
+                  </div>
+                  <!-- /.row  -->
+                </div>
+                <!--  /.container  -->
+      
+              </div>
+            </li>
+            {% endfor %}
+
         </ul>
       </div>
   </div>
@@ -178,7 +290,7 @@
 
   <!-- ================ Start Back To Top Area ================= -->
 
-  <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='left' data-trigger='hover' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
+  <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='left' data-trigger='focus' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
 
   <!-- ================= End Back To Top Area ================== -->
 
@@ -265,7 +377,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
 <script src='{% static "new/js/jquery.counterup.min.js" %}'></script>
 <script src='{% static "new/js/waypoints.min.js" %}'></script>
 <script src='{% static "new/js/jquery.nice-select.min.js" %}'></script>
-<script src='{% static "new/js/vendor/bootstrap.min.js" %}'></script>
+<script src='{% static "new/js/bootstrap/bootstrap.min.js" %}'></script>
 <script src='{% static "new/OwlCarousel2-2.3.4/dist/js/owl.carousel.js" %}'></script>
 <script src='{% static "new/js/main.js" %}'></script>
 <script src='{% static "new/js/bg-gif.js" %}'></script>
@@ -356,6 +468,34 @@ $('#myPopover').popover({
       }
   }, 300);
 });
+/////////////////////////////////////////////
+
+$(document).ready(function() {
+  // executes when HTML-Document is loaded and DOM is ready
+ 
+ // breakpoint and up  
+ $(window).resize(function(){
+   if ($(window).width() >= 980){	
+ 
+       // when you hover a toggle show its dropdown menu
+       $(".navbar .dropdown-toggle").hover(function () {
+          $(this).parent().toggleClass("show");
+          $(this).parent().find(".dropdown-menu.dropdown-lg").toggleClass("show"); 
+        });
+ 
+         // hide the menu when the mouse leaves the dropdown
+       $( ".navbar .dropdown-menu.dropdown-lg" ).mouseleave(function() {
+         $(this).removeClass("show");  
+       });
+   
+     // do something here
+   }	
+ });  
+ // document ready  
+ });
+
+///////////////////////////////////////////////
+
 </script>
 {% endblock %}
 

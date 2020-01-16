@@ -4,5 +4,7 @@ from .models import Category
 
 def categories(request):
     return {
-        'categories': Category.objects.all()
+        'categories': Category.objects.all(),
+        'navcategories': Category.objects.filter(in_navbar=True),
     }
+

@@ -26,12 +26,6 @@ class IndexView(TemplateView):
 
 index = IndexView.as_view()
 
-# class IndexView(TemplateView):  
-
-#     template_name = "core/index.html"
-
-# index = IndexView.as_view()
-
 def contact(request, template_name = "core/contact.html"):
     success = False
     form = ContactForm(request.POST or None)
