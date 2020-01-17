@@ -400,12 +400,12 @@
     </nav>
         <nav class="navbar">
             <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Toggle Sidebar</span>
+                <button type="button" id="sidebarCollapse" class="btn mr-2">
+                    <i style="font-size: 1.5em !important;" class="text-white fas fa-align-left"></i>
+                    <p class="p-menu text-white">menu</p>
                 </button>
-                <div class="mx-1"><a class='corp-name p-0 text-uppercase text-white' href="{% url 'index' %}"><img class='p-0 logo-img mt-2 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></div>
-                <button class="btn ml-auto shadow-none" type="button" autofocus data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <div class=" mx-auto"><a class='corp-name p-0 text-uppercase text-white' href="{% url 'index' %}"><img class='p-0 logo-img mt-2 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></div>
+                <button class="btn ml-auto shadow-none mb-2 ml-2" type="button" autofocus data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <i style="font-size: 1.5em !important;" class="fas fa-search text-white p-1" id="search"></i> 
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -661,7 +661,7 @@ $(document).ready(function () {
 });
 ///////////////////////////////////////////////
 $(document).click(function(e) {
-	if (!$(e.target).is('.container-fluid')) || (!$(e.target).is('.container-fluid')) {
+	if (!$(e.target).is('.container-fluid') && !$(e.target).is('.navbar-collapse') && !$(e.target).is('.search-main') && !$(e.target).is('.navbar') && !$(e.target).is('#search-main')) {
     	$('.collapse').collapse('hide');	    
     }
 });

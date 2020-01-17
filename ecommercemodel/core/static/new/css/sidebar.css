@@ -9,7 +9,11 @@
     line-height: 1.7em;
     color: #999;
 }
-
+.wrapper .p-menu {
+    line-height: 0.1em;
+    font-size: 1em;
+    font-variant: small-caps;
+}
 .wrapper a,
 a:hover,
 a:focus {
