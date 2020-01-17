@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-
-{% load static %}
-{% load company %}
-{% load thumbnail %}
-{% load navbar_subcategories %}
-
+{% load static %}{% load company %}{% load thumbnail %}{% load navbar_subcategories %}
 <html lang="pt-br" class="no-js">
 
 <head>
@@ -16,7 +11,7 @@
   <link rel="shortcut icon" href="{% static 'new/img/logo2.png' %}" />
 
   <!-- Author Meta -->
-  <meta name="author" content="DhaN" />
+  <meta name="author" content="Dhaniel Ricardo" />
   <!-- Meta Description -->
   <meta name="description" content="" />
   <!-- Meta Keyword -->
@@ -24,26 +19,53 @@
   <!-- meta character set -->
   <meta charset="UTF-8" /> 
   <!-- Site Title -->
-	<title>{% block title %} {% company 'name' %} - {% company 'slogan' %} {% endblock %}</title>
+  <title>{% block title %} {% company 'name' %} - {% company 'slogan' %} {% endblock %}</title>
 
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
   <!-- CSS ============================================= -->
-  
   <link rel="stylesheet" href='{% static "new/css/linearicons.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/magnific-popup.css" %}' />
-  <!-- <link rel="stylesheet" href='{% static "new/css/owl.carousel.css" %}' /> -->
   <link rel="stylesheet" href='{% static "new/css/nice-select.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/hexagons.min.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/bootstrap/bootstrap.css" %}'/>
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.carousel.css" %}' />
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.theme.default.css" %}' />
+  <link rel="stylesheet" href='{% static "new/css/jquery.mCustomScrollbar.min.css" %}' />
+  <link rel="stylesheet" href='{% static "new/css/sidebar.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/main.css" %}' />
-  
+
+  <link rel="stylesheet" href='https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css' />
 
 {% block style %}
-  <style>
+<style>
+  .wrapper .navbar .navbar-collapse {
+    background: transparent !important;
+    margin-top: 10px;
+  }
+  .bg-megamenu-image {
+    background: #222222cc;
+  }
+
+  .btn-main {
+    background: -webkit-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important; 
+    background: -moz-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: -o-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: -ms-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    color: #fff !important;
+    border: none !important;
+  }
+  
+  .btn-main:active, .btn-main:active {
+    background: -webkit-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: -moz-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: -o-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: -ms-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    color: #fff !important;
+  }
+
   .navbar .dropdown-menu.dropdown-lg div[class*="col"] {
      margin-bottom:1rem;
   }
@@ -133,23 +155,16 @@
       max-width: 1000px;
     }
   }
-  </style>
+</style>
 {% endblock %}
-
-
 </head>
-
 <body>
   <!-- ================ Start Header Area ================= -->
 {% block header_area  %}
-  
 <header class="default-header">
-  <nav class="navbar navbar-expand-lg navbar-light p-0 navbar-toggleable-md navbar-anim">
+  <!-- Navbar lg -->
+  <nav class="navbar navbar-expand-lg navbar-light p-0 navbar-anim d-none d-lg-block d-xl-block">
   <div class="container">
-      <button class="navbar-toggler navbar-toggler-right align-self-center p-2 my-2 mb-1 ml-3" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-          <i class="p-1 fa-lg fas fa-bars"></i>
-      </button>
-      <h1 class="mt-1 pb-2 ml-lg-0 mx-3 d-block d-sm-block d-mg-block d-mg-block d-lg-none"><a class='corp-name mb-0 p-0 text-uppercase' href="{% url 'index' %}"><img class='p-0 logo-img mr-1 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></h1>
       <div class="text-center collapse navbar-collapse flex-column ml-lg-0 ml-3" id="navbarCollapse">
           <ul class="navbar-nav nav-top text-center p-0">
               <li class="nav-item">
@@ -205,58 +220,207 @@
                 {{ category }}
               </a>
               <div class="dropdown-menu dropdown-lg m-0">
-                <h4 class="text-uppercase text-white ml-50 mb-2">{{ category }}</h4>
+                <h6 class="text-uppercase text-white p-2 mb-1 ml-50 text-center border-bottom border-dark">{{ category }}</h6>
                 <div class="container">
                   <div class="row">
-                    <div class="col-md-4">
-
-                      <ul class="nav flex-column">
-
+                    {% if category|navbar_subcategories|length <= 7 %}
+                    <div class="col-md-6 text-center">
+                    {% elif category|navbar_subcategories|length <= 14 %}
+                    <div class="col-md-4 text-center">
+                    {% else %}
+                    <div class="col-md-3 text-center">
+                    {% endif %}
+                      <ul class="nav">
                         {% for subcategory in category|navbar_subcategories %}
-                        {% if forloop.counter == 7 %}
+                            {% if forloop.counter <= 7 and not forloop.last %}
+                                <li class="nav-item" style="min-width: 180px;">
+                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                </li>
+                            {% elif forloop.counter == 8 %}
+                                   </ul>
+                                </div>
+                            {% elif forloop.last and forloop.counter <= 7 %}
+                                <li class="nav-item" style="min-width: 180px;">
+                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                </li>
                               </ul>
                             </div>
-                            <div class="col-md-4">
-                              <ul class="nav flex-column">
-                        {% else %}
-                        <li class="nav-item" style="min-width: 180px;">
-                            <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
-                        </li>
-                        {% endif %}
+                            {% endif %}
                         {% endfor %}
-                    </ul>
-                    </div>
-                    <!-- /.col-md-4  -->
-                    <div class="col-md-4 float-right">
-                      {% if category.image %}
-                      <a href="">
-                        <img src="{{ category.image|thumbnail_url:'category' }}" alt="" class="position-relative">
-                        <button class="btn btn-secondary position-absolute p-2 px-5">TESTE</button>
-                      </a>
-                      {% else %}
-                      <a href="">
-                        <img src="http://placehold.it/185x250" alt="" class="position-relative">
-                        <button style="right: 50%; bottom: 15%;" class="btn btn-secondary position-absolute p-2 px-5">TESTE</button>
-                      </a>
+                      {% if category|navbar_subcategories|length > 7 and category|navbar_subcategories|length <= 14 %}
+                      <div class="col-md-4">
+                        <ul class="nav">
+                      {% elif category|navbar_subcategories|length > 14 %}
+                      <div class="col-md-3">
+                        <ul class="nav">
                       {% endif %}
+                        {% for subcategory in category|navbar_subcategories %}
+                            {% if forloop.counter > 7 and forloop.counter <= 14 and not forloop.last %}
+                                <li class="nav-item" style="min-width: 180px;">
+                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                </li>
+                            {% elif forloop.counter == 15 %}
+                                   </ul>
+                                </div>
+                            {% elif forloop.last and forloop.counter > 7 and forloop.counter <= 14 %}
+                                <li class="nav-item" style="min-width: 180px;">
+                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                </li>
+                              </ul>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
 
+                    {% if category|navbar_subcategories|length > 14 %}
+                    <div class="col-md-3">
+                      <ul class="nav">
+                        {% for subcategory in category|navbar_subcategories %}
+                            {% if forloop.counter > 14 and forloop.counter <= 21 and not forloop.last %}
+                                <li class="nav-item" style="min-width: 180px;">
+                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                </li>
+                            {% elif forloop.counter == 22 %}
+                                   </ul>
+                                </div>
+                            {% elif forloop.last and forloop.counter > 14 and forloop.counter <= 21 %}
+                                <li class="nav-item" style="min-width: 180px;">
+                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                </li>
+                              </ul>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if category|navbar_subcategories|length <= 7 %}
+                    <div class="col-md-6 mt-2">
+                        {% if category.image %}
+                            <img src="http://placehold.it/185x250" alt="" class="position-relative">
+                            <div style="right: 7%; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
+                        </div>
+                        {% else %}
+                            <img src="http://placehold.it/185x250" alt="" class="position-relative">
+                            <div style="right: 7%; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
+                        {% endif %}
                     </div>
-                    <!-- /.col-md-4  -->
-                  </div>
+                    {% elif category|navbar_subcategories|length <= 14 %}
+                    <div class="col-md-4 mt-2">
+                        {% if category.image %}
+                            <img src="http://placehold.it/185x250" alt="" class="position-relative">
+                            <div style="right: 135px; bottom: 1%" class="bg-megamenu-image border-left border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
+                        {% else %}
+                            <img src="http://placehold.it/185x250" alt="" class="position-relative">
+                            <div style="right: 135px; bottom: 1%" class="bg-megamenu-image border-left border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="col-md-3 mt-2">
+                        {% if category.image %}
+                            <img src="http://placehold.it/185x250" alt="" class="position-relative">
+                            <div style="right: 52px; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
+                        {% else %}
+                            <img src="http://placehold.it/185x250" alt="" class="position-relative">
+                            <div style="right: 52px; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
                   <!-- /.row  -->
                 </div>
                 <!--  /.container  -->
-      
               </div>
             </li>
             {% endfor %}
-
         </ul>
       </div>
   </div>
   </nav>
+  <!-- Navbar md of less -->
+  <div class="wrapper navbar-anim d-block d-lg-none d-xl-none">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+            </li>
+            <li>
+                <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+            </li>
+        </ul>
+    </nav>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+                <div class="mx-1"><a class='corp-name p-0 text-uppercase text-white' href="{% url 'index' %}"><img class='p-0 logo-img mt-2 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></div>
+                <button class="btn ml-auto shadow-none" type="button" autofocus data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <i style="font-size: 1.5em !important;" class="fas fa-search text-white p-1" id="search"></i> 
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li style="background: transparent !important;" class="nav-item active">
+                          <form class="search-main form-inline">
+                            <input class="form-control" type="search" id="search-main" placeholder="Procurar Produtos..." name="q" >
+                          </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
 </header>
-  
 {% endblock %}
   <!-- ================ End Header Area ================= -->
 
@@ -264,30 +428,22 @@
 
   {% block banner_area %}
   {% endblock %}
-
   <!-- ================ End banner Area ================= -->
 
   <!-- ================ Start Feature Area ================= -->
   {% block feature_area %}
   {% endblock %}
-
   <!-- ================ End Feature Area ================= -->
 
   <!-- ================ Start Owl Carousel Area ================= -->
-
   {% block index_carousel %}
   {% endblock %}
-
   <!-- ================ End Owl Carousel Area ================= -->
 
   <!-- ================ Start Registration Area ================= -->
-
   {% block registration_area %}
   {% endblock %}
-
   <!-- ================ End Registration Area ================= -->
-
-
   <!-- ================ Start Back To Top Area ================= -->
 
   <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='left' data-trigger='focus' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
@@ -296,75 +452,75 @@
 
   <!-- ================ Start footer Area ================= -->
   <footer class="footer-area section-gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Top Products</h4>
-					<ul>
-						<li><a href="#">Managed Website</a></li>
-						<li><a href="#">Manage Reputation</a></li>
-						<li><a href="#">Power Tools</a></li>
-						<li><a href="#">Marketing Service</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Quick Links</h4>
-					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Features</h4>
-					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Resources</h4>
-					<ul>
-						<li><a href="#">Guides</a></li>
-						<li><a href="#">Research</a></li>
-						<li><a href="#">Experts</a></li>
-						<li><a href="#">Agencies</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Novidades</h4>
-					<p>Cadastre seu e-mail para receber todas as nossas novidades e promoções!</p>
-					<div class="form-wrap" id="mc_embed_signup">
-						<form target="_blank" action=""
-						 method="get" class="form-inline">
-							<input class="form-control" name="EMAIL" placeholder="Seu E-mail"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu E-mail '"
-							 required="" type="email">
-							<button class="click-btn btn btn-default text-uppercase">Cadastrar</button>
-							<div style="position: absolute; left: -5000px;">
-								<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-							</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-6 single-footer-widget">
+          <h4>Top Products</h4>
+          <ul>
+            <li><a href="#">Managed Website</a></li>
+            <li><a href="#">Manage Reputation</a></li>
+            <li><a href="#">Power Tools</a></li>
+            <li><a href="#">Marketing Service</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 single-footer-widget">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Brand Assets</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 single-footer-widget">
+          <h4>Features</h4>
+          <ul>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Brand Assets</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 single-footer-widget">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Guides</a></li>
+            <li><a href="#">Research</a></li>
+            <li><a href="#">Experts</a></li>
+            <li><a href="#">Agencies</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6 single-footer-widget">
+          <h4>Novidades</h4>
+          <p>Cadastre seu e-mail para receber todas as nossas novidades e promoções!</p>
+          <div class="form-wrap" id="mc_embed_signup">
+            <form target="_blank" action=""
+             method="get" class="form-inline">
+              <input class="form-control" name="EMAIL" placeholder="Seu E-mail"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu E-mail '"
+               required="" type="email">
+              <button class="click-btn btn btn-default text-uppercase btn-main">Cadastrar</button>
+              <div style="position: absolute; left: -5000px;">
+                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+              </div>
 
-							<div class="info"></div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom row align-items-center">
-				<p class="footer-text m-0 col-lg-8 col-md-12">
+              <div class="info"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom row align-items-center">
+        <p class="footer-text m-0 col-lg-8 col-md-12">
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="{% url 'index' %}"> {% company 'name' %}. </a> Todos os direitos reservados | Desenvolvido por <a href=''> Dhaniel Sales :) </a>
 </p>
-				<div class="col-lg-4 col-md-12 footer-social">
-					<a href="#"><i class="fab fa-facebook"></i></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-dribbble"></i></a>
-					<a href="#"><i class="fab fa-behance"></i></a>
-				</div>
-			</div>
-		</div>
-	</footer>
+        <div class="col-lg-4 col-md-12 footer-social">
+          <a href="#"><i class="fab fa-facebook"></i></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+          <a href="#"><i class="fab fa-behance"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
   <!-- ================ End footer Area ================= -->
 
 <script src='{% static "new/js/vendor/jquery-2.2.4.min.js" %}'></script>
@@ -379,15 +535,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
 <script src='{% static "new/js/jquery.nice-select.min.js" %}'></script>
 <script src='{% static "new/js/bootstrap/bootstrap.min.js" %}'></script>
 <script src='{% static "new/OwlCarousel2-2.3.4/dist/js/owl.carousel.js" %}'></script>
-<script src='{% static "new/js/main.js" %}'></script>
-<script src='{% static "new/js/bg-gif.js" %}'></script>
 <script src='{% static "new/js/kitfontawesome.js" %}' crossorigin="anonymous"></script>
-  
+<script src='{% static "new/js/jquery.mCustomScrollbar.concat.min.js" %}' crossorigin="anonymous"></script> 
+<script src='{% static "new/js/bg-gif.js" %}'></script>
+<script src='{% static "new/js/main.js" %}'></script>
 </body>
 
-
 {% block script %}
-<script>
+<script type="text/javascript">
+///////////////////////////////////////////////
 
 $('.owl-carousel').owlCarousel({
     rtl:false,
@@ -397,34 +553,35 @@ $('.owl-carousel').owlCarousel({
     autoplay:false, //TEMP better True
     autoplayTimeout:5000, // = 5s
     autoplayHoverPause:true,
-		navText: [ '<img src={% static "new/img/prev.png" %} >', '<img src={% static "new/img/next.png" %}>' ],
-		responsive: {
-			0: {
-				items: 1,
-				stagePadding: 0
-			},
-			575: {
-				items: 2,
-				stagePadding: 0
-			},
-			768: {
-				items: 2,
-				stagePadding: 0
-			},
-			992: {
-				items: 3,
-				stagePadding: 0
-			},
-			1200: {
-				items: 3,
-				stagePadding: 60
-			},
-			1440: {
-				items: 4,
-				stagePadding: 60
-			}
-		}
+    navText: [ '<img src={% static "new/img/prev.png" %} >', '<img src={% static "new/img/next.png" %}>' ],
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 0
+      },
+      575: {
+        items: 2,
+        stagePadding: 0
+      },
+      768: {
+        items: 2,
+        stagePadding: 0
+      },
+      992: {
+        items: 3,
+        stagePadding: 0
+      },
+      1200: {
+        items: 3,
+        stagePadding: 60
+      },
+      1440: {
+        items: 4,
+        stagePadding: 60
+      }
+    }
 })
+///////////////////////////////////////////////
 
 $(document).ready(function(){
     $(window).scroll(function () {
@@ -442,10 +599,12 @@ $(document).ready(function(){
         return false;
       });
   });
+///////////////////////////////////////////////
 
 $(function () {
     $('[data-toggle="popover"]').popover()
 })
+///////////////////////////////////////////////
 
 $('#myPopover').popover({
   trigger: 'manual',
@@ -468,33 +627,45 @@ $('#myPopover').popover({
       }
   }, 300);
 });
-/////////////////////////////////////////////
+///////////////////////////////////////////////
 
 $(document).ready(function() {
-  // executes when HTML-Document is loaded and DOM is ready
- 
- // breakpoint and up  
+
  $(window).resize(function(){
-   if ($(window).width() >= 980){	
+   if ($(window).width() >= 980){  
  
-       // when you hover a toggle show its dropdown menu
        $(".navbar .dropdown-toggle").hover(function () {
           $(this).parent().toggleClass("show");
           $(this).parent().find(".dropdown-menu.dropdown-lg").toggleClass("show"); 
         });
- 
-         // hide the menu when the mouse leaves the dropdown
+
        $( ".navbar .dropdown-menu.dropdown-lg" ).mouseleave(function() {
          $(this).removeClass("show");  
        });
-   
-     // do something here
-   }	
+   }  
  });  
- // document ready  
  });
 
 ///////////////////////////////////////////////
+
+$(document).ready(function () {
+  $("#sidebar").mCustomScrollbar({
+      theme: "minimal"
+  });
+
+  $('#sidebarCollapse').on('click', function () {
+      $('#sidebar, #content').toggleClass('active');
+      $('.collapse.in').toggleClass('in');
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+  });
+});
+///////////////////////////////////////////////
+$(document).click(function(e) {
+	if (!$(e.target).is('.container-fluid')) || (!$(e.target).is('.container-fluid')) {
+    	$('.collapse').collapse('hide');	    
+    }
+});
+
 
 </script>
 {% endblock %}

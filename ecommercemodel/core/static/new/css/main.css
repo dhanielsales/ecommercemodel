@@ -24,6 +24,7 @@
     -webkit-box-direction: normal;
     border: none;
 }
+
 #search-main::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #c083f6;
   opacity: 1; /* Firefox */

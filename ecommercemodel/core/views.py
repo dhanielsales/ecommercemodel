@@ -1,5 +1,7 @@
 # coding=utf-8
 
+import datetime
+
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, TemplateView, CreateView

@@ -13,6 +13,7 @@ class SubcategoryAdmin(admin.ModelAdmin):
 
     list_display = ['name', 'slug','category_father', 'created', 'modified']
     search_fields = ['name', 'slug', 'category_father__name']
+    autocomplete_fields = ['category_father']
     list_filter = ['created', 'modified']
     prepopulated_fields = {'slug': ('name',)}
 
