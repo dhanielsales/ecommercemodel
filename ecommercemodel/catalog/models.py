@@ -46,7 +46,7 @@ class Subcategory(models.Model):
         # return self.name
 
     def get_absolute_url(self):
-        pass
+        return reverse('catalog:subcategory', kwargs={'category_father': self.category_father.slug, 'slug': self.slug})
 
 class Product(models.Model):
     

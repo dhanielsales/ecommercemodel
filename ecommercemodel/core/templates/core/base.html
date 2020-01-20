@@ -31,14 +31,30 @@
   <link rel="stylesheet" href='{% static "new/css/bootstrap/bootstrap.css" %}'/>
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.carousel.css" %}' />
   <link rel="stylesheet" href='{% static "new/OwlCarousel2-2.3.4/dist/css/owl.theme.default.css" %}' />
-  <link rel="stylesheet" href='{% static "new/css/jquery.mCustomScrollbar.min.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/sidebar.css" %}' />
+  <link rel="stylesheet" href='{% static "new/css/jquery.mCustomScrollbar.min.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/main.css" %}' />
-
+  
   <link rel="stylesheet" href='https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css' />
 
 {% block style %}
 <style>
+  #btnmenu {
+    font-size: 1.5em;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: transparent;
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
   .wrapper .navbar .navbar-collapse {
     background: transparent !important;
     margin-top: 10px;
@@ -66,6 +82,8 @@
     color: #fff !important;
   }
 
+/**************************** dropdown-lg ******************************/
+
   .navbar .dropdown-menu.dropdown-lg div[class*="col"] {
      margin-bottom:1rem;
   }
@@ -76,10 +94,8 @@
     background-color:#222222!important;
   }
   
-  /* breakpoint and up - mega dropdown styles */
-@media screen and (min-width: 1000px) {
+ @media screen and (min-width: 1000px) {
     
-  /* makes the dropdown full width  */
   .navbar .dropdown.dropdown-lg {position:static;}
 
   .navbar .dropdown-menu.dropdown-lg {
@@ -88,11 +104,12 @@
     right:0;
     top:132px;/* height of navbar  */
   }
-  /* shows the dropdown menu on hover */
   .navbar .dropdown:hover .dropdown-menu.dropdown-lg, .navbar .dropdown .dropdown-menu.dropdown-lg:hover {
     display:block!important;
+    transition: display 1s linear
   }
 }
+/****************************END dropdown-lg ******************************/
 
 /* .back-to-top:hover img, .back-to-top:focus img {
       content: url('{% static "new/img/up-down.gif" %}' );
@@ -129,6 +146,13 @@
   .navbar-light .navbar-nav .nav-link {
     color: white !important;
   }
+  .navbar-light .navbar-nav .nav-link.subcat {
+    color: #c9c9c9 !important;
+  }
+  .navbar-light .navbar-nav .nav-link.subcat:hover, .navbar-light .navbar-nav .nav-link.subcat:focus {
+    background: rgba(255, 255, 255, 0.05);
+    color: white !important;
+  }
   @media screen and (min-width: 990px) {
    .nav-bot li a {padding: 0px 10px 10px 10px;}
    .nav-top li a {padding: 10px 10px 2px 10px;}
@@ -154,7 +178,9 @@
     .container, .container-sm, .container-md, .container-lg {
       max-width: 1000px;
     }
+
   }
+  
 </style>
 {% endblock %}
 </head>
@@ -163,7 +189,7 @@
 {% block header_area  %}
 <header class="default-header">
   <!-- Navbar lg -->
-  <nav class="navbar navbar-expand-lg navbar-light p-0 navbar-anim d-none d-lg-block d-xl-block">
+<nav class="navbar navbar-expand-lg navbar-light p-0 navbar-anim d-none d-lg-block d-xl-block">
   <div class="container">
       <div class="text-center collapse navbar-collapse flex-column ml-lg-0 ml-3" id="navbarCollapse">
           <ul class="navbar-nav nav-top text-center p-0">
@@ -199,12 +225,12 @@
               </li>
               {% if user.is_authenticated %}
               <li class="dropdown nav-item align-middle mt-1" >
-                <a class="nav-link dropdown-toggle" href="{% url 'catalog:product_list' %}" data-toggle="dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown">
                   {{user}}
                 </a>
                 <div class="dropdown-menu m-0">
-                      <a class="dropdown-item" href="{% url 'accounts:account' %}">Minha Conta</a>
-                      <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                      <a class="dropdown-item btn btn-light shadow-none" href="{% url 'accounts:account' %}">Minha Conta</a>
+                      <a class="dropdown-item btn btn-light shadow-none" href="{% url 'logout' %}">Sair</a>
                 </div>
               </li>
               {% else %}
@@ -220,7 +246,7 @@
                 {{ category }}
               </a>
               <div class="dropdown-menu dropdown-lg m-0">
-                <h6 class="text-uppercase text-white p-2 mb-1 ml-50 text-center border-bottom border-dark">{{ category }}</h6>
+                <h6 class="text-uppercase text-white p-2 mb-1 text-center">{{ category }}</h6>
                 <div class="container">
                   <div class="row">
                     {% if category|navbar_subcategories|length <= 7 %}
@@ -234,14 +260,14 @@
                         {% for subcategory in category|navbar_subcategories %}
                             {% if forloop.counter <= 7 and not forloop.last %}
                                 <li class="nav-item" style="min-width: 180px;">
-                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                  <a class="nav-link p-1 subcat text-center"  href="{{subcategory.get_absolute_url}}"> {{subcategory.name}}</a>
                                 </li>
                             {% elif forloop.counter == 8 %}
                                    </ul>
                                 </div>
                             {% elif forloop.last and forloop.counter <= 7 %}
                                 <li class="nav-item" style="min-width: 180px;">
-                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                  <a class="nav-link p-1 subcat text-center"  href="{{subcategory.get_absolute_url}}"> {{subcategory.name}}</a>
                                 </li>
                               </ul>
                             </div>
@@ -257,14 +283,14 @@
                         {% for subcategory in category|navbar_subcategories %}
                             {% if forloop.counter > 7 and forloop.counter <= 14 and not forloop.last %}
                                 <li class="nav-item" style="min-width: 180px;">
-                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                  <a class="nav-link p-1 subcat text-center"  href="{{subcategory.get_absolute_url}}"> {{subcategory.name}}</a>
                                 </li>
                             {% elif forloop.counter == 15 %}
                                    </ul>
                                 </div>
                             {% elif forloop.last and forloop.counter > 7 and forloop.counter <= 14 %}
                                 <li class="nav-item" style="min-width: 180px;">
-                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                  <a class="nav-link p-1 subcat text-center"  href="{{subcategory.get_absolute_url}}"> {{subcategory.name}}</a>
                                 </li>
                               </ul>
                             </div>
@@ -277,14 +303,14 @@
                         {% for subcategory in category|navbar_subcategories %}
                             {% if forloop.counter > 14 and forloop.counter <= 21 and not forloop.last %}
                                 <li class="nav-item" style="min-width: 180px;">
-                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                  <a class="nav-link p-1 subcat text-center"  href="{{subcategory.get_absolute_url}}"> {{subcategory.name}}</a>
                                 </li>
                             {% elif forloop.counter == 22 %}
                                    </ul>
                                 </div>
                             {% elif forloop.last and forloop.counter > 14 and forloop.counter <= 21 %}
                                 <li class="nav-item" style="min-width: 180px;">
-                                  <a class="nav-link p-1"  href="#"> {{subcategory.name}}</a>
+                                  <a class="nav-link p-1 subcat text-center"  href="{{subcategory.get_absolute_url}}"> {{subcategory.name}}</a>
                                 </li>
                               </ul>
                             </div>
@@ -295,12 +321,12 @@
                     <div class="col-md-6 mt-2">
                         {% if category.image %}
                             <img src="http://placehold.it/185x250" alt="" class="position-relative">
-                            <div style="right: 7%; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <div style="right: 7%; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p style="font-variant: small-caps;" class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
                             <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
                         </div>
                         {% else %}
                             <img src="http://placehold.it/185x250" alt="" class="position-relative">
-                            <div style="right: 7%; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <div style="right: 7%; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p style="font-variant: small-caps;" class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
                             <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
                         {% endif %}
                     </div>
@@ -308,11 +334,11 @@
                     <div class="col-md-4 mt-2">
                         {% if category.image %}
                             <img src="http://placehold.it/185x250" alt="" class="position-relative">
-                            <div style="right: 135px; bottom: 1%" class="bg-megamenu-image border-left border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <div style="right: 135px; bottom: 1%" class="bg-megamenu-image border-left border-dark position-absolute px-2"> <p style="font-variant: small-caps;" class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
                             <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
                         {% else %}
                             <img src="http://placehold.it/185x250" alt="" class="position-relative">
-                            <div style="right: 135px; bottom: 1%" class="bg-megamenu-image border-left border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <div style="right: 135px; bottom: 1%" class="bg-megamenu-image border-left border-dark position-absolute px-2"> <p style="font-variant: small-caps;" class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
                             <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
                         {% endif %}
                     </div>
@@ -320,11 +346,11 @@
                     <div class="col-md-3 mt-2">
                         {% if category.image %}
                             <img src="http://placehold.it/185x250" alt="" class="position-relative">
-                            <div style="right: 52px; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <div style="right: 52px; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p style="font-variant: small-caps;" class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
                             <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
                         {% else %}
                             <img src="http://placehold.it/185x250" alt="" class="position-relative">
-                            <div style="right: 52px; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
+                            <div style="right: 52px; bottom: 1%" class="bg-megamenu-image border-dark position-absolute px-2"> <p style="font-variant: small-caps;" class="text-center my-3 text-center text-white h4 font-weight-normal"> {{ category }} </p>
                             <a href="{{ category.get_absolute_url }}" style="font-variant: small-caps;" class="shadow-none btn btn-main mx-4 mb-3 p-2 px-4 rounded-0"> Confira já </a></div>
                         {% endif %}
                     </div>
@@ -339,86 +365,126 @@
         </ul>
       </div>
   </div>
-  </nav>
+</nav>
+
   <!-- Navbar md of less -->
-  <div class="wrapper navbar-anim d-block d-lg-none d-xl-none">
-    <!-- Sidebar  -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
-        </div>
 
-        <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Portfolio</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-
-        <ul class="list-unstyled CTAs">
-            <li>
-                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-            </li>
-            <li>
-                <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-            </li>
-        </ul>
-    </nav>
-        <nav class="navbar">
-            <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn mr-2">
-                    <i style="font-size: 1.5em !important;" class="text-white fas fa-align-left"></i>
-                    <p class="p-menu text-white">menu</p>
-                </button>
-                <div class=" mx-auto"><a class='corp-name p-0 text-uppercase text-white' href="{% url 'index' %}"><img class='p-0 logo-img mt-2 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></div>
-                <button class="btn ml-auto shadow-none mb-2 ml-2" type="button" autofocus data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <i style="font-size: 1.5em !important;" class="fas fa-search text-white p-1" id="search"></i> 
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li style="background: transparent !important;" class="nav-item active">
-                          <form class="search-main form-inline">
-                            <input class="form-control" type="search" id="search-main" placeholder="Procurar Produtos..." name="q" >
-                          </form>
-                        </li>
-                    </ul>
-                </div>
+  <div class="wrapper d-block d-lg-none d-xl-none">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+              <div class=" mx-auto"><a class='corp-name p-0 text-uppercase text-white h4 font-weight-normal' href="{% url 'index' %}"><img class='p-0 logo-img mt-2 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></div>
             </div>
+            <div id="dismiss">
+                <i class="text-dark fas fa-arrow-left"></i>
+            </div>
+            <div style="right: 200px" id="btnmenu">
+              <a class="text-dark" href="{% url 'checkout:cart_item' %}"><i class="fas fa-lg fa-shopping-cart"></i></a>
+            </div>
+            <div style="right: 250px" id="btnmenu">
+              <a class="text-dark" href="{% url 'checkout:cart_item' %}"><i class="fas fa-lg fa-heart"></i></a>
+            </div>
+            <ul class="list-unstyled components">
+              <br/>
+              {% if user.is_authenticated %}
+              <li>
+                <a href="#userSubmenu" class="simple-item nav-link dropdown-toggle h6 font-weight-bold" data-toggle="collapse" aria-expanded="false">Bem vindo, {% if user.name %} {{user.name}} {% else %} {{user}}{% endif %}!</a>
+                <ul class="collapse list-unstyled" id="userSubmenu">
+                    <li>
+                      <a class="simple-item" href="{% url 'accounts:account' %}"> <i class="fas fa-user mr-1"></i> Minha Conta</a>
+                    </li>
+                    <li>
+                       <a class="simple-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt mr-1"></i> Sair</a>
+                    </li>
+                </ul>
+                {% else %}
+                <li class="nav-item align-middle mt-1">
+                    <a class="simple-item" class="nav-link h6 font-weight-bold" href="#">Entrar / Registrar</a>
+                </li>
+                {% endif %}
+              </li>
+              {% for category in navcategories %}
+                <li>
+                    <a href="#{{category.slug}}Submenu" class="nav-link dropdown-toggle simple-item" data-toggle="collapse" aria-expanded="false">{{category}}</a>
+                    <ul class="collapse list-unstyled" id="{{category.slug}}Submenu">
+                      {% for subcategory in category|navbar_subcategories %}
+                      {% if forloop.first %}
+                        <li><a class="simple-item sidebar-list" href="{{category.get_absolute_url}}">Ver tudo</a></li>
+                        <li><a class="simple-item sidebar-list" href="{{subcategory.get_absolute_url}}">{{subcategory.name}}</a></li>
+                      {% else %}
+                      <li><a class="simple-item sidebar-list" href="{{subcategory.get_absolute_url}}">{{subcategory.name}}</a></li>
+                      {% endif %}
+                      {% endfor %}
+                    </ul>
+                </li>
+              {% endfor %}
+                <!-- <li>
+                    <a href="#">Exemple</a>
+                </li> -->
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+            <div class="row">
+              <div class="col-12">
+                <li>
+                    <a class="btn btn-outline-dark  mb-3" href="{% url 'contact' %}"><i class="far fa-lg fa-smile-wink"></i> <br> Quem Somos</a>
+                </li>
+                <li>
+                    <a class="btn btn-outline-dark mb-3" href="#"><i class="fas fa-map-marker-alt"></i> <br> Nossas Lojas</a>
+                </li>
+              </div>
+              <div class="col-12">
+                <li>
+                    <a class="btn  btn-outline-dark  mb-3" href="#"><i class="fas fa-comments"></i> <br> Atendimento</a>
+                </li>
+                <li>
+                    <a class="btn  btn-outline-dark  mb-3" href="#"><i class="fas fa-calendar-check"></i> <br> Eventos</a>
+                </li>
+              </div>
+              <div class="col-4 mb-50">
+                <li>
+                    <a style="max-width: 50px;" class="btn btn-primary border-0 mb-3 text-white ml-auto font-weight-bold" href="" ><i style='font-size: 1.7em !important' class="fab fa-facebook"></i> </a>
+                </li>
+              </div>
+              <div class="col-4 mb-50">
+                <li>
+                  <a style="max-width: 50px;" class="btn btn-success border-0 mb-3 text-white mx-auto font-weight-bold" href="whatsapp://send?phone=5585981681563" target="_blank"><i style='font-size: 1.7em !important' class="fab fa-whatsapp"></i></a>
+              </li>
+              </div>
+              <div class="col-4 mb-50">
+                <li>
+                  <a style="max-width: 50px;" class="btn btn-instagram border-0 mb-3 text-white mr-auto font-weight-bold" href="" ><i style='font-size: 1.7em !important' class="fab fa-instagram"></i></a>
+              </li>
+              </div>
+              </div>
+            </div>
+            </ul>
         </nav>
+
+        <!-- Page Content  -->
+
+            <nav class="navbar d-block d-lg-none d-xl-none navbar-anim">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn p-1 mr-2 mb-1">
+                        <i style="font-size: 1.5em !important;" class="text-white fas fa-align-left"></i>
+                        <p style="font-variant: small-caps; line-height: 0.8em;" class="text-white p-0 m-0">menu</p>
+                    </button>
+                    <div class=" mx-auto"><a class='corp-name p-0 text-uppercase text-white' href="{% url 'index' %}"><img class='p-0 logo-img mt-2 mb-2' src='{% static "new/img/logo2.png" %}' alt="" /> {% company 'name' %} </a></div>
+                    <button class="btn ml-auto shadow-none ml-2" type="button" autofocus data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <i style="font-size: 1.5em !important;" class="fas fa-search text-white p-1" id="search"></i> 
+                    </button>
+                    <div class="collapse navbar-collapse mt-0" style="background: transparent !important;"  id="navbarSupportedContent">
+                      <ul class="nav navbar-nav ml-auto">
+                          <li class="nav-item active">
+                            <form class="search-main form-inline">
+                              <input class="form-control w-100 " style="min-width: 0!important;" type="search" id="search-main" placeholder="Procurar Produtos..." name="q" >
+                            </form>
+                          </li>
+                      </ul>
+                  </div>
+                </div>
+            </nav>
+  </div>
 
 </header>
 {% endblock %}
@@ -449,7 +515,7 @@
   <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='left' data-trigger='focus' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
 
   <!-- ================= End Back To Top Area ================== -->
-
+    <div class="overlay"></div>
   <!-- ================ Start footer Area ================= -->
   <footer class="footer-area section-gap">
     <div class="container">
@@ -523,22 +589,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
   </footer>
   <!-- ================ End footer Area ================= -->
 
-<script src='{% static "new/js/vendor/jquery-2.2.4.min.js" %}'></script>
-<script src='{% static "new/js/popper.min.js" %}'></script>
+<!-- <script src='{% static "new/js/popper.min.js" %}'></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src='{% static "new/js/jquery-3.4.1.min.js" %}'></script>
 <script src='{% static "new/js/jquery.magnific-popup.min.js" %}'></script>
 <script src='{% static "new/js/jquery.ajaxchimp.min.js" %}'></script>
 <script src='{% static "new/js/parallax.min.js" %}'></script>
 <script src='{% static "new/js/jquery.sticky.js" %}'></script>
 <script src='{% static "new/js/hexagons.min.js" %}'></script>
 <script src='{% static "new/js/jquery.counterup.min.js" %}'></script>
-<script src='{% static "new/js/waypoints.min.js" %}'></script>
 <script src='{% static "new/js/jquery.nice-select.min.js" %}'></script>
 <script src='{% static "new/js/bootstrap/bootstrap.min.js" %}'></script>
 <script src='{% static "new/OwlCarousel2-2.3.4/dist/js/owl.carousel.js" %}'></script>
-<script src='{% static "new/js/kitfontawesome.js" %}' crossorigin="anonymous"></script>
-<script src='{% static "new/js/jquery.mCustomScrollbar.concat.min.js" %}' crossorigin="anonymous"></script> 
+<script src='{% static "new/js/kitfontawesome.js" %}'></script>
 <script src='{% static "new/js/bg-gif.js" %}'></script>
 <script src='{% static "new/js/main.js" %}'></script>
+
+<script src='{% static "new/js/jquery.mCustomScrollbar.concat.min.js" %}'></script> 
 </body>
 
 {% block script %}
@@ -609,9 +676,9 @@ $(function () {
 $('#myPopover').popover({
   trigger: 'manual',
   html: true,
-  animation: false,
+  animation: true,
   title:'<div class="text-center"> <h5> Nossos Canais </h5><h6 class="text-muted mt-1"> Aproveita e fala com a gente lá :) </h6> </div>',
-  content:'<div class="text-center"><div class="col-12"><a class="btn btn-primary mx-1" href=""><i class="fab fa-facebook"></i>  </a><a class="btn btn-instagram mx-1" href=""><i class="fab fa-instagram "></i>  </a><a href="https://api.whatsapp.com/send?phone=5585981681563" target="_blank" class="btn btn-success mx-1" href=""><i class="fab fa-whatsapp"></i>  </a></div></div>',
+  content:'<div class="text-center"><div class="col-12"><a class="btn border-0 btn-primary mx-1" href=""><i class="fab fa-facebook"></i>  </a><a class="btn btn-instagram mx-1" href=""><i class="fab fa-instagram "></i>  </a><a href="https://web.whatsapp.com/send?phone=5585981681563" target="_blank" class="btn border-0 btn-success mx-1" href=""><i class="fab fa-whatsapp"></i>  </a></div></div>',
 })
 .on('mouseenter', function () {
   var _this = this;
@@ -649,26 +716,40 @@ $(document).ready(function() {
 ///////////////////////////////////////////////
 
 $(document).ready(function () {
-  $("#sidebar").mCustomScrollbar({
-      theme: "minimal"
-  });
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
 
-  $('#sidebarCollapse').on('click', function () {
-      $('#sidebar, #content').toggleClass('active');
-      $('.collapse.in').toggleClass('in');
-      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-  });
-});
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
 ///////////////////////////////////////////////
 $(document).click(function(e) {
 	if (!$(e.target).is('.container-fluid') && !$(e.target).is('.navbar-collapse') && !$(e.target).is('.search-main') && !$(e.target).is('.navbar') && !$(e.target).is('#search-main')) {
     	$('.collapse').collapse('hide');	    
     }
 });
+///////////////////////////////////////////////
 
+//$(document).mouseover(function(e) {
+//  if (!$(e.target).is('.navbar .dropdown"') || !$(e.target).is('.navbar .dropdown .dropdown-menu.dropdown-lg')) {
+//      $(".navbar .dropdown .dropdown-menu.dropdown-lg").addClass('show')
+//    } else {$(".navbar .dropdown .dropdown-menu.dropdown-lg").removeClass('show')
+//    }
+//});
 
 </script>
 {% endblock %}
 
 
 </html>
+

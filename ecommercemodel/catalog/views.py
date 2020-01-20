@@ -8,7 +8,7 @@ from django.db.models import signals
 # from django.views.decorators.cache import cache_page
 
 
-from .models import Product, Category
+from .models import Product, Category, Subcategory
 
 class ProductListView(generic.ListView):
 
@@ -41,6 +41,20 @@ class CategoryListView(generic.ListView):
         context['current_category'] = get_object_or_404(Category, slug=self.kwargs['slug'])
         return context
 
+class SubcategoryListView(generic.ListView):
+    
+    context_object_name = 'product_list'
+    template_name = "catalog/category.html"
+    paginate_by = 3
+
+    def get_queryset(self):
+        return Product.objects.filter(is_active=True, category__slug=self.kwargs['category_father'], subcategory__slug=self.kwargs['slug'],)
+
+    def get_context_data(self, **kwargs):
+        context = super(SubcategoryListView, self).get_context_data(**kwargs)
+        context['current_category'] = get_object_or_404(Subcategory, slug=self.kwargs['slug'], category_father__slug=self.kwargs['category_father'])
+        return context
+
 # @cache_page(60 * 1)
 def product(request, slug, template_name = "catalog/product.html"):
     product = Product.objects.filter(is_active=True).get(slug=slug)
@@ -51,3 +65,4 @@ def product(request, slug, template_name = "catalog/product.html"):
 
 product_list = ProductListView.as_view()
 category = CategoryListView.as_view()
+subcategory = SubcategoryListView.as_view()

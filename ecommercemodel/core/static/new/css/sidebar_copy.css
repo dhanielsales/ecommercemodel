@@ -2,31 +2,44 @@
     DEMO STYLE
 */
 
-.wrapper p {
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
-    line-height: 0.5em!important;
+    line-height: 1.7em;
     color: #999;
 }
 
-.wrapper a,
+a,
 a:hover,
 a:focus {
+    color: inherit;
     text-decoration: none;
     transition: all 0.3s;
 }
 
-.wrapper .navbar {
+.navbar {
     padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper .navbar-btn {
+.navbar-btn {
     box-shadow: none;
     outline: none !important;
     border: none;
 }
 
-.wrapper .line {
+.line {
     width: 100%;
     height: 1px;
     border-bottom: 1px dashed #ddd;
@@ -38,14 +51,14 @@ a:focus {
 ----------------------------------------------------- */
 
 #sidebar {
-    width: 300px;
+    width: 250px;
     position: fixed;
     top: 0;
-    left: -300px;
+    left: -250px;
     height: 100vh;
     z-index: 999;
-    background: #ececec;
-    color: #3a3a3a;
+    background: #7386D5;
+    color: #fff;
     transition: all 0.3s;
     overflow-y: scroll;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
@@ -56,14 +69,13 @@ a:focus {
 }
 
 #dismiss {
-    font-size: 2em;
     width: 35px;
     height: 35px;
     line-height: 35px;
     text-align: center;
-    background: transparent;
+    background: #7386D5;
     position: absolute;
-    top: 70px;
+    top: 10px;
     right: 10px;
     cursor: pointer;
     -webkit-transition: all 0.3s;
@@ -71,13 +83,18 @@ a:focus {
     transition: all 0.3s;
 }
 
+#dismiss:hover {
+    background: #fff;
+    color: #7386D5;
+}
+
 .overlay {
     display: none;
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 8;
+    z-index: 998;
     opacity: 0;
     transition: all 0.5s ease-in-out;
 }
@@ -87,13 +104,13 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 0px 8px;
-    background: #202020;
+    padding: 20px;
+    background: #6d7fcc;
 }
 
 #sidebar ul.components {
-    background: #fff;
-    padding-top: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
 }
 
 #sidebar ul p {
@@ -107,21 +124,22 @@ a:focus {
     display: block;
 }
 
-#sidebar ul li a.simple-item {
-    color: #3a3a3a !important;
-    border-bottom: 1px solid #c4c4c4 !important;
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
 }
 
 #sidebar ul li.active>a,
-.wrapper a[aria-expanded="true"] {
-    background: #ececec !important;
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
 }
 
-.wrapper a[data-toggle="collapse"] {
+a[data-toggle="collapse"] {
     position: relative;
 }
 
-.wrapper .dropdown-toggle::after {
+.dropdown-toggle::after {
     display: block;
     position: absolute;
     top: 50%;
@@ -129,14 +147,10 @@ a:focus {
     transform: translateY(-50%);
 }
 
-.wrapper ul ul a {
+ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #fff;
-}
-
-ul.CTAs i {
-    font-size: 1.5em !important ;
+    background: #6d7fcc;
 }
 
 ul.CTAs {
@@ -145,21 +159,21 @@ ul.CTAs {
 
 ul.CTAs a {
     text-align: center;
-    font-size: 0.8em !important;
+    font-size: 0.9em !important;
     display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-a.infos {
+a.download {
     background: #fff;
-    color: #505050;
-    border: none !important;
-    border-radius: 1px ;
-    min-height: 56px;
-    min-width: 90px;
-
+    color: #7386D5;
 }
-a.infos:hover, a.infos:focus, a.infos:active {
-    background: #eee !important;
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
 }
 
 /* ---------------------------------------------------
