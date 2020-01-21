@@ -1,0 +1,237 @@
+#btnmenu {
+    font-size: 1.5em;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: transparent;
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+  .wrapper .navbar .navbar-collapse {
+    background: transparent !important;
+    margin-top: 10px;
+  }
+  .bg-megamenu-image {
+    background: #222222cc;
+  }
+
+  .btn-main {
+    background: -webkit-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important; 
+    background: -moz-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: -o-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: -ms-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    color: #fff !important;
+    border: none !important;
+  }
+  
+  .btn-main:active, .btn-main:active {
+    background: -webkit-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: -moz-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: -o-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: -ms-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    background: linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
+    color: #fff !important;
+  }
+
+/**************************** dropdown-lg ******************************/
+
+  .navbar .dropdown-menu.dropdown-lg div[class*="col"] {
+     margin-bottom:1rem;
+  }
+  .navbar .dropdown-menu.dropdown-lg {
+    border:none;
+    border-top:1px solid #555;
+    border-radius: 0;
+    background-color:#222222!important;
+    display:block!important;
+    transition: all 0.2s ease 0s !important;
+    -webkit-transition: all 0.2s ease 0s !important;
+  }
+  
+ @media screen and (min-width: 1000px) {
+    
+  .navbar .dropdown.dropdown-lg {position:static;}
+
+  .navbar .dropdown-menu.dropdown-lg {
+    width:100%;
+    left:0;
+    right:0;
+    top:134px;/* height of navbar  */
+  }
+  .navbar .dropdown:hover .dropdown-menu.dropdown-lg, .navbar .dropdown .dropdown-menu.dropdown-lg:hover {
+    display:block!important;
+  }
+  .navbar .dropdown.dropdown-lg:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom:3px solid #a8a6a6;
+  }
+  .navbar .dropdown.dropdown-lg .dropdown-toggle::after {
+    display:none;
+  }
+}
+/****************************END dropdown-lg ******************************/
+
+/* .back-to-top:hover img, .back-to-top:focus img {
+      content: url('{% static "new/img/up-down.gif" %}' );
+   } */
+
+    
+  .btn-gif img.bg-gif {
+      width: 20px;
+      height: 20px;
+  }
+  body {font-family: 'Lato', sans-serif;}
+  h1, h2, h3, h4, h5, h6 {font-family: 'Lato', sans-serif;}
+  h1, .h2, .h3, .h4, .h5, .h6 {font-family: 'Lato', sans-serif;}
+
+  /*.home-banner-area {
+    background: url("{% static 'new/img/home-banner-bg2.png' %}") no-repeat;
+    background: none;
+  }*/
+  .btn-instagram {
+    background: #833ab4;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fff;
+    border-color: #fff;
+  }
+
+  .btn-instagram:hover {
+    background: #833ab4;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #e49f3f, #df1a1a, #6f3199);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #e49f3f, #df1a1a, #6f3199); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fff;
+    border-color: #fff;
+  }
+  .navbar-light .navbar-nav .nav-link {
+    color: white !important;
+  }
+  .navbar-light .navbar-nav .nav-link.subcat {
+    color: #c9c9c9 !important;
+  }
+  .navbar-light .navbar-nav .nav-link.subcat:hover, .navbar-light .navbar-nav .nav-link.subcat:focus {
+    background: rgba(255, 255, 255, 0.05);
+    color: white !important;
+  }
+  @media screen and (min-width: 990px) {
+   .nav-bot li a {padding: 0px 10px 10px 10px;}
+   .nav-top li a {padding: 10px 10px 2px 10px;}
+  }
+  /* Safari 4.0 - 8.0 */
+  @-webkit-keyframes navbar-anim {
+    from {background-color:transparent;}
+    to {background-color: #222222f2;}
+  }
+  /* Standard syntax */
+  @keyframes navbar-anim {
+    from {background-color:transparent;}
+    to {background-color: #222222f2;}
+  }
+  .navbar-anim:focus, .navbar-anim:hover  {
+    background: #222222f2;
+    -webkit-animation-name: navbar-anim; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+    animation-name: navbar-anim;
+    animation-duration: 0.5s;
+  }
+  @media (min-width: 992px) {
+    .container, .container-sm, .container-md, .container-lg {
+      max-width: 1000px;
+    }
+  }
+
+/************** Owl carousel Custom Nav ***************/
+  .owl-carousel .nav-btn{
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 100px !important;
+  }
+  .owl-theme .owl-nav {
+      height: 0;
+      margin: 0;
+  }
+  .owl-theme .owl-dots {
+      margin: 0 0 10px 0;
+  }
+  
+  .owl-carousel .owl-prev.disabled,
+  .owl-carousel .owl-next.disabled{
+  pointer-events: none;
+  opacity: 0.2;
+  }
+  
+  .owl-carousel .prev-slide{
+    /* left: -33px; */
+    left: -12px;
+    margin-top: 28px;
+  }
+  .owl-carousel .next-slide{
+    /* right: -33px; */
+    right: -12px;
+    margin-top: 28px;
+  }
+  .owl-carousel .next-slide, .owl-carousel .prev-slide{
+    width: 50px;
+  }
+  .owl-carousel .prev-slide:hover{
+   background-position: 0px -53px;
+  }
+  .owl-carousel .next-slide:hover{
+  background-position: -24px -53px;
+  }   
+
+  @media (min-width: 300px) {
+ .owl-carousel .prev-slide{
+    /* left: -33px; */
+    left: -3px;
+    margin-top: 0px;
+  }
+  .owl-carousel .next-slide{
+    /* right: -33px; */
+    right: -12px;
+    margin-top: 0px;
+  }
+  .owl-carousel .next-slide, .owl-carousel .prev-slide{
+    width: 40px;
+    height: 40px;
+  }
+}
+  @media (min-width: 992px) {  
+  .owl-carousel .prev-slide{
+    left: -32px;
+    margin-top: 35px;
+    -webkit-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+  }
+  .owl-carousel .next-slide{
+    right: -33px;
+    margin-top: 35px;
+    -webkit-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+  }
+  .owl-carousel .prev-slide:hover {
+    margin-top: 32px;
+    right: -80px;
+    width: 50px;
+    height: 50px;
+  }
+  .owl-carousel .next-slide:hover {
+    margin-top: 32px;
+    right: -40px;
+    width: 50px;
+    height: 50px;
+  }
+}
+/************** END Owl carousel Custom Nav ***************/

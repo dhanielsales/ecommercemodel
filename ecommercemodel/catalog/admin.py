@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+
 from .models import Product, Category, ProductImages, Subcategory
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -23,7 +24,15 @@ class ProductImagesAdmin(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
 
-    list_display = ['id', '__str__', 'price', 'category', 'subcategory', 'is_active', 'created', 'modified', 'author']
+    def created_format(self, obj):
+        return obj.created.strftime("%d/%m/%Y às %H:%M:%S")
+    created_format.admin_order_field = 'created'
+
+    def modified_format(self, obj):
+        return obj.created.strftime("%d/%m/%Y às %H:%M:%S")
+    modified_format.admin_order_field = 'modified'
+
+    list_display = ['id', '__str__', 'price', 'category', 'subcategory', 'is_active', 'spotlight', 'created_format', 'modified_format', 'author']
     list_display_links = ('id', '__str__')
     search_fields = ['id', 'name', 'slug', 'category__name', 'subcategory__name']
     autocomplete_fields = ['category', 'subcategory']

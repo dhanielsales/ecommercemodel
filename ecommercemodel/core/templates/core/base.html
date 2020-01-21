@@ -34,125 +34,12 @@
   <link rel="stylesheet" href='{% static "new/css/sidebar.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/jquery.mCustomScrollbar.min.css" %}' />
   <link rel="stylesheet" href='{% static "new/css/main.css" %}' />
+  <link rel="stylesheet" href='{% static "new/css/style.css" %}' />
   
   <link rel="stylesheet" href='https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css' />
 
 {% block style %}
 <style>
-  #btnmenu {
-    font-size: 1.5em;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    background: transparent;
-    position: absolute;
-    top: 70px;
-    right: 10px;
-    cursor: pointer;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-  .wrapper .navbar .navbar-collapse {
-    background: transparent !important;
-    margin-top: 10px;
-  }
-  .bg-megamenu-image {
-    background: #222222cc;
-  }
-
-  .btn-main {
-    background: -webkit-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important; 
-    background: -moz-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
-    background: -o-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
-    background: -ms-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
-    background: linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
-    color: #fff !important;
-    border: none !important;
-  }
-  
-  .btn-main:active, .btn-main:active {
-    background: -webkit-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
-    background: -moz-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
-    background: -o-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
-    background: -ms-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
-    background: linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
-    color: #fff !important;
-  }
-
-/**************************** dropdown-lg ******************************/
-
-  .navbar .dropdown-menu.dropdown-lg div[class*="col"] {
-     margin-bottom:1rem;
-  }
-  .navbar .dropdown-menu.dropdown-lg {
-    border:none;
-    border-top:1px solid #555;
-    border-radius: 0;
-    background-color:#222222!important;
-  }
-  
- @media screen and (min-width: 1000px) {
-    
-  .navbar .dropdown.dropdown-lg {position:static;}
-
-  .navbar .dropdown-menu.dropdown-lg {
-    width:100%;
-    left:0;
-    right:0;
-    top:132px;/* height of navbar  */
-  }
-  .navbar .dropdown:hover .dropdown-menu.dropdown-lg, .navbar .dropdown .dropdown-menu.dropdown-lg:hover {
-    display:block!important;
-    transition: display 1s linear
-  }
-}
-/****************************END dropdown-lg ******************************/
-
-/* .back-to-top:hover img, .back-to-top:focus img {
-      content: url('{% static "new/img/up-down.gif" %}' );
-   } */
-
-    
-  .btn-gif img.bg-gif {
-      width: 20px;
-      height: 20px;
-  }
-  body {font-family: 'Lato', sans-serif;}
-  h1, h2, h3, h4, h5, h6 {font-family: 'Lato', sans-serif;}
-  h1, .h2, .h3, .h4, .h5, .h6 {font-family: 'Lato', sans-serif;}
-
-  /*.home-banner-area {
-    background: url("{% static 'new/img/home-banner-bg2.png' %}") no-repeat;
-    background: none;
-  }*/
-  .btn-instagram {
-    background: #833ab4;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: #fff;
-    border-color: #fff;
-  }
-
-  .btn-instagram:hover {
-    background: #833ab4;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #e49f3f, #df1a1a, #6f3199);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e49f3f, #df1a1a, #6f3199); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: #fff;
-    border-color: #fff;
-  }
-  .navbar-light .navbar-nav .nav-link {
-    color: white !important;
-  }
-  .navbar-light .navbar-nav .nav-link.subcat {
-    color: #c9c9c9 !important;
-  }
-  .navbar-light .navbar-nav .nav-link.subcat:hover, .navbar-light .navbar-nav .nav-link.subcat:focus {
-    background: rgba(255, 255, 255, 0.05);
-    color: white !important;
-  }
   @media screen and (min-width: 990px) {
    .nav-bot li a {padding: 0px 10px 10px 10px;}
    .nav-top li a {padding: 10px 10px 2px 10px;}
@@ -178,9 +65,13 @@
     .container, .container-sm, .container-md, .container-lg {
       max-width: 1000px;
     }
-
   }
-  
+  .owl-carousel .prev-slide{
+    content: url('{% static "new/img/forward-left.png" %}' );
+  }
+  .owl-carousel .next-slide{
+    content: url('{% static "new/img/forward-right.png" %}' );
+  }
 </style>
 {% endblock %}
 </head>
@@ -512,7 +403,7 @@
   <!-- ================ End Registration Area ================= -->
   <!-- ================ Start Back To Top Area ================= -->
 
-  <a class="btn btn-light btn-lg back-to-top p-2" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='left' data-trigger='focus' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
+  <a class="btn btn-light btn-lg back-to-top p-2 rounded-circle shadow" href="#" role="button" tabindex="0" data-toggle="popover" data-placement='left' data-trigger='focus' data-content="Voltar para o topo" id="back-to-top"><img src='{% static "new/img/up-down.svg" %}' width="30"></a>
 
   <!-- ================= End Back To Top Area ================== -->
     <div class="overlay"></div>
@@ -589,8 +480,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
   </footer>
   <!-- ================ End footer Area ================= -->
 
-<!-- <script src='{% static "new/js/popper.min.js" %}'></script> -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src='{% static "new/js/popper.min.js" %}'></script>
 <script src='{% static "new/js/jquery-3.4.1.min.js" %}'></script>
 <script src='{% static "new/js/jquery.magnific-popup.min.js" %}'></script>
 <script src='{% static "new/js/jquery.ajaxchimp.min.js" %}'></script>
@@ -616,14 +506,16 @@ $('.owl-carousel').owlCarousel({
     rtl:false,
     loop:true,
     margin:10,
-    //nav:true,
     autoplay:false, //TEMP better True
     autoplayTimeout:5000, // = 5s
     autoplayHoverPause:true,
-    navText: [ '<img src={% static "new/img/prev.png" %} >', '<img src={% static "new/img/next.png" %}>' ],
+    nav:true,
+    //navText: [ '<img src={% static "new/img/prev.png" %} >', '<img src={% static "new/img/next.png" %}>' ],
+    //navText : ["<i class='nav-btn prev-slide fas fa-chevron-left'></i>", "<i class='nav-btn next-slide fas fa-chevron-right'></i>"],
+    navText : ["<img class='nav-btn prev-slide'></img>", "<img class='nav-btn next-slide'></img>"],
     responsive: {
       0: {
-        items: 1,
+        items: 2,
         stagePadding: 0
       },
       575: {
@@ -631,7 +523,7 @@ $('.owl-carousel').owlCarousel({
         stagePadding: 0
       },
       768: {
-        items: 2,
+        items: 3,
         stagePadding: 0
       },
       992: {
@@ -643,7 +535,7 @@ $('.owl-carousel').owlCarousel({
         stagePadding: 60
       },
       1440: {
-        items: 4,
+        items: 3,
         stagePadding: 60
       }
     }

@@ -86,10 +86,10 @@
           
           <p class="h3 text-center font-weight-light"> <span class="font-weight-bold text-uppercase"> {{ category.name }} </span> COM OS MELHORES DESCONTOS:</p>
 
-            {% for product in category|products_spotlights %}
-
             <div class="owl-carousel owl-theme mt-5">
 
+              {% for product in category|products_spotlights %}
+                
                 <div class="item ml-2 bg-light">
 
                   <div class="card mb-5 border-0 bg-light">
@@ -99,36 +99,39 @@
                         <img class="card-img-top" src="{{ image.image|thumbnail_url:'product_image' }}" alt="" />
                         {% endif %}
                         {% empty %}
-                        <img src="http://placehold.it/350x250" alt="" />
+                        <img src="http://placehold.it/250x290" alt="" />
                         {% endfor %}
                     </a>
-                      <div class="card-body">
+                      <div class="card-body text-center p-2">
                           <a href="{{ product.get_absolute_url }}">
-                            <p class="card-title h6 mb-2"> {{ product.name }} </p>
+                            <p class="card-title h6 mb-1"> {{ product.name }} </p>
                           </a>
-                          <a href="{{ category.get_absolute_url }}">
+                          <!-- <a href="{{ category.get_absolute_url }}">
                             <p class="card-subtitle mb-0 text-muted"> {{ category.name }} </p>
-                          </a>
+                          </a> -->
                           <!-- <a class="shadow-none btn btn-transparent card-link ml-0 float-right btn-gif p-1"> <img class="bg-gif" data-in='{% static "new/img/heart-in.gif" %}' data-out='{% static "new/img/heart-out.gif" %}' src='{% static "new/img/heart.svg" %}'> </a> -->
                           <a class="text-dark" href="{{ product.get_absolute_url }}">
                             <p class='card-text pt-1'><s class="text-muted"> R$180,00 </s><span class="font-weight-bold ml-1"> R$ {{ product.price }} </span></p>
                           </a>
                       </div>
-                      <div class="card-footer py-0 text-muted bottom d-flex">
+                      <div class="card-footer py-0 text-muted d-flex">
+                        <div class="ml-auto">
                           <a href="#"><i class="text-warning fa fa-star"></i></a>
                           <a href="#"><i class="text-warning fa fa-star"></i></a>
                           <a href="#"><i class="text-warning fa fa-star"></i></a>
                           <a href="#"><i class="text-warning fa fa-star"></i></a>
-                          <a href="#"><i class="text-warning fa fa-star-half-o" aria-hidden="true"></i></a>
+                          <a href="#"><i class="text-warning fa fa-star-half-o"></i></a>
                           {% comment %} <a href="#"><i class="text-warning fa fa-star-half" aria-hidden="true"></i></a> {% endcomment %}
-                          <p class="ml-20 mb-0">25 Reviews</p>
+                        </div>
+                          <p class="mb-0 d-block d-lg-none d-xl-none mr-auto">(25)</p>
+                          <p class="mb-0 d-none d-lg-block d-xl-block mr-auto">25 Avaliações</p>
                       </div>
                   </div>
 
                 </div>
+                {% endfor %}
 
             </div>
-            {% endfor %}
 
           </div>
     </div>

@@ -223,7 +223,7 @@ LOGIN_REDIRECT_URL = 'index'
 
 THUMBNAIL_ALIASES = {
     '': {
-        'product_image': {'size': (325, 250), 'crop': True},
+        'product_image': {'size': (250, 290), 'crop': True},
         'category': {'size': (335, 500), 'crop': True},
         'avatar': {'size': (50, 50), 'crop': True},
     },
@@ -273,7 +273,10 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 MEDIA_URL = '/media/'
 
+##########################################################
+
 try: 
     from .local_settings import *
 except ImportError: 
     pass 
+
