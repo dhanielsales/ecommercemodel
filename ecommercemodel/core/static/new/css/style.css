@@ -148,90 +148,228 @@
     }
   }
 
-/************** Owl carousel Custom Nav ***************/
-  .owl-carousel .nav-btn{
+/************** Owl carousel Card Custom Nav ***************/
+  .owl-carousel.owl-carousel-card .nav-btn{
     height: 47px;
     position: absolute;
     width: 26px;
     cursor: pointer;
     top: 100px !important;
   }
-  .owl-theme .owl-nav {
+  .owl-theme.owl-carousel-card .owl-nav {
       height: 0;
       margin: 0;
   }
-  .owl-theme .owl-dots {
-      margin: 0 0 10px 0;
+  .owl-theme.owl-carousel-card .owl-dots {
+      position: relative;
+      bottom: 20px;
+
   }
   
-  .owl-carousel .owl-prev.disabled,
-  .owl-carousel .owl-next.disabled{
+  .owl-carousel.owl-carousel-card .owl-prev.disabled,
+  .owl-carousel.owl-carousel-card .owl-next.disabled{
   pointer-events: none;
   opacity: 0.2;
   }
   
-  .owl-carousel .prev-slide{
+  .owl-carousel.owl-carousel-card .prev-slide{
     /* left: -33px; */
     left: -12px;
     margin-top: 28px;
   }
-  .owl-carousel .next-slide{
+  .owl-carousel.owl-carousel-card .next-slide{
     /* right: -33px; */
     right: -12px;
     margin-top: 28px;
   }
-  .owl-carousel .next-slide, .owl-carousel .prev-slide{
+  .owl-carousel.owl-carousel-card .next-slide, .owl-carousel.owl-carousel-card .prev-slide{
     width: 50px;
   }
-  .owl-carousel .prev-slide:hover{
+  .owl-carousel.owl-carousel-card .prev-slide:hover{
    background-position: 0px -53px;
   }
-  .owl-carousel .next-slide:hover{
+  .owl-carousel.owl-carousel-card .next-slide:hover{
   background-position: -24px -53px;
   }   
 
   @media (min-width: 300px) {
- .owl-carousel .prev-slide{
+ .owl-carousel.owl-carousel-card .prev-slide{
     /* left: -33px; */
     left: -3px;
     margin-top: 0px;
   }
-  .owl-carousel .next-slide{
+  .owl-carousel.owl-carousel-card .next-slide{
     /* right: -33px; */
     right: -12px;
     margin-top: 0px;
   }
-  .owl-carousel .next-slide, .owl-carousel .prev-slide{
+  .owl-carousel.owl-carousel-card .next-slide, .owl-carousel.owl-carousel-card .prev-slide{
     width: 40px;
     height: 40px;
   }
+  .owl-carousel.owl-carousel-card .card .card-text, .owl-carousel.owl-carousel-card .card .card-title {font-size: 16px;}
 }
   @media (min-width: 992px) {  
-  .owl-carousel .prev-slide{
+  .owl-carousel.owl-carousel-card .prev-slide{
     left: -32px;
     margin-top: 35px;
     -webkit-transition: all 0.1s;
     -o-transition: all 0.1s;
     transition: all 0.1s;
   }
-  .owl-carousel .next-slide{
+  .owl-carousel.owl-carousel-card .next-slide{
     right: -33px;
     margin-top: 35px;
     -webkit-transition: all 0.1s;
     -o-transition: all 0.1s;
     transition: all 0.1s;
   }
-  .owl-carousel .prev-slide:hover {
+  .owl-carousel.owl-carousel-card .prev-slide:hover {
     margin-top: 32px;
-    right: -80px;
+    left: -40px;
     width: 50px;
     height: 50px;
   }
-  .owl-carousel .next-slide:hover {
+  .owl-carousel.owl-carousel-card .next-slide:hover {
     margin-top: 32px;
     right: -40px;
     width: 50px;
     height: 50px;
   }
+  .owl-carousel.owl-carousel-card .card .card-text, .owl-carousel.owl-carousel-card .card .card-title {font-size: 14px;}
 }
-/************** END Owl carousel Custom Nav ***************/
+/************** End Owl carousel Custom Nav ***************/
+
+
+/************** Start Login Modal ***************/
+.modal-dialog.cascading-modal .modal-c-tabs .md-tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: -1.5rem 1rem 0 1rem;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.md-tabs {
+  position: relative;
+  z-index: 1;
+  padding: .7rem;
+  margin-right: 1rem;
+  margin-bottom: -20px;
+  margin-left: 1rem;
+  background-color: #2bbbad;
+  border: 0;
+  border-radius: .25rem;
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+
+.light-blue {
+  background: -webkit-linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important; 
+  background: -moz-linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important;
+  background: -o-linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important;
+  background: -ms-linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important;
+  background: linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important;
+}
+
+.nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  margin-bottom: 0;
+  list-style: none;
+}
+
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.modal-dialog.cascading-modal .modal-c-tabs .md-tabs li a {
+  text-align: center;
+}
+.md-tabs .nav-link.active, .md-tabs .nav-item.open .nav-link {
+  color: #fff;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: .25rem;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.md-tabs .nav-link {
+  color: #fff;
+  border: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.nav-link:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.md-form.form-sm .prefix ~ input, .md-form.form-sm .prefix ~ textarea {
+  width: 88%;
+  width: calc(100% - 3.5rem);
+  margin-left: 2rem;
+}
+.tab-content .tab-pane .modal-body .md-form .form-control{
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border-color 0.3s ease-in-out,-webkit-box-shadow 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out,-webkit-box-shadow 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out,-webkit-box-shadow 0.3s ease-in-out;
+}
+.tab-content .tab-pane .modal-body .md-form .form-control:focus {
+  border-bottom: 2px solid #b436e2;
+}
+
+/************** End Login Modal *****************/
+
+
+.searchformfld{
+  position: relative;
+  margin: 5px 0px;
+}
+.searchformfld label{
+  position: absolute;
+  padding-left: 10px;
+  top:15px;
+}
+.searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
+  opacity:1;
+  transform: scale(.9) translateY(-100%) translateX(-10px);
+  color:#000;
+}
+.searchformfld input:focus{
+  border:1px solid #000;
+  outline-color: #000;
+}
+.searchformfld{
+  padding: 15px;
+  margin:15px 0px;
+}
+.searchformfld input{
+  width:100%;
+  padding-left: 10px;
+}
+.searchformfld label,.searchformfld input{
+  transition: all 0.2s;
+  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity:0.5;
+}
