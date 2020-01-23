@@ -426,42 +426,26 @@
 
         <!-- Tab panels -->
         <div class="tab-content">
-        <form class="form-horizontal m-0" id="LoginForm" method="post">
-            {% csrf_token %}
-            {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
-                {{ error }}
-            </div>
-            {% endfor %}
           <!--Panel 7-->
           <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
 
             <!--Body-->
-            <fieldset>
-            <div class="modal-body mb-1{% if form.username.errors %} has-error{% endif %}">
+            <div class="modal-body mb-1">
               <div class="md-form form-sm mt-2">
-                {% render_field form.username class="form-control validate"  placeholder="Seu E-mail" %}
+                <input type="email" id="modalLRInput10" placeholder="Seu E-mail" class="form-control validate">
                 <i class="fas fa-envelope prefix"></i>
-                <label data-error="wrong" data-success="right" for="{{ form.username.auto_id }}">Seu E-mail</label>
-                {% for error in form.username.errors %}
-                <span class="help-block">{{ error }}</span>
-                {% endfor %}
+                <label data-error="wrong" data-success="right" for="modalLRInput10">Seu E-mail</label>
               </div>
 
-              <div class="md-form form-sm mb-2 {% if form.password.errors %} has-error{% endif %}">
-                {% render_field form.password class="form-control validate" placeholder="Sua Senha"  %}
+              <div class="md-form form-sm mb-2">
+                <input type="password" id="modalLRInput11" placeholder="Sua Senha" class="form-control validate">
                 <i class="ml-1 fas fa-lock prefix"></i>
-                <label data-error="wrong" data-success="right" for="{{ form.password.auto_id }}">Sua Senha</label>
-                {% for error in form.password.errors %}
-                <span class="help-block">{{ error }}</span>
-                {% endfor %}
+                <label data-error="wrong" data-success="right" for="modalLRInput11">Sua Senha</label>
               </div>
               <div class="text-center">
-                <button style="font-size: 12px"  type="submit" id="SubmitLogin" class="btn btn-main py-3 px-5 rounded-0 border-lg">ENTRAR</button>
+                <button style="font-size: 12px" class="btn btn-main py-3 px-5 rounded-0 border-lg">ENTRAR</button>
               </div>
             </div>
-            </fieldset>
-        </form>
             <!--Footer-->
             <div class="modal-footer">
               <div class="options text-center text-md-right mt-2 p-0">
@@ -756,21 +740,6 @@ $(document).click(function(e) {
 //    } else {$(".navbar .dropdown .dropdown-menu.dropdown-lg").removeClass('show')
 //    }
 //});
-
-///////////////////////////////////////////////
-
-//$(function(){
-//    $('#SubmitLogin').on('click', function(e) {
-//      $.ajax({
-//        type:"POST",
-//        url: $(this).attr('action'),
-//        data: $('#LoginForm').serialize(),
-//      })
-//    });
-//})
-
-///////////////////////////////////////////////
-
 
 </script>
 {% endblock %}

@@ -32,7 +32,7 @@
     border: none !important;
   }
   
-  .btn-main:active, .btn-main:active {
+  .btn-main:active, .btn-main:focus {
     background: -webkit-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
     background: -moz-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
     background: -o-linear-gradient(270deg, #6b2bda 0%, #a72db4 100%) !important;
@@ -41,6 +41,26 @@
     color: #fff !important;
   }
 
+  .btn-main-invert {
+    border-image: linear-gradient(to right #7c32ff,#c738d8) 1 100%;
+    border: 2px solid #b436e2;
+    background-image: -webkit-linear-gradient(right, #7c32ff, #c738d8); /* For Chrome and Safari */
+    background-image:    -moz-linear-gradient(right, #7c32ff, #c738d8); /* For old Fx (3.6 to 15) */
+    background-image:     -ms-linear-gradient(right, #7c32ff, #c738d8); /* For pre-releases of IE 10*/
+    background-image:      -o-linear-gradient(right, #7c32ff, #c738d8); /* For old Opera (11.1 to 12.0) */
+    background-image:      linear-gradient(to right #7c32ff, #c738d8); /* Standard syntax; must be last */
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .btn-main-invert:active, .btn-main-invert:focus , .btn-main-invert:hover{
+    color: #fff;
+    background: -webkit-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important; 
+    background: -moz-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: -o-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: -ms-linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+    background: linear-gradient(270deg, #7c32ff 0%, #c738d8 100%) !important;
+  }
 /**************************** dropdown-lg ******************************/
 
   .navbar .dropdown-menu.dropdown-lg div[class*="col"] {
@@ -258,14 +278,13 @@
   margin-right: 1rem;
   margin-bottom: -20px;
   margin-left: 1rem;
-  background-color: #2bbbad;
   border: 0;
   border-radius: .25rem;
   -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
   box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
 }
 
-.light-blue {
+.pink-purple {
   background: -webkit-linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important; 
   background: -moz-linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important;
   background: -o-linear-gradient(270deg, #c738d8 0%, #7c32ff 100%) !important;
@@ -282,11 +301,59 @@
   margin-bottom: 0;
   list-style: none;
 }
-
-ol, ul, dl {
-  margin-top: 0;
-  margin-bottom: 1rem;
+.tab-content .tab-pane .modal-body .md-form i{
+  position: relative !important;
+  bottom: 30px !important;
+  font-size: 25px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
+.tab-content .tab-pane .modal-body .md-form input {
+  padding: 0.1rem 0.5rem !important; 
+  line-height: 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.tab-content .tab-pane .modal-body .md-form label{
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  position: relative !important;
+  bottom: 33px !important;
+  font-size: 16px;
+  left: 1rem;
+}
+.tab-content .tab-pane .modal-body .md-form input::placeholder {opacity: 0;}
+
+.tab-content .tab-pane .modal-body .md-form input:not(:placeholder-shown) + i + label {
+  position: relative !important;
+  bottom: 60px !important;
+  font-size: 12px;
+  left: 0px;
+  color: #b436e2;
+}
+
+.tab-content .tab-pane .modal-body .md-form input:not(:placeholder-shown) + i{
+  color: #b436e2;
+}
+
+.tab-content .tab-pane .modal-body .md-form input:not(:placeholder-shown) {
+  border-bottom: 2px solid #b436e2;
+}
+.tab-content .tab-pane .modal-body .md-form .form-control:focus {
+  border-bottom: 2px solid #b436e2;
+}
+
+.tab-content .tab-pane .modal-body .md-form input:focus + i + label{
+  position: relative !important;
+  bottom: 60px !important;
+  font-size: 12px;
+  left: 0px;
+  color: #b436e2;
+}
+.tab-content .tab-pane .modal-body .md-form input:focus + i{
+  color: #b436e2;
+}
+
 .modal-dialog.cascading-modal .modal-c-tabs .md-tabs li a {
   text-align: center;
 }
@@ -297,6 +364,9 @@ ol, ul, dl {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
+.default-font-color {color: #b436e2;}
+.default-font-color:hover, .default-font-color:focus, .default-font-color:active  {color: #9d30c5;}
+
 
 .md-tabs .nav-link {
   color: #fff;
@@ -314,7 +384,7 @@ ol, ul, dl {
   transition: all 0.2s ease-in-out;
 }
 
-.md-form.form-sm .prefix ~ input, .md-form.form-sm .prefix ~ textarea {
+.md-form.form-sm input, .md-form.form-sm textarea {
   width: 88%;
   width: calc(100% - 3.5rem);
   margin-left: 2rem;
@@ -334,42 +404,9 @@ ol, ul, dl {
   transition: border-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out,-webkit-box-shadow 0.3s ease-in-out;
 }
-.tab-content .tab-pane .modal-body .md-form .form-control:focus {
-  border-bottom: 2px solid #b436e2;
-}
+.modal-content.modal-login {width: 80%;}
+
+
 
 /************** End Login Modal *****************/
 
-
-.searchformfld{
-  position: relative;
-  margin: 5px 0px;
-}
-.searchformfld label{
-  position: absolute;
-  padding-left: 10px;
-  top:15px;
-}
-.searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
-  opacity:1;
-  transform: scale(.9) translateY(-100%) translateX(-10px);
-  color:#000;
-}
-.searchformfld input:focus{
-  border:1px solid #000;
-  outline-color: #000;
-}
-.searchformfld{
-  padding: 15px;
-  margin:15px 0px;
-}
-.searchformfld input{
-  width:100%;
-  padding-left: 10px;
-}
-.searchformfld label,.searchformfld input{
-  transition: all 0.2s;
-  transition-timing-function: ease;
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  opacity:0.5;
-}
